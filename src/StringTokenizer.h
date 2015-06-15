@@ -7,6 +7,8 @@
 #include "Token.h"
 #include "ErrorCode.h"
 #include <stdio.h>
+#include <malloc.h>
 
-int StringTokenizer(char *ch);
+
+Token *StringTokenizer(char *ch);
 #endif // StringTokenizer_H

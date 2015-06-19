@@ -10,5 +10,23 @@
 #include <malloc.h>
 
 
-Token *StringTokenizer(char *ch);
+
+typedef struct {
+	char *str;
+	int index;	
+}StringObject;
+
+typedef enum{
+	InitialState,
+	IntegerState,
+	IdentifierState,
+	StringState,
+	OperatorState,
+	FloatingState
+	
+}TokenState;
+
+Token *StringTokenizer(StringObject *str);
+StringObject *createStringObject(char *str);
+
 #endif // StringTokenizer_H

@@ -44,39 +44,18 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
 	IntegerToken *newToken = malloc(sizeof(IntegerToken));
 	StringObject *str = createStringObject("1234");
-	TEST_ASSERT_EQUAL(0,str->index);
-	TEST_ASSERT_EQUAL("1234",str->str);
 	
 	Try{
-		
 		newToken =(IntegerToken*) StringTokenizer(str);
     TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,newToken->type);
 		TEST_ASSERT_EQUAL(1234,newToken->value);
-		
-		
 	}Catch(err){
-				switch(err)
-					{
-						case ERR_STR_INCLURE_ALPHA:
-						printf("The string cannot have Alpha\n");
-						break;
-						case ERR_STR_INCLUDE_SYMBOL:
-						printf("Error: Can't include Symbol\n");
-						break;
-						case ERR_STR_CANNOT_BE_EMPTY:
-						printf("Error: Can't be Empty \n");
-						break;
-						case ERR_STR_CANNOT_BE_NULL:
-						printf("Error: Can't be NULL\n");
-						break;
-						default:
-						printf("Unknown Error caught! Error code is :%d\n", err);
-						break;
-					}
+		printError(err);
 	}
 	
-	
  }
+ 
+ 
  
  
  /*
@@ -91,7 +70,20 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 																				 ----------------------
 				
 */
-
+void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	IntegerToken *newToken = malloc(sizeof(IntegerToken));
+	StringObject *str = createStringObject("1234 ");
+	
+	Try{
+		newToken =(IntegerToken*) StringTokenizer(str);
+    TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,newToken->type);
+		TEST_ASSERT_EQUAL(1234,newToken->value);
+	}Catch(err){
+		printError(err);
+	}
+ }
+ 
 /*
 		str = "1234\n"
 	
@@ -104,7 +96,20 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 																				 ----------------------
 				
 */
-
+void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	IntegerToken *newToken = malloc(sizeof(IntegerToken));
+	StringObject *str = createStringObject("1234\n");
+	
+	Try{
+		newToken =(IntegerToken*) StringTokenizer(str);
+    TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,newToken->type);
+		TEST_ASSERT_EQUAL(1234,newToken->value);
+	}Catch(err){
+		printError(err);
+	}
+	
+ }
 
  
 /* void xtest_transition_of_state_machine(void){

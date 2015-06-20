@@ -28,5 +28,6 @@ typedef enum{
 
 Token *StringTokenizer(StringObject *str);
 StringObject *createStringObject(char *str);
-
+void printError(int err);
+void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO);
 #endif // StringTokenizer_H

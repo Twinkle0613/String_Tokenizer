@@ -4,8 +4,12 @@
 #include <stdint.h>
 
 typedef enum {
+	TOKEN_UNKNOWN_TYPE,
 	TOKEN_INTEGER_TYPE,
 	TOKEN_OPERATOR_TYPE,
+	TOKEN_FLOAT_TYPE,
+	TOKEN_STRING_TYPE,
+	TOKEN_IDENTIFIER_TYPE,
 } TokenType;
 
 typedef enum {
@@ -32,6 +36,20 @@ typedef struct {
   uint32_t length;
 	int value;
 } IntegerToken;
+
+typedef struct {
+	TokenType type;
+  uint32_t startColumn;
+  uint32_t length;
+	double value;
+} FloatToken;
+
+typedef struct {
+	TokenType type;
+  uint32_t startColumn;
+  uint32_t length;
+	char *name;
+} IdentifierToken, StringToken;
 
 typedef struct {
 	TokenType type;

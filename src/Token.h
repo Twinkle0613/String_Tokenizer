@@ -57,11 +57,9 @@ typedef struct {
   uint32_t length;
 	char *symbol;
 	Arity arity;
-//	Associativity assoc;
 	Token *token[0];
 } OperatorToken;
 
-// symbol can be "++", "*", "[", ":"
 Token *createOperatorToken(char *symbol, Arity AR);
 Token *createIntegerToken(int value);
 

@@ -3,8 +3,11 @@
 
 
 typedef enum {
-	TOKEN_INTEGER_TYPE,
 	TOKEN_OPERATOR_TYPE,
+	TOKEN_INTEGER_TYPE,
+	TOKEN_IDENTIFIER_TYPE,
+	TOKEN_STRING_TYPE,
+	TOKEN_TYPE
 } TokenType;
 
 typedef enum {
@@ -36,6 +39,16 @@ typedef struct {
 	Arity arity;
 	Token *token[0];
 } OperatorToken;
+
+typedef struct{
+	TokenType type;
+	double value;
+} FloatToken;
+		
+typedef struct{
+	TokenType type;
+	char *name;
+} IdentifierToken,StringToken;
 
 
 Token *createOperatorToken(char *symbol, Arity AR);

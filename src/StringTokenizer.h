@@ -17,6 +17,13 @@ typedef struct {
 }StringObject;
 
 typedef enum{
+	/* INITIAL_STATE,
+	INTEGER_STATE,
+	IDENTIFIER_STATE,
+	STRING_STATE,
+	OPERATOR_STATE,
+	FLOATING_STATE, */
+	
 	InitialState,
 	IntegerState,
 	IdentifierState,
@@ -27,7 +34,6 @@ typedef enum{
 }TokenState;
 
 Token *StringTokenizer(StringObject *str);
-StringObject *createStringObject(char *str);
-void printError(int err);
-void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO);
+void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO );
+
 #endif // StringTokenizer_H

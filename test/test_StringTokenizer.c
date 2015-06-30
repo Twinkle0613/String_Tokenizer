@@ -9,8 +9,6 @@
 void setUp(void){}
 
 void tearDown(void){}
-
-
 /*
 		str = "1234"
 	
@@ -24,7 +22,7 @@ void tearDown(void){}
 				
 */
 
-void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
+void xtest_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
 	IntegerToken *newToken = malloc(sizeof(IntegerToken));
 	Try{
@@ -37,7 +35,7 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 	}
  }
  
-void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void){
+void xtest_StringTokenizer_given_string_1234space_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
 	IntegerToken *newToken = malloc(sizeof(IntegerToken));	
 	Try{
@@ -50,7 +48,7 @@ void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void
 	}
  }
  
-void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(void){
+void xtest_StringTokenizer_given_string_1234endline_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
 	IntegerToken *newToken = malloc(sizeof(IntegerToken));
 	Try{

@@ -25,7 +25,19 @@ Token *StringTokenizer(StringObject *strO){
 					case InitialState:
 						printf("-----------------\n");
 						printf("InitialState\n");
+						if(strO == NULL){
+							
+						}else if(strO->str = NULL){
+							
+						}else if(strO->str[strO->index] == " "){
+							(strO->index)++;
+						}else if(strO->str[strO->index] == '\0'){
+							
+							
+						}	
+						
 						checkFirstCh(strO,&currentState);
+						
 
 						break;
 					

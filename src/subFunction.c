@@ -39,7 +39,6 @@ StringObject *createStringObject(char *ch){
 		return strO;
 		}
 
-		
 void printError(int err){
 	
 					switch(err)

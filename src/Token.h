@@ -1,7 +1,6 @@
 #ifndef Token_H
 #define Token_H
 
-
 typedef enum {
 	TOKEN_OPERATOR_TYPE,
 	TOKEN_INTEGER_TYPE,
@@ -22,7 +21,6 @@ typedef enum {
 	RIGHT_TO_LEFT,
 } Associativity;
 
-
 typedef struct {
 	TokenType type;
 } Token;
@@ -31,7 +29,6 @@ typedef struct {
 	TokenType type;
 	int value;
 } IntegerToken;
-
 
 typedef struct {
 	TokenType type;
@@ -53,5 +50,8 @@ typedef struct{
 
 Token *createOperatorToken(char *symbol, Arity AR);
 Token *createIntegerToken(int value);
+// Token *createStringToken(char *str);
+// Token *createIdentifierToken(char *str);
+// Token *createFloatingToken(int value);
 #endif // Token_H
 

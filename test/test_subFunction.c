@@ -63,10 +63,11 @@ void xtest_createSubString_given_Hello_World_into_ch_start_is_0_and_tail_is_12_s
 	TEST_ASSERT_EQUAL_STRING("Hello World",str);
   
 }
+
 void xtest_checkStr_given_1234_and_currentState_should_be_change_to_IntergerState(void){
 		TokenState currentState;
 			StringObject *strO = createStringObject("1234");
-		checkFirstCh(strO,&currentState);
+		checkFirstCh(strO,&currentState,0);
 		TEST_ASSERT_EQUAL(IntegerState,currentState);
 	
 }
@@ -74,8 +75,34 @@ void xtest_checkStr_given_1234_and_currentState_should_be_change_to_IntergerStat
 void xtest_checkStr_given_ASS_and_currentState_should_be_change_to_IdentifierState(void){
 		TokenState currentState;
 			StringObject *strO = createStringObject("ASS");
-		checkFirstCh(strO,&currentState);
+		checkFirstCh(strO,&currentState,0);
 		TEST_ASSERT_EQUAL(IdentifierState,currentState);
+}
+
+void xtest_createSubString(void){
+  char *str = "1234 4321";
+  int start = 5;
+  int len = 4;
+  char *newStr = createSubString(str,start,len);
+  printf("\nnewStr = %s",newStr);
+  TEST_ASSERT_EQUAL_STRING("4321",newStr);
+}
+
+void xtest_getValue(void){
+	int value ;
+	 StringObject *strO = malloc(sizeof(StringObject));
+	strO->str = "1234 4321";
+	Token *InTk = malloc(sizeof(Token));
+	 InTk->startColumn = 5;
+	 InTk->length = 4;
+	 value = getValue(strO,InTk);
+	printf("value = %d",value);
+   TEST_ASSERT_EQUAL(4321,value);
 	
 }
+
+
+
+
+
 

@@ -1,6 +1,4 @@
 #include "subFunction.h"
-
-
 #include "StringTokenizer.h"
 #include <malloc.h>
 #include "Token.h"
@@ -13,23 +11,38 @@
 #include <malloc.h>
 #include <string.h>
 
-void checkFirstCh ( StringObject* strO , TokenState *currentState){
-		printf("strO->str[0] = %c\n",strO->str[0]);
-		if (isdigit(strO->str[0])){
-			printf("IntegerState\n");
+int getValue (StringObject* strO, Token* InTk){
+		int value;
+		value = atoi( createSubString(strO->str, InTk->startColumn, InTk->length ) );
+		return value;
+}
+
+void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
+	
+	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
+		if (isdigit(strO->str[*startColumn])){
 			*currentState = IntegerState;
-		}else if (isalpha(strO->str[0])){
+		}else if (isalpha(strO->str[*startColumn])){
 			*currentState = IdentifierState;
 		}
-		
-}	
 
-char *createSubString(char *str, int start , int tail){
-	char *string = malloc(sizeof(char*));
-	//char *strncpy(char *s1, const char *s2, size_t n);
-	strncpy(string , str , tail - start);
-	string[tail - start] = '\0';
-	return string;
+}
+
+char *createSubString(char *str, int start , int len){
+	
+  char *newStr = malloc(sizeof(char)*(len+1));
+	int i = 0;
+	int j = start;
+	
+	while ( j < (len+start) ){
+	newStr[i] = str[j];
+  printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
+    i++;
+		j++;
+  }
+  newStr[i] = 0;
+	return newStr;
+
 }
 
 StringObject *createStringObject(char *ch){
@@ -44,16 +57,19 @@ void printError(int err){
 					switch(err)
 					{
 						case ERR_STR_INCLURE_ALPHA:
-						printf("Error: Can't include Alpha\n");
+						printf("Error: String can't include Alpha\n");
 						break;
 						case ERR_STR_INCLUDE_SYMBOL:
-						printf("Error: Can't include Symbol\n");
+						printf("Error: String can't include Symbol\n");
 						break;
 						case ERR_STR_CANNOT_BE_EMPTY:
-						printf("Error: Can't be Empty \n");
+						printf("Error: String can't be Empty \n");
 						break;
 						case ERR_STR_CANNOT_BE_NULL:
-						printf("Error: Can't be NULL\n");
+						printf("Error: String can't be NULL\n");
+						break;
+						case ERR_STR_OBJECT_CANNOT_BE_NULL:
+						printf("Error: String Object can't be NULL\n");
 						break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);
@@ -61,4 +77,9 @@ void printError(int err){
 					}
 	
 }
+
+// getValue(strO,InTk);
+
+
+
 

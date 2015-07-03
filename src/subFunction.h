@@ -16,5 +16,7 @@
 StringObject *createStringObject(char *ch);
 void printError(int err);
 char *createSubString(char *str, int start , int length);
-void checkFirstCh ( StringObject* strO , TokenState *currentState);
+void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);
+int getValue (StringObject* strO, Token* InTk);
+
 #endif // subFunction_H

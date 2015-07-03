@@ -16,34 +16,38 @@ Token *StringTokenizer(StringObject *strO){
 		
 	  Token* newToken = malloc(sizeof(Token));
 		TokenState currentState = InitialState;
+		newToken->startColumn = strO->index;
 		int loop = 0;
-		
-		while (loop < 10)
+		printf("-----------------\n");
+    printf("newToken->startColumn  = %d\n",newToken->startColumn);
+
+		//printf("strO->index = %d\n",strO->index);
+		while (loop < 100)
 		{
 				switch (currentState)
 			{
 					case InitialState:
-						printf("-----------------\n");
+
 						printf("InitialState\n");
+						
 						if(strO == NULL){
-							
-						}else if(strO->str = NULL){
-							
-						}else if(strO->str[strO->index] == " "){
+						Throw(-5);	//	printf("Error: Can't be NULL\n");
+						}else if(strO->str == NULL){
+						Throw(-4);	//	printf("Error: Can't be NULL\n");
+						}else if(strO->str[strO->index] == ' '){
 							(strO->index)++;
 						}else if(strO->str[strO->index] == '\0'){
-							
-							
-						}	
-						
-						checkFirstCh(strO,&currentState);
-						
+							newToken = createOperatorToken("$",PREFIX); 
+						  printf("return inside\n");
+							return newToken;
+						}	else {
+							checkFirstCh(strO,&currentState,&(newToken->startColumn));
+						}
 
 						break;
 					
 					case IntegerState:
 					{
-				//	printf("newToken->type = %d\n",newToken->type);		
 					printf("IntegerState\n");
 					TransitionForInt(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
@@ -82,66 +86,36 @@ Token *StringTokenizer(StringObject *strO){
 
 void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* strO){
 					
-					*InTk = malloc(sizeof(Token));
-					
-						if( isdigit(strO->str[strO->index]) ) 
+		
+					if( isdigit(strO->str[strO->index]) ) 
 					{
-
 						printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
-						++(strO->index);
-		
+						(strO->index)++;
 					}else if( (strO->str[strO->index] == ' '&& isdigit(strO->str[(strO->index)-1])) || (strO->str[strO->index] == '\n'&& isdigit(strO->str[(strO->index)-1])) || ( strO->str[(strO->index)] == '\0' && isdigit(strO->str[(strO->index)-1])))
 					 {
 						printf("Create Token\n");
-						(strO->index)++;
-						*InTk = createIntegerToken( atoi( strO->str ) ); 
-						
+            (*InTk)->length = strO->index - (*InTk)->startColumn;
+						 printf("(*InTk)->startColumn  = %d\n",(*InTk)->startColumn);
+						 printf("strO->index = %d\n",strO->index);
+             printf(" (*InTk)->length = %d\n", (*InTk)->length);
+						if(strO->str[strO->index] != '\0' ){
+							(strO->index)++;
+						}
+						//*InTk = createIntegerToken(getValue(strO,*InTk));
+						//Token *createIntegerToken(int value,int start,int length,char *str);
+
+						*InTk = createIntegerToken(getValue(strO,*InTk),(*InTk)->startColumn,(*InTk)->length,strO->str);
+						//*InTk = createIntegerToken( atoi( createSubString(strO->str, (*InTk)->startColumn, (*InTk)->length ) )); 
+           // printf(" (*InTk)->length = %d\n", (*InTk)->length);
+
 					 }else if ( isalpha(strO->str[strO->index]) )
 					{	
 						Throw(-1); 	//	printf("Error: Can't include Alpha\n");
 					}else if (ispunct(strO->str[strO->index]))
 					{
 						Throw(-2); 	//	printf("Error: Can't include Symbol\n");
-					}else if( strO->str[0] == '\0')
-					{	
-						Throw(-3);  //	printf("Error: Can't be Empty \n");
-					}else if ( strO->str == 0 )
-					{
-						Throw(-4);	//	printf("Error: Can't be NULL\n");
-					}
-					
+					}					
 }
 
  
-/*  					if( isdigit(strO->str[strO->index]) ) 
-					{
-						printf("[%c]\n",strO->str[strO->index]); 
-						currentState = IntegerState;
-						printf("strO->index = %d\n",strO->index);
-						(strO->index)++;
-		
-					}else if ( isalpha(strO->str[strO->index]) )
-					{
-					//	printf("Error: Can't include Alpha\n");
-						Throw(-1);
-					}else if (ispunct(strO->str[strO->index]))
-					{
-					//	printf("Error: Can't include Symbol\n");
-						Throw(-2);
-					}else if( strO->str[0] == '\0')
-					{	
-					//	printf("Error: Can't be Empty \n");
-						Throw(-3);
-					}else if ( strO->str == 0)
-					{
-					//	printf("Error: Can't be NULL\n");
-					Throw(-4);
-					}
-					else if( (strO->str[strO->index] == ' '&& isdigit(strO->str[(strO->index)-1])) || (strO->str[strO->index] == '\n'&& isdigit(strO->str[(strO->index)-1])) || ( strO->str[strO->index+1] == '\0' && isdigit(strO->str[(strO->index)-1])))
-					 {
-					//	if the string get space, end_line(\n) and \0, create a Integer Token
-						printf("Create Token\n");
-						 tk = createIntegerToken( atoi( strO->str ) ); 
-						 return tk;
-					 // } */

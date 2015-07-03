@@ -9,7 +9,17 @@
 #include <stdio.h>
 #include <malloc.h>
 
+#define TEST_LAST_TOKEN(Token)																			\
+				{																														\
+				TEST_ASSERT_EQUAL(TOKEN_OPERATOR_TYPE,Token->type);					\
+				TEST_ASSERT_EQUAL_STRING("$",Token->symbol);								\
+				}																														\
 
+#define TEST_INTEGER_TOKEN(Expect,Token)														\
+				{																														\
+				TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,Token->type);				  \
+				TEST_ASSERT_EQUAL(Expect,Token->value);									  	\
+				}
 
 typedef struct {
 	char *str;
@@ -17,13 +27,7 @@ typedef struct {
 }StringObject;
 
 typedef enum{
-	/* INITIAL_STATE,
-	INTEGER_STATE,
-	IDENTIFIER_STATE,
-	STRING_STATE,
-	OPERATOR_STATE,
-	FLOATING_STATE, */
-	
+
 	InitialState,
 	IntegerState,
 	IdentifierState,

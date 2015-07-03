@@ -30,18 +30,35 @@ Token *createOperatorToken(char *symbol, Arity AR){
 OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
 //	OperatorToken OpTk = {type:TOKEN_OPERATOR_TYPE,symbol: symbol,arity:AR};
 		OpTk ->type = TOKEN_OPERATOR_TYPE;
-		OpTk ->symbol =symbol ;
+		OpTk ->symbol =symbol;
 	  OpTk ->arity = AR;
   	return (Token*)OpTk;
 }
 		
 
-Token *createIntegerToken(int value){
+Token *createIntegerToken(int value,int start,int length,char *str ){
 	IntegerToken *InTk = malloc(sizeof(IntegerToken));
+  InTk->length = length;
+  InTk->startColumn = start;
 	InTk->type = TOKEN_INTEGER_TYPE;
 	InTk->value = value;
+	InTk->str = str;
 	return (Token*)InTk;
 }
+
+// Token *createIntegerToken(int value){
+	// IntegerToken *InTk = malloc(sizeof(IntegerToken));
+	// InTk->type = TOKEN_INTEGER_TYPE;
+	// InTk->value = value;
+	// return (Token*)InTk;
+// }
+
+// Token *createEndStrToken(char *symbol){
+	// EndOfStringToken EndTk = malloc(sizeof(EndOfStringToken));
+	// EndTk->type = TOKEN_END_OF_STRING;
+	// EndTk->symbol = symbol;
+	// return (Token*)EndTk;
+// }
 
 
 

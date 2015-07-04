@@ -46,19 +46,14 @@ Token *createIntegerToken(int value,int start,int length,char *str ){
 	return (Token*)InTk;
 }
 
-// Token *createIntegerToken(int value){
-	// IntegerToken *InTk = malloc(sizeof(IntegerToken));
-	// InTk->type = TOKEN_INTEGER_TYPE;
-	// InTk->value = value;
-	// return (Token*)InTk;
-// }
 
-// Token *createEndStrToken(char *symbol){
-	// EndOfStringToken EndTk = malloc(sizeof(EndOfStringToken));
-	// EndTk->type = TOKEN_END_OF_STRING;
-	// EndTk->symbol = symbol;
-	// return (Token*)EndTk;
-// }
+Token *createEndStrToken(char *symbol){
+	OperatorToken *EndTk = malloc(sizeof(OperatorToken));
+	EndTk->type = TOKEN_OPERATOR_TYPE;
+	EndTk->symbol = symbol;
+	return (Token*)EndTk;
+}
+
 
 
 

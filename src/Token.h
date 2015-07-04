@@ -71,8 +71,8 @@ typedef struct {
 
 
 Token *createOperatorToken(char *symbol, Arity AR);
-
 Token *createIntegerToken(int value,int start,int length,char *str);
+Token *createEndStrToken(char *symbol);
 //Token *createIntegerToken(int value);
 //<<<<<<< HEAD
 // Token *createStringToken(char *str);

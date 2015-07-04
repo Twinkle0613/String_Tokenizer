@@ -15,12 +15,16 @@
 				TEST_ASSERT_EQUAL_STRING("$",Token->symbol);								\
 				}																														\
 
-#define TEST_INTEGER_TOKEN(Expect,Token)														\
-				{																														\
-				TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,Token->type);				  \
-				TEST_ASSERT_EQUAL(Expect,Token->value);									  	\
-				}
 
+#define TEST_ASSERT_INTEGER_TOKEN(ExValue,ExStartC,ExLen,ExStr,Token)     \
+				{																																	\
+				TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,Token->type);				  			\
+				TEST_ASSERT_EQUAL(ExValue,Token->value);									  			\
+				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
+				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
+				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
+				}
+				
 typedef struct {
 	char *str;
 	int index;	
@@ -39,5 +43,6 @@ typedef enum{
 
 Token *StringTokenizer(StringObject *str);
 void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO );
+void TransitionForIni(Token** InTk, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

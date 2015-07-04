@@ -11,52 +11,40 @@
 #include <string.h>
 #include "subFunction.h"
 
+#define curChar strO->str[strO->index]
 
 Token *StringTokenizer(StringObject *strO){
-		
-	  Token* newToken = malloc(sizeof(Token));
+		if( strO == NULL){
+			 Throw(-5); 	// throwError("String Object can't be NULL",ERR_STR_OBJECT_CANNOT_BE_NULL);
+		}
+	  Token* newToken = malloc(sizeof(Token)); 
 		TokenState currentState = InitialState;
 		newToken->startColumn = strO->index;
 		int loop = 0;
 		printf("-----------------\n");
     printf("newToken->startColumn  = %d\n",newToken->startColumn);
-
-		//printf("strO->index = %d\n",strO->index);
 		while (loop < 100)
 		{
 				switch (currentState)
 			{
 					case InitialState:
-
-						printf("InitialState\n");
-						
-						if(strO == NULL){
-						Throw(-5);	//	printf("Error: Can't be NULL\n");
-						}else if(strO->str == NULL){
-						Throw(-4);	//	printf("Error: Can't be NULL\n");
-						}else if(strO->str[strO->index] == ' '){
-							(strO->index)++;
-						}else if(strO->str[strO->index] == '\0'){
-							newToken = createOperatorToken("$",PREFIX); 
-						  printf("return inside\n");
-							return newToken;
-						}	else {
-							checkFirstCh(strO,&currentState,&(newToken->startColumn));
-						}
-
+					{
+					printf("InitialState\n");
+					TransitionForIni(&newToken,&currentState,strO);
+					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
+						return newToken;
+					 }
 						break;
-					
+					}//end of InitialState
 					case IntegerState:
 					{
 					printf("IntegerState\n");
 					TransitionForInt(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
-						 printf("newToken->type = %d\n",newToken->type);		
-						 printf("return inside\n");
 						return newToken;
 					 }
 					break;
-					}//end of Integer State 
+					}//end of IntegerState 
 			   			
 						
 					case FloatingState:
@@ -79,43 +67,95 @@ Token *StringTokenizer(StringObject *strO){
 	}//end of while loop
 		printf("return outside\n");
 		return newToken;
-		
-
 }//end of program
 
-
 void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* strO){
-					
-		
-					if( isdigit(strO->str[strO->index]) ) 
+						 
+					if( isdigit(curChar) ) 
 					{
 						printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
 						(strO->index)++;
-					}else if( (strO->str[strO->index] == ' '&& isdigit(strO->str[(strO->index)-1])) || (strO->str[strO->index] == '\n'&& isdigit(strO->str[(strO->index)-1])) || ( strO->str[(strO->index)] == '\0' && isdigit(strO->str[(strO->index)-1])))
-					 {
+					}else if(curChar == ' ' || curChar  == '\n' || curChar == '\0' || ispunct(curChar))
+					{
 						printf("Create Token\n");
             (*InTk)->length = strO->index - (*InTk)->startColumn;
-						 printf("(*InTk)->startColumn  = %d\n",(*InTk)->startColumn);
-						 printf("strO->index = %d\n",strO->index);
-             printf(" (*InTk)->length = %d\n", (*InTk)->length);
-						if(strO->str[strO->index] != '\0' ){
-							(strO->index)++;
+						if(curChar != '\0' ){
+						(strO->index)++;
 						}
-						//*InTk = createIntegerToken(getValue(strO,*InTk));
-						//Token *createIntegerToken(int value,int start,int length,char *str);
-
 						*InTk = createIntegerToken(getValue(strO,*InTk),(*InTk)->startColumn,(*InTk)->length,strO->str);
-						//*InTk = createIntegerToken( atoi( createSubString(strO->str, (*InTk)->startColumn, (*InTk)->length ) )); 
-           // printf(" (*InTk)->length = %d\n", (*InTk)->length);
-
-					 }else if ( isalpha(strO->str[strO->index]) )
+					 }else if ( isalpha(curChar) )
 					{	
-						Throw(-1); 	//	printf("Error: Can't include Alpha\n");
-					}else if (ispunct(strO->str[strO->index]))
-					{
-						Throw(-2); 	//	printf("Error: Can't include Symbol\n");
-					}					
+						Throw(-1); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
+					}			
 }
 
- 
+
+void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO){
+	 
+						if(strO->str == NULL){
+						Throw(-4);	// throwError("The String can't be a NULL",ERR_STR_CANNOT_BE_NULL);
+						}else if(curChar == ' '){
+							(strO->index)++;
+						}else if(curChar == '\0'){
+							*newToken = createEndStrToken("$"); 
+						}	else {
+							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
+						}
+	
+}
+
+//void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO)
+
+/*
+'+', '-', '', '/', '\', '~', '!', '%', '^', '&', '&&', '{', '}', '[', 
+']', '|', '||', '!', '?', '>', '<'. '>=', '<=', '=', '==', '.', ',', '+=',
+ '-=', '/=', '=', '|=', '&=', ':', ';', '++', '--', '#', '(', ')', '@'.
+ */
+
+ // int isOperator(char symbol){
+	 
+	 // switch (symbol)
+	 // case '+':  return 1;
+	 // case '-':  return 1;
+	 // case '+':  return 1;
+	 // case '' :  return 1;
+	 // case '/':  return 1;
+	 // case '\\': return 1;
+	 // case '~':  return 1;
+	 // case '!':  return 1;
+	 // case '%':  return 1;
+	 // case '^':  return 1;
+	 // case '&':  return 1;
+	 // case '&&': return 1;
+	 // case '{':  return 1;
+	 // case '}':  return 1;
+	 // case '[':  return 1;
+	 // case ']':  return 1;
+	 // case '|':  return 1;
+	 // case '||': return 1;
+	 // case '?':  return 1;
+	 // case '>':  return 1;
+	 // case '<':  return 1;
+	 // case '>=': return 1;
+	 // case '<=': return 1;
+	 // case '=':  return 1;
+	 // case '==': return 1;
+	 // case '.':  return 1;
+	 // case ',':  return 1;
+	 // case '+=': return 1;
+	 // case '-=': return 1;
+	 // case '/=': return 1;
+	 // case '|=': return 1;
+	 // case '&=': return 1;
+	 // case ':':  return 1;
+	 // case ';':  return 1;
+	 // case '++': return 1;
+	 // case '--': return 1;
+	 // case '#':  return 1;
+	 // case '(':  return 1;
+	 // case ')':  return 1;
+	 // case '@':  return 1;
+	 // default :  return 0;
+	 
+ // }

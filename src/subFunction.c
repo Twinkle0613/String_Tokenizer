@@ -10,6 +10,9 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+#include "unity.h"
+
+
 
 int getValue (StringObject* strO, Token* InTk){
 		int value;
@@ -58,6 +61,15 @@ void printError(int err){
 					{
 						case ERR_STR_INCLURE_ALPHA:
 						printf("Error: String can't include Alpha\n");
+						// char *str = "String can't include Alpha";
+						// char *str2 ="2+3-4 123A";
+						// char *str3 ="         ^";
+						
+						// printf("ERROR[%d][%d]: %s\n%s\n%s\n",3,3,str,str2,str3);
+						// char buffer[256];
+						// sprintf(buffer,"ERROR[%d][%d]: %s\n%s\n%s\n",3,3,str,str2,str3);
+						// UNITY_TEST_FAIL(__LINE__,buffer);
+						
 						break;
 						case ERR_STR_INCLUDE_SYMBOL:
 						printf("Error: String can't include Symbol\n");
@@ -77,8 +89,6 @@ void printError(int err){
 					}
 	
 }
-
-// getValue(strO,InTk);
 
 
 

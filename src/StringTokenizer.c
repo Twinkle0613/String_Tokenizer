@@ -1,15 +1,13 @@
-#include "StringTokenizer.h"
-#include <malloc.h>
+#include "ErrorCode.h"
 #include "Token.h"
+#include "StringTokenizer.h"
 #include "CException.h"
+#include "subFunction.h"
+
+#include <malloc.h>
 #include <string.h>
 #include <ctype.h>
-#include "Token.h"
-#include "ErrorCode.h"
 #include <stdio.h>
-#include <malloc.h>
-#include <string.h>
-#include "subFunction.h"
 
 #define curChar strO->str[strO->index]
 
@@ -57,6 +55,11 @@ Token *StringTokenizer(StringObject *strO){
 					break;
 					
 					case OperatorState:
+					printf("OperatorState\n");
+					
+					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
+						return newToken;
+					 }
 					break;
 					
 					default:InitialState;
@@ -76,7 +79,7 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 						printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
 						(strO->index)++;
-					}else if(curChar == ' ' || curChar  == '\n' || curChar == '\0' || ispunct(curChar))
+					}else if(curChar == ' ' || curChar  == '\n' || curChar == '\0' || isoperator(curChar))
 					{
 						printf("Create Token\n");
             (*InTk)->length = strO->index - (*InTk)->startColumn;
@@ -92,7 +95,6 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 
 
 void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO){
-	 
 						if(strO->str == NULL){
 						Throw(-4);	// throwError("The String can't be a NULL",ERR_STR_CANNOT_BE_NULL);
 						}else if(curChar == ' '){
@@ -102,10 +104,14 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 						}	else {
 							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
 						}
-	
 }
 
-//void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO)
+
+
+void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO){
+	
+	
+}
 
 /*
 '+', '-', '', '/', '\', '~', '!', '%', '^', '&', '&&', '{', '}', '[', 
@@ -116,46 +122,46 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
  // int isOperator(char symbol){
 	 
 	 // switch (symbol)
-	 // case '+':  return 1;
-	 // case '-':  return 1;
-	 // case '+':  return 1;
-	 // case '' :  return 1;
-	 // case '/':  return 1;
+	 // case '+':  return 1; d 
+	 // case '-':  return 1; d 
+	 // case '*':  return 1; d
+	 // case '*=':  return 1; d
+	 // case '/':  return 1; d
 	 // case '\\': return 1;
-	 // case '~':  return 1;
-	 // case '!':  return 1;
-	 // case '%':  return 1;
-	 // case '^':  return 1;
-	 // case '&':  return 1;
+	 // case '~':  return 1; d
+	 // case '!':  return 1; d
+	 // case '%':  return 1; d
+	 // case '^':  return 1; d
+	 // case '&':  return 1; d
 	 // case '&&': return 1; &
-	 // case '{':  return 1;
-	 // case '}':  return 1;
-	 // case '[':  return 1;
-	 // case ']':  return 1;
-	 // case '|':  return 1;
-	 // case '||': return 1; |
-	 // case '?':  return 1;
-	 // case '>':  return 1;
-	 // case '<':  return 1;
-	 // case '>=': return 1; =
-	 // case '<=': return 1; = 
-	 // case '=':  return 1;
-	 // case '==': return 1; =
-	 // case '.':  return 1;
-	 // case ',':  return 1;
-	 // case '+=': return 1; =
-	 // case '-=': return 1; =
-	 // case '/=': return 1; =
-	 // case '|=': return 1; =
-	 // case '&=': return 1; =
-	 // case ':':  return 1;
-	 // case ';':  return 1;
-	 // case '++': return 1; +
-	 // case '--': return 1; -
+	 // case '{':  return 1; d
+	 // case '}':  return 1; d
+	 // case '[':  return 1; d
+	 // case ']':  return 1; d
+	 // case '|':  return 1; d
+	 // case '||': return 1; | d
+	 // case '?':  return 1; d
+	 // case '>':  return 1; d
+	 // case '<':  return 1; d
+	 // case '>=': return 1; = d
+	 // case '<=': return 1; = d
+	 // case '=':  return 1; d 
+	 // case '==': return 1; = d
+	 // case '.':  return 1; d
+	 // case ',':  return 1; d
+	 // case '+=': return 1; = d
+	 // case '-=': return 1; = d
+	 // case '/=': return 1; = d
+	 // case '|=': return 1; = d
+	 // case '&=': return 1; = d 
+	 // case ':':  return 1; d
+	 // case ';':  return 1; d
+	 // case '++': return 1; + d
+	 // case '--': return 1; - d 
 	 // case '#':  return 1;
-	 // case '(':  return 1;
-	 // case ')':  return 1;
-	 // case '@':  return 1;
+	 // case '(':  return 1; d
+	 // case ')':  return 1; d
+	 // case '@':  return 1; d
 	 // default :  return 0;
 	 
  // }

@@ -10,9 +10,9 @@
 #include "Token.h"
 #include "ErrorCode.h"
 #include <stdio.h>
-#include <malloc.h>
-#include <string.h>
-#include "subFunction.h"
+
+
+
 void setUp(void){}
 
 void tearDown(void){}
@@ -89,6 +89,7 @@ void xtest_createSubString(void){
 }
 
 void xtest_getValue(void){
+	
 	int value ;
 	 StringObject *strO = malloc(sizeof(StringObject));
 	strO->str = "1234 4321";
@@ -101,8 +102,117 @@ void xtest_getValue(void){
 	
 }
 
+void xtest_isSingle (void){
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['(']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[')']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['[']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[']']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['{']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['}']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['@']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[';']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[':']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['.']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[',']));
+	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['~']));
+	TEST_ASSERT_EQUAL(0,isSingle(operatorAtrributes['!']));
+	TEST_ASSERT_EQUAL(0,isSingle(operatorAtrributes['<']));
+	TEST_ASSERT_EQUAL(0,isSingle(operatorAtrributes['+']));
+	TEST_ASSERT_EQUAL(0,isSingle(operatorAtrributes['-']));	
+}
 
 
+void xtest_isTwin (void){
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['=']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['<']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['>']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['+']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['-']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['/']));
+		TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['&']));
+    TEST_ASSERT_EQUAL(1,isTwin(operatorAtrributes['|']));
+		TEST_ASSERT_EQUAL(0,isTwin(operatorAtrributes['(']));
+		TEST_ASSERT_EQUAL(0,isTwin(operatorAtrributes['!']));
+		TEST_ASSERT_EQUAL(0,isTwin(operatorAtrributes['*']));
+		TEST_ASSERT_EQUAL(0,isTwin(operatorAtrributes['^']));
+		TEST_ASSERT_EQUAL(0,isTwin(operatorAtrributes['%']));		
+}
+
+void xtest_isAssign (void){
+
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['<']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['>']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['+']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['!']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['*']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['^']));
+		TEST_ASSERT_EQUAL(1,isAssign(operatorAtrributes['%']));		
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes['=']));
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes['(']));
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes[')']));
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes['[']));
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes[']']));
+		TEST_ASSERT_EQUAL(0,isAssign(operatorAtrributes['{']));
+}
+
+
+void xtest_isTwinAssign (void){	
+		TEST_ASSERT_EQUAL(1,isTwinAssign(operatorAtrributes['<']));
+		TEST_ASSERT_EQUAL(1,isTwinAssign(operatorAtrributes['>']));	
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['+']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['!']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['*']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['^']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['%']));		
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['=']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['+']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['-']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['/']));
+		TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['&']));
+    TEST_ASSERT_EQUAL(0,isTwinAssign(operatorAtrributes['|']));
+}
+void xtest_isOperator(void){
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['<']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['>']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['+']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['-']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['/']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['&']));
+    TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['|']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['!']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['*']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['^']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['%']));	
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['=']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['(']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[')']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['[']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[']']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['{']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['}']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['@']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[';']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[':']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['.']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[',']));
+		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['~']));		
+}
+void test_checkFirstCh_given_string_starSymbol_should_return_OperatorState(void){
+	 StringObject* strO = malloc(sizeof(StringObject));
+	 strO->str = "*";
+		int startColumn = 0;
+	 TokenState currentState;
+	 checkFirstCh (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(OperatorState,currentState);
+}
+void test_checkFirstCh_given_string_8_should_return_IntegerState(void){
+	 StringObject* strO = malloc(sizeof(StringObject));
+	 strO->str = "8";
+		int startColumn = 0;
+	 TokenState currentState;
+	 checkFirstCh (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(IntegerState,currentState);
+}
 
 
 

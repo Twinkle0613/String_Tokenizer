@@ -1,11 +1,12 @@
 #ifndef StringTokenizer_H
 #define StringTokenizer_H
+
 #include "Token.h"
 #include "CException.h"
+#include "ErrorCode.h"
+
 #include <string.h>
 #include <ctype.h>
-#include "Token.h"
-#include "ErrorCode.h"
 #include <stdio.h>
 #include <malloc.h>
 
@@ -37,12 +38,14 @@ typedef enum{
 	IdentifierState,
 	StringState,
 	OperatorState,
-	FloatingState
+	FloatingState,
+	UnknownState
 	
 }TokenState;
 
 Token *StringTokenizer(StringObject *str);
 void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO );
-void TransitionForIni(Token** InTk, TokenState* currentState , StringObject* strO);
+void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO);
+void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

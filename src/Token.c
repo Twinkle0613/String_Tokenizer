@@ -26,6 +26,10 @@
  *
  */
 
+ #define SINGLE (1<<0)
+ #define TWIN (1<<1)
+ #define ASSIGNMENT (1<<2)
+ 
 Token *createOperatorToken(char *symbol, Arity AR){
 OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
 //	OperatorToken OpTk = {type:TOKEN_OPERATOR_TYPE,symbol: symbol,arity:AR};
@@ -54,7 +58,20 @@ Token *createEndStrToken(char *symbol){
 	return (Token*)EndTk;
 }
 
-
+int OperatorAtrributes[256] = {
+	
+	 ['+'] = SINGLE | TWIN | ASSIGNMENT; // + == += 
+	 ['-'] = SINGLE | TWIN | ASSIGNMENT; //
+	 ['/'] = SINGLE | TWIN | ASSIGNMENT;
+	 ['*'] = SINGLE | TWIN | ASSIGNMENT;
+	 ['&'] = SINGLE | TWIN | ASSIGNMENT;
+	 ['|'] = SINGLE | TWIN | ASSIGNMENT;
+	 
+	
+	
+	
+	
+}
 
 
 

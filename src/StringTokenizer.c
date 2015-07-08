@@ -127,31 +127,31 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 	 // case '%':  return 1;
 	 // case '^':  return 1;
 	 // case '&':  return 1;
-	 // case '&&': return 1;
+	 // case '&&': return 1; &
 	 // case '{':  return 1;
 	 // case '}':  return 1;
 	 // case '[':  return 1;
 	 // case ']':  return 1;
 	 // case '|':  return 1;
-	 // case '||': return 1;
+	 // case '||': return 1; |
 	 // case '?':  return 1;
 	 // case '>':  return 1;
 	 // case '<':  return 1;
-	 // case '>=': return 1;
-	 // case '<=': return 1;
+	 // case '>=': return 1; =
+	 // case '<=': return 1; = 
 	 // case '=':  return 1;
-	 // case '==': return 1;
+	 // case '==': return 1; =
 	 // case '.':  return 1;
 	 // case ',':  return 1;
-	 // case '+=': return 1;
-	 // case '-=': return 1;
-	 // case '/=': return 1;
-	 // case '|=': return 1;
-	 // case '&=': return 1;
+	 // case '+=': return 1; =
+	 // case '-=': return 1; =
+	 // case '/=': return 1; =
+	 // case '|=': return 1; =
+	 // case '&=': return 1; =
 	 // case ':':  return 1;
 	 // case ';':  return 1;
-	 // case '++': return 1;
-	 // case '--': return 1;
+	 // case '++': return 1; +
+	 // case '--': return 1; -
 	 // case '#':  return 1;
 	 // case '(':  return 1;
 	 // case ')':  return 1;

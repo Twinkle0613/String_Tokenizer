@@ -1,11 +1,10 @@
 #ifndef Token_H
 #define Token_H
 
-//<<<<<<< HEAD
-//=======
+ 
+
 #include <stdint.h>
 
-//>>>>>>> 42bf950670b0fce17cac55432346920c3e1fe5a8
 typedef enum {
 	TOKEN_UNKNOWN_TYPE,
 	TOKEN_INTEGER_TYPE,
@@ -70,17 +69,10 @@ typedef struct {
 } OperatorToken;
 
 
-Token *createOperatorToken(char *symbol, Arity AR);
+Token *createOperatorToken(char *symbol);
 Token *createIntegerToken(int value,int start,int length,char *str);
 Token *createEndStrToken(char *symbol);
-//Token *createIntegerToken(int value);
-//<<<<<<< HEAD
-// Token *createStringToken(char *str);
-// Token *createIdentifierToken(char *str);
-// Token *createFloatingToken(int value);
 
-//=======
 
-//>>>>>>> 42bf950670b0fce17cac55432346920c3e1fe5a8
 #endif // Token_H
 

@@ -90,6 +90,91 @@ void printError(int err){
 	
 }
 
+//#define currChar strO->str[strO->index]
+//#define nextChar strO->str[strO->index+1]
+//#define prevChar strO->str[strO->index-1]
+// int isOperator(StringObject* strO){
 
+	 // switch (currChar)
+	 
+	 // case '+':  if( nextChar == '+' || nextChar == '=' ) //'++'||'+='
+	 //							return 0;
+	 //            else if (prevChar == '+' )
+	 //             return 1;
+	 //						 else
+	 //							return 1;
+	 
+	 // case '-':  if(nextChar == '-' || nextChar == '=' ) //'--'||'-='
+	 //							return 0;
+	 //						 else if (prevChar == '-' )
+	 //             return 1;
+	 //            else
+	 //             return 1;
+	  
+	 // case '/':  if(nextChar == '=' ) //'/='
+	 //							return 0;
+	 //							else if (prevChar == '=' )
+	 //             return 1;
+	 //             else
+	 //             return 1;
+ 
+	 // case '&': if(nextChar == '&' || nextChar == '=' ) //'&&'||'&='
+	 //							return 0;
+	 //						 else if (prevChar == '&' )
+	 //             return 1;
+	 //            else
+	 //             return 1;
+ 
+	 // case '|':  if(nextChar == '|' || nextChar == '=' ) //'||' || '|='
+	 //							return 0;
+	 //            else if (prevChar == '|' )
+	 //             return 1;
+	 //            else
+	 //             return 1;
+	  
+	 // case '>':  if(nextChar == '=' ) //'>='
+	 //							return 0;
+	 //            else if (prevChar == '>' )
+	 //             return 1;
+	 //            else
+	 //             return 1;
+ 
+	 // case '<':  if(nextChar == '=' ) //'<='//<<<
+	 //							return 0;
+	 //            else if (prevChar == '<' )
+	 //             return 1;
+	 //            else
+	 //             return 1;
+  
+	 // case '=':  if(nextChar == '=' ) //'=='
+	 //							return 0;
+	 //            else
+	 //             return 1;
+ 
+	 // case '}':  return 1;
+	 // case '{':  return 1;
+	 // case '[':  return 1;
+	 // case ']':  return 1;
+	 // case '?':  return 1;
+	 // case '' :  return 1;
+	 // case '\\': return 1;
+	 // case '~':  return 1;
+	 // case '!':  return 1;
+	 // case '%':  return 1;
+	 // case '^':  return 1;
+	 // case '.':  return 1;
+	 // case ',':  return 1;
+	 // case ':':  return 1;
+	 // case ';':  return 1;
+	 // case '#':  return 1;
+	 // case '(':  return 1;
+	 // case ')':  return 1;
+	 // case '@':  return 1;
+	 
+	 
+	 
+	 // default :  return 0;
+	 
+ // }
 
 

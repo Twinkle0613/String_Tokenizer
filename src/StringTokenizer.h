@@ -25,7 +25,16 @@
 				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
 				}
-				
+
+#define TEST_ASSERT_OPERATOR_TOKEN(ExSymbol,ExStartC,ExLen,ExStr,Token)   \
+				{																																	\
+				TEST_ASSERT_EQUAL(TOKEN_OPERATOR_TYPE,Token->type);				  			\
+				TEST_ASSERT_EQUAL_STRING(ExSymbol,Token->symbol);				    			\
+				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
+				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
+				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
+				}
+#define advance(x) (x->index++)
 typedef struct {
 	char *str;
 	int index;	
@@ -39,6 +48,7 @@ typedef enum{
 	StringState,
 	OperatorState,
 	FloatingState,
+	TwinAssignState,
 	UnknownState
 	
 }TokenState;
@@ -47,5 +57,6 @@ Token *StringTokenizer(StringObject *str);
 void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO );
 void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
+void TransitionForTwinAssign(Token** OpTk, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

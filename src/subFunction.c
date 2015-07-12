@@ -19,6 +19,12 @@ int getValue (StringObject* strO, Token* InTk){
 		return value;
 }
 
+char *getSymbol (StringObject* strO,Token* OpTk){
+		char *symbol = malloc(sizeof(char)*(OpTk->length)+1);
+		symbol = createSubString(strO->str, OpTk->startColumn, OpTk->length );
+	//	printf("symbol = %s\n",symbol);
+		return symbol;
+}
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
 	
 	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
@@ -40,7 +46,7 @@ char *createSubString(char *str, int start , int len){
 	
 	while ( j < (len+start) ){
 	newStr[i] = str[j];
-  printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
+ // printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
     i++;
 		j++;
   }
@@ -83,6 +89,9 @@ void printError(int err){
 						break;
 						case ERR_STR_OBJECT_CANNOT_BE_NULL:
 						printf("Error: String Object can't be NULL\n");
+						break;
+						case ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR:
+						printf("Error: String can't contain invalid operator\n");
 						break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);
@@ -174,86 +183,6 @@ int isTwinAssign(int Operator){
 //#define prevChar strO->str[strO->index-1]
 // int isOperator(StringObject* strO){
 
-	 // switch (currChar)
-	 
-	 // case '+':  if( nextChar == '+' || nextChar == '=' ) //'++'||'+='
-	 //							return 0;
-	 //            else if (prevChar == '+' )
-	 //             return 1;
-	 //						 else
-	 //							return 1;
-	 
-	 // case '-':  if(nextChar == '-' || nextChar == '=' ) //'--'||'-='
-	 //							return 0;
-	 //						 else if (prevChar == '-' )
-	 //             return 1;
-	 //            else
-	 //             return 1;
-	  
-	 // case '/':  if(nextChar == '=' ) //'/='
-	 //							return 0;
-	 //							else if (prevChar == '=' )
-	 //             return 1;
-	 //             else
-	 //             return 1;
- 
-	 // case '&': if(nextChar == '&' || nextChar == '=' ) //'&&'||'&='
-	 //							return 0;
-	 //						 else if (prevChar == '&' )
-	 //             return 1;
-	 //            else
-	 //             return 1;
- 
-	 // case '|':  if(nextChar == '|' || nextChar == '=' ) //'||' || '|='
-	 //							return 0;
-	 //            else if (prevChar == '|' )
-	 //             return 1;
-	 //            else
-	 //             return 1;
-	  
-	 // case '>':  if(nextChar == '=' ) //'>='
-	 //							return 0;
-	 //            else if (prevChar == '>' )
-	 //             return 1;
-	 //            else
-	 //             return 1;
- 
-	 // case '<':  if(nextChar == '=' ) //'<='//<<<
-	 //							return 0;
-	 //            else if (prevChar == '<' )
-	 //             return 1;
-	 //            else
-	 //             return 1;
-  
-	 // case '=':  if(nextChar == '=' ) //'=='
-	 //							return 0;
-	 //            else
-	 //             return 1;
- 
-	 // case '}':  return 1;
-	 // case '{':  return 1;
-	 // case '[':  return 1;
-	 // case ']':  return 1;
-	 // case '?':  return 1;
-	 // case '' :  return 1;
-	 // case '\\': return 1;
-	 // case '~':  return 1;
-	 // case '!':  return 1;
-	 // case '%':  return 1;
-	 // case '^':  return 1;
-	 // case '.':  return 1;
-	 // case ',':  return 1;
-	 // case ':':  return 1;
-	 // case ';':  return 1;
-	 // case '#':  return 1;
-	 // case '(':  return 1;
-	 // case ')':  return 1;
-	 // case '@':  return 1;
-	 
-	 
-	 
-	 // default :  return 0;
-	 
- // }
+
 
 

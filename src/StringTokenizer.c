@@ -9,7 +9,12 @@
 #include <ctype.h>
 #include <stdio.h>
 
-#define curChar strO->str[strO->index]
+#define curChar (strO->str[strO->index])
+#define nextChar (strO->str[strO->index+1])
+#define prevChar (strO->str[strO->index-1])
+#define isdigit_OR_alpha(x) (isdigit(x) || isalpha(x))
+#define isSpace_OR_0_OR_n(x) ( x == ' ' || x == '\n' || x == '\0' )
+//#define getSymbol(X,Y) (createSubString(X->str,Y->startColumn,Y->length))
 
 Token *StringTokenizer(StringObject *strO){
 		if( strO == NULL){
@@ -56,10 +61,18 @@ Token *StringTokenizer(StringObject *strO){
 					
 					case OperatorState:
 					printf("OperatorState\n");
-					
+					TransitionForOp(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
 						return newToken;
 					 }
+					break;
+					
+					case TwinAssignState:
+					printf("TwinAssignState\n");
+					TransitionForTwinAssign(&newToken,&currentState,strO);
+					if (newToken->type == TOKEN_OPERATOR_TYPE){
+						return newToken;
+					}
 					break;
 					
 					default:InitialState;
@@ -72,6 +85,19 @@ Token *StringTokenizer(StringObject *strO){
 		return newToken;
 }//end of program
 
+void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO){
+						if(strO->str == NULL){
+						Throw(-4);	// throwError("The String can't be a NULL",ERR_STR_CANNOT_BE_NULL);
+						}else if(curChar == ' '){
+							(strO->index)++;
+							(*newToken)->startColumn = strO->index;
+						}else if(curChar == '\0'){
+							*newToken = createEndStrToken("$"); 
+						}	else {
+							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
+						}
+}
+
 void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* strO){
 						 
 					if( isdigit(curChar) ) 
@@ -79,7 +105,7 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 						printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
 						(strO->index)++;
-					}else if(curChar == ' ' || curChar  == '\n' || curChar == '\0' || isoperator(curChar))
+					}else if( isSpace_OR_0_OR_n(curChar)  || isoperator(curChar))
 					{
 						printf("Create Token\n");
             (*InTk)->length = strO->index - (*InTk)->startColumn;
@@ -94,74 +120,70 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 }
 
 
-void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO){
-						if(strO->str == NULL){
-						Throw(-4);	// throwError("The String can't be a NULL",ERR_STR_CANNOT_BE_NULL);
-						}else if(curChar == ' '){
-							(strO->index)++;
-						}else if(curChar == '\0'){
-							*newToken = createEndStrToken("$"); 
-						}	else {
-							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
-						}
+//"1234\012423"
+
+void TransitionForOp(Token** OpTk, TokenState* currentState , StringObject* strO){
+					printf("curChar = %c\n",curChar);
+					if ( isSpace_OR_0_OR_n(nextChar)  || isdigit_OR_alpha(nextChar) || issingle(curChar) ){
+						printf("Create Token\n");
+						(strO->index)++;
+						(*OpTk)->length = strO->index - (*OpTk)->startColumn;
+						*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+					}else if ( istwin(curChar) || isassign(curChar) ){
+						(strO->index)++;
+						*currentState = TwinAssignState;
+					}else if ( isoperator(nextChar) == 0)  {
+						Throw(ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR);
+					}
 }
 
 
-
-void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO){
-	
-	
+void TransitionForTwinAssign(Token** OpTk, TokenState* currentState , StringObject* strO){
+				if (istwinassign(curChar)){
+					(strO->index)++;
+				//	advance(strO);
+				}else if (curChar == '=' || ((curChar == prevChar)&&istwin(curChar)) ){
+					printf("Create Token\n");
+					(strO->index)++;  
+					printf("curChar = %c\n",curChar);
+					if(isOperator(operatorAtrributes[curChar]) == 0 && isdigit(curChar) && isalpha(curChar)&& curChar != '\0' && curChar != '\n' && curChar != ' ' ){
+					Throw(ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR);
+					}
+					(*OpTk)->length = strO->index - (*OpTk)->startColumn;
+					*OpTk = createOperatorToken( getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+				}else if(isoperator(curChar)){
+					printf("Create Token\n");
+					(*OpTk)->length = strO->index - (*OpTk)->startColumn;
+					*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+				}
 }
 
-/*
-'+', '-', '', '/', '\', '~', '!', '%', '^', '&', '&&', '{', '}', '[', 
-']', '|', '||', '!', '?', '>', '<'. '>=', '<=', '=', '==', '.', ',', '+=',
- '-=', '/=', '=', '|=', '&=', ':', ';', '++', '--', '#', '(', ')', '@'.
- */
-
- // int isOperator(char symbol){
-	 
-	 // switch (symbol)
-	 // case '+':  return 1; d 
-	 // case '-':  return 1; d 
-	 // case '*':  return 1; d
-	 // case '*=':  return 1; d
-	 // case '/':  return 1; d
-	 // case '\\': return 1;
-	 // case '~':  return 1; d
-	 // case '!':  return 1; d
-	 // case '%':  return 1; d
-	 // case '^':  return 1; d
-	 // case '&':  return 1; d
-	 // case '&&': return 1; &
-	 // case '{':  return 1; d
-	 // case '}':  return 1; d
-	 // case '[':  return 1; d
-	 // case ']':  return 1; d
-	 // case '|':  return 1; d
-	 // case '||': return 1; | d
-	 // case '?':  return 1; d
-	 // case '>':  return 1; d
-	 // case '<':  return 1; d
-	 // case '>=': return 1; = d
-	 // case '<=': return 1; = d
-	 // case '=':  return 1; d 
-	 // case '==': return 1; = d
-	 // case '.':  return 1; d
-	 // case ',':  return 1; d
-	 // case '+=': return 1; = d
-	 // case '-=': return 1; = d
-	 // case '/=': return 1; = d
-	 // case '|=': return 1; = d
-	 // case '&=': return 1; = d 
-	 // case ':':  return 1; d
-	 // case ';':  return 1; d
-	 // case '++': return 1; + d
-	 // case '--': return 1; - d 
-	 // case '#':  return 1;
-	 // case '(':  return 1; d
-	 // case ')':  return 1; d
-	 // case '@':  return 1; d
-	 // default :  return 0;
-	 
- // }
+void dumpToken(Token* newToken){
+	char* tokenType;
+	switch(newToken->type){
+	case TOKEN_UNKNOWN_TYPE:
+				tokenType = "TOKEN_UNKNOWN_TYPE";
+				break;
+	case TOKEN_INTEGER_TYPE:
+					tokenType = "TOKEN_INTEGER_TYPE";
+					IntegerToken* InTk = (IntegerToken*)newToken;
+					printf("value = %d,",InTk->value);
+				break;
+	case TOKEN_OPERATOR_TYPE:
+					tokenType = "TOKEN_OPERATOR_TYPE";
+					OperatorToken* OpTk = (OperatorToken*)newToken;
+					printf("symbol = %s,",OpTk->symbol);
+				break;
+	case TOKEN_FLOAT_TYPE:
+					tokenType = "TOKEN_FLOAT_TYPE";
+				break;
+	case TOKEN_STRING_TYPE:
+					tokenType = "TOKEN_STRING_TYPE";
+				break;
+	case TOKEN_IDENTIFIER_TYPE:
+					tokenType = "TOKEN_IDENTIFIER_TYPE";
+				break;
+	default:break;
+	}
+	printf("[%s]\n",tokenType);
+}

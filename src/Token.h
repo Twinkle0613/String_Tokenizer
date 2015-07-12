@@ -12,7 +12,6 @@ typedef enum {
 	TOKEN_FLOAT_TYPE,
 	TOKEN_STRING_TYPE,
 	TOKEN_IDENTIFIER_TYPE,
-	TOKEN_END_OF_STRING
 } TokenType;
 
 typedef enum {
@@ -69,7 +68,7 @@ typedef struct {
 } OperatorToken;
 
 
-Token *createOperatorToken(char *symbol);
+Token *createOperatorToken(char *symbol, int start, int length, char *str);
 Token *createIntegerToken(int value,int start,int length,char *str);
 Token *createEndStrToken(char *symbol);
 // int isSingle(int Operator);

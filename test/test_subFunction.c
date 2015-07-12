@@ -196,8 +196,12 @@ void xtest_isOperator(void){
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['.']));
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[',']));
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['~']));		
+				TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['$']));
+						TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['#']));
+
+
 }
-void test_checkFirstCh_given_string_starSymbol_should_return_OperatorState(void){
+void xtest_checkFirstCh_given_string_starSymbol_should_return_OperatorState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "*";
 		int startColumn = 0;
@@ -205,7 +209,7 @@ void test_checkFirstCh_given_string_starSymbol_should_return_OperatorState(void)
 	 checkFirstCh (strO,&currentState,&startColumn);
 	 TEST_ASSERT_EQUAL(OperatorState,currentState);
 }
-void test_checkFirstCh_given_string_8_should_return_IntegerState(void){
+void xtest_checkFirstCh_given_string_8_should_return_IntegerState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "8";
 		int startColumn = 0;
@@ -213,6 +217,23 @@ void test_checkFirstCh_given_string_8_should_return_IntegerState(void){
 	 checkFirstCh (strO,&currentState,&startColumn);
 	 TEST_ASSERT_EQUAL(IntegerState,currentState);
 }
+
+void xtest_getSymbol(void){
+   StringObject* strO = createStringObject("^UIasdafsad");
+	 strO->index = 0;
+	 
+	 char *symbol;
+	 Token *OpTk = malloc(sizeof(Token));
+	 OpTk->startColumn = 0;
+	 OpTk->length = 1;
+	 symbol = getSymbol (strO,OpTk);
+	printf("symbol = %s",symbol);
+		TEST_ASSERT_EQUAL_STRING("^",symbol);
+	
+	}
+	
+	
+	
 
 
 

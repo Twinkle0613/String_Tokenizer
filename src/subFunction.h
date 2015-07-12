@@ -5,14 +5,15 @@
 #include "Token.h"
 #include "CException.h"
 #include <string.h>
-
 #include <ctype.h>
 #include "ErrorCode.h"
 #include <stdio.h>
-
-
 #include "subFunction.h"
+#define issingle(x) (isSingle(operatorAtrributes[x]))
 #define isoperator(x) (isOperator(operatorAtrributes[x]))
+#define istwin(x) (isTwin(operatorAtrributes[x]))
+#define isassign(x) (isAssign(operatorAtrributes[x]))
+#define istwinassign(x) (isTwinAssign(operatorAtrributes[x]))
 #define SINGLE (1<<0)
 #define TWIN (1<<1)
 #define ASSIGNMENT (1<<2)
@@ -23,6 +24,8 @@ StringObject *createStringObject(char *ch);
 char *createSubString(char *str, int start , int length);
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);
 int getValue (StringObject* strO, Token* InTk);
+char *getSymbol (StringObject* strO,Token* OpTk);
+
 void printError(int err);
 
 int isSingle(int Operator);

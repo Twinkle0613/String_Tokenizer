@@ -27,7 +27,6 @@ int getValue (StringObject* strO, Token* InTk);
 char *getSymbol (StringObject* strO,Token* OpTk);
 
 void printError(int err);
-
 int isSingle(int Operator);
 int isTwin(int Operator);
 int isAssign(int Operator);

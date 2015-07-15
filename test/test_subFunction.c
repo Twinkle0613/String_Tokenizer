@@ -196,8 +196,8 @@ void xtest_isOperator(void){
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['.']));
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes[',']));
 		TEST_ASSERT_EQUAL(1,isOperator(operatorAtrributes['~']));		
-				TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['$']));
-						TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['#']));
+		TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['$']));
+		TEST_ASSERT_EQUAL(0,isOperator(operatorAtrributes['#']));
 
 
 }
@@ -222,18 +222,50 @@ void xtest_getSymbol(void){
    StringObject* strO = createStringObject("^UIasdafsad");
 	 strO->index = 0;
 	 
-	 char *symbol;
-	 Token *OpTk = malloc(sizeof(Token));
-	 OpTk->startColumn = 0;
-	 OpTk->length = 1;
-	 symbol = getSymbol (strO,OpTk);
-	printf("symbol = %s",symbol);
+    char *symbol;
+    Token *OpTk = malloc(sizeof(Token));
+    OpTk->startColumn = 0;
+    OpTk->length = 1;
+    symbol = getSymbol (strO,OpTk);
+    printf("symbol = %s",symbol);
 		TEST_ASSERT_EQUAL_STRING("^",symbol);
 	
 	}
 	
+void test_createIntegerToken_given_1234_should_return_IntegerToken(void){
+   
+  IntegerToken *InTk = malloc(sizeof(IntegerToken));
+  InTk = (IntegerToken*)createIntegerToken("1234",0,2);
+  printf("InTk->value = %d",InTk->value);
+  TEST_ASSERT_INTEGER_TOKEN(12,0,2,"1234",InTk);
+   
+ }
 	
-	
-
+void test_createOperatorToken_given_symbol_should_return_OperatorToken(void){
+   
+  OperatorToken *OpTk = malloc(sizeof(OperatorToken));
+  OpTk = (OperatorToken*)createOperatorToken("+--",0,1);
+  printf("OpTk->symbol = %s",OpTk->symbol);
+  TEST_ASSERT_OPERATOR_TOKEN("+",0,1,"+--",OpTk);
+   
+ }
+ 
+void test_createFloatToken_given_symbol_should_return_OperatorToken(void){
+   
+  FloatToken *FlTk = malloc(sizeof(FloatToken));
+  FlTk = (FloatToken*)createFloatToken("1.23",0,4);
+  printf("FlTk->value = %f",FlTk->value);
+  TEST_ASSERT_FLOAT_TYPE(1.23,0,4,"1.23",FlTk);
+   
+ }
+ 
+void test_createIdentifierToken_given_symbol_should_return_OperatorToken(void){
+ 
+  IdentifierToken *IdTk = malloc(sizeof(IdentifierToken));
+  IdTk = (IdentifierToken*)createIdentifierToken("asda",0,4);
+  printf("IdTk->name = %s",IdTk->name);
+  TEST_ASSERT_IDENTIFIER_TYPE("asda",0,4,"asda",IdTk);
+   
+}
 
 

@@ -9,7 +9,6 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <malloc.h>
-#include <string.h>
 
 #define startChar (strO->str[*startColumn])
 
@@ -25,6 +24,8 @@ char *getSymbol (StringObject* strO,Token* OpTk){
 	//	printf("symbol = %s\n",symbol);
 		return symbol;
 }
+
+
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
 	
 	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
@@ -46,7 +47,7 @@ char *createSubString(char *str, int start , int len){
 	
 	while ( j < (len+start) ){
 	newStr[i] = str[j];
- // printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
+  printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
     i++;
 		j++;
   }
@@ -92,6 +93,9 @@ void printError(int err){
 						break;
 						case ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR:
 						printf("Error: String can't contain invalid operator\n");
+						break;
+						case ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL:
+						printf("Error: String can't contain invalid symbol\n");
 						break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);

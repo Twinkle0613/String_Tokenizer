@@ -1,7 +1,10 @@
 #include "Token.h"
 #include <malloc.h>
-
-
+#include "subFunction.h"
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /**
  * This Token function is collect the data and convert to a token that will differential data
  * to form different type of token.
@@ -25,33 +28,101 @@
  *    that are return a tree that data type is Token
  *
  */
+ 
+ /*
+ #define TEST_ASSERT_INTEGER_TOKEN(ExValue,ExStartC,ExLen,ExStr,Token)     \
+				{																																	\
+				TEST_ASSERT_EQUAL(TOKEN_INTEGER_TYPE,Token->type);				  			\
+				TEST_ASSERT_EQUAL(ExValue,Token->value);									  			\
+				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
+				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
+				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
+				}
 
-Token *createOperatorToken(char *symbol, int start, int length, char *str){
-		OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
-		OpTk->type = TOKEN_OPERATOR_TYPE;
-		OpTk->symbol = symbol;
-		OpTk->startColumn = start;
-		OpTk->length = length;
-		OpTk->str = str;	
-  	return (Token*)OpTk;
+#define TEST_ASSERT_OPERATOR_TOKEN(ExSymbol,ExStartC,ExLen,ExStr,Token)   \
+				{																																	\
+				TEST_ASSERT_EQUAL(TOKEN_OPERATOR_TYPE,Token->type);				  			\
+				TEST_ASSERT_EQUAL_STRING(ExSymbol,Token->symbol);				    			\
+				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
+				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
+				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
+				}
+        */
+Token *createOperatorToken(char *str, int start, int length){
+    OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
+    OpTk->type = TOKEN_OPERATOR_TYPE;
+    OpTk->symbol = createSubString(str,start,length);
+    OpTk->startColumn = start;
+    OpTk->length = length;
+    OpTk->str = str;	
+    return (Token*)OpTk;
 }
 
-Token *createIntegerToken(int value,int start,int length,char *str ){
-	IntegerToken *InTk = malloc(sizeof(IntegerToken));
-	InTk->type = TOKEN_INTEGER_TYPE;
-	InTk->value = value;
-  InTk->startColumn = start;
-  InTk->length = length;
-	InTk->str = str;
+Token *createFloatToken(char *str, int start, int length){
+    FloatToken *FlTk = malloc(sizeof(FloatToken));
+    FlTk->type = TOKEN_FLOAT_TYPE;
+    FlTk->value = atoi( createSubString(str,start,length) );
+    FlTk->startColumn = start;
+    FlTk->length = length;
+    FlTk->str = str;	
+    return (Token*)FlTk;
+}
+
+Token *createIntegerToken(char *str,int start,int length){
+    IntegerToken *InTk = malloc(sizeof(IntegerToken));
+    InTk->type = TOKEN_INTEGER_TYPE;
+    InTk->value = atoi( createSubString(str,start,length) );
+    InTk->startColumn = start;
+    InTk->length = length;
+    InTk->str = str;
 	return (Token*)InTk;
 }
 
-Token *createEndStrToken(char *symbol){
-	OperatorToken *EndTk = malloc(sizeof(OperatorToken));
-	EndTk->type = TOKEN_OPERATOR_TYPE;
-	EndTk->symbol = symbol;
-	return (Token*)EndTk;
+Token *createIdentifierToken(char *str,int start, int length){
+    IdentifierToken *IdTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
+    IdTk->type = TOKEN_IDENTIFIER_TYPE;
+    IdTk->name = createSubString(str,start,length);
+    IdTk->startColumn = start;
+    IdTk->length = length;
+    IdTk->str = str;
+  return (Token*)IdTk;
 }
 
+Token *createStringToken(char *str,int start, int length){
+    StringToken *StTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
+    StTk->type = TOKEN_STRING_TYPE;
+    StTk->name = createSubString(str,start,length);
+    StTk->startColumn = start;
+    StTk->length = length;
+    StTk->str = str;
+  return (Token*)StTk;
+}
 
+Token *createEndStrToken(char *symbol){
+    OperatorToken *EndTk = malloc(sizeof(OperatorToken));
+    EndTk->type = TOKEN_OPERATOR_TYPE;
+    EndTk->symbol = symbol;
+    return (Token*)EndTk;
+}
+
+// Token *createOperatorToken(char *symbol, int start, int length, char *str){
+    // OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
+    // OpTk->type = TOKEN_OPERATOR_TYPE;
+    // OpTk->symbol = symbol;
+    // OpTk->startColumn = start;
+    // OpTk->length = length;
+    // OpTk->str = str;	
+    // return (Token*)OpTk;
+// }
+
+
+// Token *createIntegerToken(int value,int start,int length,char *str ){
+    // IntegerToken *InTk = malloc(sizeof(IntegerToken));
+    // InTk->type = TOKEN_INTEGER_TYPE;
+    // InTk->value = value;
+    // InTk->startColumn = start;
+    // InTk->length = length;
+    // InTk->str = str;
+	// return (Token*)InTk;
+// }
 

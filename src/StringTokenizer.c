@@ -14,6 +14,7 @@
 #define prevChar (strO->str[strO->index-1])
 #define isdigit_OR_alpha(x) (isdigit(x) || isalpha(x))
 #define isSpace_OR_0_OR_n(x) ( x == ' ' || x == '\n' || x == '\0' )
+#define isknown(x) (isoperator(x) == 0 && isdigit(x) == 0 && isalpha(x) == 0 && x != '\0' && x != '\n' && x != ' ' )
 //#define getSymbol(X,Y) (createSubString(X->str,Y->startColumn,Y->length))
 
 Token *StringTokenizer(StringObject *strO){
@@ -25,7 +26,7 @@ Token *StringTokenizer(StringObject *strO){
 		newToken->startColumn = strO->index;
 		int loop = 0;
 		printf("-----------------\n");
-    printf("newToken->startColumn  = %d\n",newToken->startColumn);
+   // printf("newToken->startColumn  = %d\n",newToken->startColumn);
 		while (loop < 100)
 		{
 				switch (currentState)
@@ -93,7 +94,9 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 							(*newToken)->startColumn = strO->index;
 						}else if(curChar == '\0'){
 							*newToken = createEndStrToken("$"); 
-						}	else {
+						}else if (isknown(curChar)){
+								Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+						}else {
 							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
 						}
 }
@@ -102,7 +105,7 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 						 
 					if( isdigit(curChar) ) 
 					{
-						printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
+					//	printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
 						(strO->index)++;
 					}else if( isSpace_OR_0_OR_n(curChar)  || isoperator(curChar))
@@ -112,11 +115,13 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 						if(curChar != '\0' ){
 						(strO->index)++;
 						}
-						*InTk = createIntegerToken(getValue(strO,*InTk),(*InTk)->startColumn,(*InTk)->length,strO->str);
+				//###		*InTk = createIntegerToken(getValue(strO,*InTk),(*InTk)->startColumn,(*InTk)->length,strO->str);
+            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length);
 					 }else if ( isalpha(curChar) )
 					{	
 						Throw(-1); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
 					}			
+
 }
 
 
@@ -128,7 +133,8 @@ void TransitionForOp(Token** OpTk, TokenState* currentState , StringObject* strO
 						printf("Create Token\n");
 						(strO->index)++;
 						(*OpTk)->length = strO->index - (*OpTk)->startColumn;
-						*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+						//###*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+            *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
 					}else if ( istwin(curChar) || isassign(curChar) ){
 						(strO->index)++;
 						*currentState = TwinAssignState;
@@ -145,17 +151,20 @@ void TransitionForTwinAssign(Token** OpTk, TokenState* currentState , StringObje
 				}else if (curChar == '=' || ((curChar == prevChar)&&istwin(curChar)) ){
 					printf("Create Token\n");
 					(strO->index)++;  
-					printf("curChar = %c\n",curChar);
-					if(isOperator(operatorAtrributes[curChar]) == 0 && isdigit(curChar) && isalpha(curChar)&& curChar != '\0' && curChar != '\n' && curChar != ' ' ){
-					Throw(ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR);
+					//printf("curChar = %c\n",curChar);
+          if(isknown(curChar)){
+              Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
 					}
 					(*OpTk)->length = strO->index - (*OpTk)->startColumn;
-					*OpTk = createOperatorToken( getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+				//###	*OpTk = createOperatorToken( getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+          *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
 				}else if(isoperator(curChar)){
 					printf("Create Token\n");
 					(*OpTk)->length = strO->index - (*OpTk)->startColumn;
-					*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
-				}
+				//###*OpTk = createOperatorToken(getSymbol(strO,*OpTk),(*OpTk)->startColumn,(*OpTk)->length,strO->str);
+            *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+	
+        }
 }
 
 void dumpToken(Token* newToken){

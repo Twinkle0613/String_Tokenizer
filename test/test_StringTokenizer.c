@@ -393,15 +393,15 @@ void test_StringTokenizer_given_string_symbol2_should_return_OperatorToken(void)
 void test_StringTokenizer_given_string_symbol3_should_return_OperatorToken(void){
 	CEXCEPTION_T err;
 	Try{
-		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject(">>=$#"));
+		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject(">>=$"));
 		TEST_ASSERT_OPERATOR_TOKEN(">>=",0,3,">>=$#",newToken);
 		dumpToken(newToken);
 
 	}Catch(err){
+		
 		printError(err);
 		printf("Number of Error = %d\n",err);
-		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_OPERATOR,err);
-		
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
 	}
 			printf("No.31\n");
 }
@@ -429,12 +429,47 @@ void test_StringTokenizer_given_string_Assignment_A_Assignment_should_return_Ope
 		printf("No.34\n");
 }
 
-void test_StringTokenizer_given_string_inValid_operator_should_return_OperatorToken(void){
 
-		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject("#"));
-		TEST_ASSERT_OPERATOR_TOKEN("<=",6,2,"#",newToken);
-		dumpToken(newToken);
+
+void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	CEXCEPTION_T err;
+	Try{
+		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject("$++"));
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
 		printf("No.35\n");
 }
+//=$ ==$ >>=$
+void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	CEXCEPTION_T err;
+	Try{
+		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject("$"));
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+		printf("No.36\n");
+}
 
-
+void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_OperatorToken(void){
+	CEXCEPTION_T err;
+	Try{
+		OperatorToken *newToken =(OperatorToken*) StringTokenizer(createStringObject("==$"));
+		TEST_ASSERT_OPERATOR_TOKEN("=",0,1,"==$",newToken);
+		dumpToken(newToken);
+			}Catch(err){
+		printError(err);
+		printf("Number of Error = %d\n",err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+			printf("No.37\n");
+      
+      
+      
+      
+      
+      
+      
+}

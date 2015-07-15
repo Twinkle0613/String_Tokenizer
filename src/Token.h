@@ -42,7 +42,7 @@ typedef struct {
 } IntegerToken;
 
 typedef struct {
-	TokenType type;
+  TokenType type;
   uint32_t startColumn;
   uint32_t length;
 	double value;
@@ -55,6 +55,7 @@ typedef struct {
   uint32_t length;
 	char *name;
 	char *str;
+  Token *token;
 } IdentifierToken, StringToken;
 
 typedef struct {
@@ -67,9 +68,11 @@ typedef struct {
 	Token *token[0];
 } OperatorToken;
 
+Token *createIntegerToken(char *str,int start,int length);
+Token *createOperatorToken(char *str, int start, int length);
 
-Token *createOperatorToken(char *symbol, int start, int length, char *str);
-Token *createIntegerToken(int value,int start,int length,char *str);
+// Token *createOperatorToken(char *symbol, int start, int length, char *str);
+// Token *createIntegerToken(int value,int start,int length,char *str);
 Token *createEndStrToken(char *symbol);
 // int isSingle(int Operator);
 // int isTwin(int Operator);

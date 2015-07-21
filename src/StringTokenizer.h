@@ -35,7 +35,7 @@
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
 				}
         
-#define  TEST_ASSERT_IDENTIFIER_TYPE(ExName,ExStartC,ExLen,ExStr,Token)   \
+#define  TEST_ASSERT_IDENTIFIER_TOKEN(ExName,ExStartC,ExLen,ExStr,Token)   \
         {                                                                 \
 				TEST_ASSERT_EQUAL(TOKEN_IDENTIFIER_TYPE,Token->type);				  			\
 				TEST_ASSERT_EQUAL_STRING(ExName,Token->name);				    		    	\
@@ -44,7 +44,7 @@
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
         }
           
-#define  TEST_ASSERT_STRING_TYPE(ExName,ExStartC,ExLen,ExStr,Token)       \
+#define  TEST_ASSERT_STRING_TOKEN(ExName,ExStartC,ExLen,ExStr,Token)       \
         {                                                                 \
 				TEST_ASSERT_EQUAL(TOKEN_STRING_TYPE,Token->type);				  		   	\
 				TEST_ASSERT_EQUAL_STRING(ExName,Token->name);				    		    	\
@@ -53,16 +53,16 @@
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
         }
  
-#define TEST_ASSERT_FLOAT_TYPE(ExValue,ExStartC,ExLen,ExStr,Token)        \
+#define TEST_ASSERT_FLOAT_TOKEN(ExValue,ExStartC,ExLen,ExStr,Token)        \
 				{																																	\
 				TEST_ASSERT_EQUAL(TOKEN_FLOAT_TYPE,Token->type);				  			  \
 				TEST_ASSERT_EQUAL(ExValue,Token->value);									  			\
 				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
 				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
-				} 
+				}  
        
-#define advance(x) (x->index++)
+
 typedef struct {
 	char *str;
 	int index;	
@@ -81,10 +81,11 @@ typedef enum{
 	
 }TokenState;
 
-Token *StringTokenizer(StringObject *str);
-void TransitionForInt(Token**InTk, TokenState* currentState , StringObject* strO );
+Token *getToken(StringObject *str);
+void TransitionForInt(Token**newToken, TokenState* currentState , StringObject* strO );
 void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForTwinAssign(Token** OpTk, TokenState* currentState , StringObject* strO);
+void TransitionForTwinAssign(Token** newToken, TokenState* currentState , StringObject* strO);
+void TransitionForStr(Token** newToken, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

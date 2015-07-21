@@ -9,6 +9,7 @@
 #include "ErrorCode.h"
 #include <stdio.h>
 #include "subFunction.h"
+
 #define issingle(x) (isSingle(operatorAtrributes[x]))
 #define isoperator(x) (isOperator(operatorAtrributes[x]))
 #define istwin(x) (isTwin(operatorAtrributes[x]))

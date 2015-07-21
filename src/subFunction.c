@@ -9,8 +9,11 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <malloc.h>
-
 #define startChar (strO->str[*startColumn])
+//#include <assert.h>
+//assert( funcName != NULL);
+
+ /***********************************getData_Function********************************/
 
 int getValue (StringObject* strO, Token* InTk){
 		int value;
@@ -24,7 +27,15 @@ char *getSymbol (StringObject* strO,Token* OpTk){
 	//	printf("symbol = %s\n",symbol);
 		return symbol;
 }
+ /***************************createStringObject_Function***************************/
 
+StringObject *createStringObject(char *ch){
+		StringObject *strO = malloc(sizeof(StringObject));
+		strO->str = ch;
+		strO->index = 0;
+		return strO;
+		}
+ /*****************************checkFirstCh_Function******************************/
 
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
 	
@@ -35,9 +46,12 @@ void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startCol
 			*currentState = IdentifierState;
 		}else if (isoperator(startChar)){
 			*currentState = OperatorState;
+    }else if (startChar == '"'){
+      *currentState = StringState;
 		}else 
 			*currentState = UnknownState;
 }
+ /***************************createSubString_Function***************************/
 
 char *createSubString(char *str, int start , int len){
 	
@@ -47,7 +61,7 @@ char *createSubString(char *str, int start , int len){
 	
 	while ( j < (len+start) ){
 	newStr[i] = str[j];
-  printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
+ // printf("str[%d] = %c ,newStr[%d] = %c\n",j,str[j],i,newStr[i]);
     i++;
 		j++;
   }
@@ -56,12 +70,7 @@ char *createSubString(char *str, int start , int len){
 
 }
 
-StringObject *createStringObject(char *ch){
-		StringObject *strO = malloc(sizeof(StringObject));
-		strO->str = ch;
-		strO->index = 0;
-		return strO;
-		}
+ /*********************************printError_Function*********************************/
 
 void printError(int err){
 	
@@ -97,12 +106,16 @@ void printError(int err){
 						case ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL:
 						printf("Error: String can't contain invalid symbol\n");
 						break;
+            case ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE:
+            printf("Error: End of String without close double quote\n");
+            break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);
 						break;
 					}
 	
 }
+ /*********************************checkOperator_Function*********************************/
 
 int operatorAtrributes[256] = {
 	

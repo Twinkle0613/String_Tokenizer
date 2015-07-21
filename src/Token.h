@@ -70,14 +70,10 @@ typedef struct {
 
 Token *createIntegerToken(char *str,int start,int length);
 Token *createOperatorToken(char *str, int start, int length);
-
-// Token *createOperatorToken(char *symbol, int start, int length, char *str);
-// Token *createIntegerToken(int value,int start,int length,char *str);
+Token *createStringToken(char *str,int start, int length);
+Token *createIdentifierToken(char *str,int start, int length);
+Token *createFloatToken(char *str, int start, int length);
 Token *createEndStrToken(char *symbol);
-// int isSingle(int Operator);
-// int isTwin(int Operator);
-// int isAssign(int Operator);
-// int isTwinAssign(int Operator);
 
 #endif // Token_H
 

@@ -56,7 +56,7 @@
 #define TEST_ASSERT_FLOAT_TOKEN(ExValue,ExStartC,ExLen,ExStr,Token)        \
 				{																																	\
 				TEST_ASSERT_EQUAL(TOKEN_FLOAT_TYPE,Token->type);				  			  \
-				TEST_ASSERT_EQUAL(ExValue,Token->value);									  			\
+				TEST_ASSERT_EQUAL_FLOAT(ExValue,Token->value);									  			\
 				TEST_ASSERT_EQUAL(ExStartC,Token->startColumn);			  						\
 				TEST_ASSERT_EQUAL(ExLen,Token->length);									  				\
 				TEST_ASSERT_EQUAL_STRING(ExStr,Token->str);									  		\
@@ -77,6 +77,7 @@ typedef enum{
 	OperatorState,
 	FloatingState,
 	TwinAssignState,
+  DecimalPointState,
 	UnknownState
 	
 }TokenState;
@@ -88,5 +89,7 @@ void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* 
 void TransitionForTwinAssign(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForStr(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForIden(Token** StrTk, TokenState* currentState , StringObject* strO);
+void TransitionForDecPointState(Token** IdenTk, TokenState* currentState , StringObject* strO);
+void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

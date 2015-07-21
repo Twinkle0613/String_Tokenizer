@@ -34,7 +34,6 @@ Token *getToken(StringObject *strO){
 				switch (currentState)
 			{
 					case InitialState:
-					
 					printf("InitialState\n");
 					TransitionForIni(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
@@ -43,7 +42,6 @@ Token *getToken(StringObject *strO){
 						break;
 
 					case IntegerState:
-					
 					printf("IntegerState\n");
 					TransitionForInt(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
@@ -51,11 +49,22 @@ Token *getToken(StringObject *strO){
 					 }
 					break;
 
-			   			
-						
 					case FloatingState:
+          printf("FloatingState\n");
+          TransitionForFloat(&newToken,&currentState,strO);
+          if (newToken->type == TOKEN_FLOAT_TYPE){	
+						return newToken;
+					 }
 					break;
-						
+
+					case DecimalPointState:
+          printf("DecimalPointState\n");
+          TransitionForDecPointState(&newToken,&currentState,strO);
+          if (newToken->type == TOKEN_OPERATOR_TYPE){	
+						return newToken;
+					 }//end of OperatorState
+          break;
+          
 					case StringState:
           printf("StringState\n");
           TransitionForStr(&newToken,&currentState,strO);
@@ -110,9 +119,8 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
                 Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
 						}else {
 							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
-              if(*currentState == StringState || *currentState == IntegerState ||*currentState == IdentifierState){
+              if(*currentState == StringState || *currentState == IntegerState ||*currentState == IdentifierState ||*currentState == DecimalPointState){
                 	advance(strO);
-                //  printf("Hello World\n");
               }
 						}
 }
@@ -208,6 +216,45 @@ void TransitionForIden(Token** IdenTk, TokenState* currentState , StringObject* 
 
 }
 
+void TransitionForDecPointState(Token** OpTk, TokenState* currentState , StringObject* strO){
+  if( is_space_newline_null(curChar)  || isoperator(curChar) || isalpha(curChar)){
+			printf("Create Token\n");
+      (*OpTk)->length = strO->index - (*OpTk)->startColumn;
+      if(curChar == '\n' || curChar == ' '){
+        advance(strO);
+        }
+     *OpTk = createOperatorToken (strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+     }else if(isdigit(curChar)){
+       advance(strO);
+       *currentState = FloatingState;
+     }else if( isoperator(curChar) == 0){
+       Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+     }
+}
+
+void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject* strO){
+  
+    if(isdigit(curChar)){
+        advance(strO);
+       *currentState = FloatingState;
+    }else if( is_space_newline_null(curChar)  || isoperator(curChar) ){
+			printf("Create Token\n");
+      (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+      if(curChar == '\n' || curChar == ' '){
+        advance(strO);
+        }
+     *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
+     }else if( curChar == '.'){
+       Throw(ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT);
+     }else if( isalpha(curChar) ){
+       Throw(ERR_INTEGER_CANNOT_CONTAIN_ALPHA);
+     
+     }else if( isoperator(curChar) == 0){
+       Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+     }
+  
+}
+
 void dumpToken(Token* newToken){
 	char* tokenType;
 	switch(newToken->type){
@@ -227,7 +274,7 @@ void dumpToken(Token* newToken){
 	case TOKEN_FLOAT_TYPE:
 					tokenType = "TOKEN_FLOAT_TYPE";
           FloatToken* FlTk = (FloatToken*)newToken;
-					printf("value = %d,",FlTk->value);
+					printf("value = %f,",FlTk->value);
 				break;
 	case TOKEN_STRING_TYPE:
 					tokenType = "TOKEN_STRING_TYPE";

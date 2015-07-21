@@ -44,7 +44,9 @@ void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startCol
 			*currentState = IntegerState;
 		}else if (isalpha(startChar)){
 			*currentState = IdentifierState;
-		}else if (isoperator(startChar)){
+		}else if (startChar == '.'){
+     *currentState = DecimalPointState; 
+    }else if (isoperator(startChar)){
 			*currentState = OperatorState;
     }else if (startChar == '"'){
       *currentState = StringState;
@@ -110,6 +112,12 @@ void printError(int err){
 						break;
             case ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE:
             printf("Error: End of String without close double quote\n");
+            break;
+            case ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT:
+            printf("Error: Integer can't contain second decimal point");
+            break;
+            case ERR_INTEGER_CANNOT_CONTAIN_ALPHA:
+            printf("Error: Integer can't contain alpha");
             break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);

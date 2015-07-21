@@ -662,4 +662,63 @@ void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_thro
 		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
 	}
 	printf("No.56\n");
-      }
+}
+
+void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorToken(void){
+
+		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("."));
+		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,".",newToken);
+		dumpToken(newToken);
+			printf("No.57\n");
+}
+      
+ void test_StringTokenizer_given_string_dot_dollar_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	CEXCEPTION_T err;
+	Try{
+		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".$"));
+		}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.58\n");
+}
+
+void test_TransitionForDot_given_string_given_digit_should_return_FloatingState(void){
+
+      printf("-----------------\n");
+			Token* newToken = malloc(sizeof(Token));
+      StringObject* str = createStringObject(".1123");
+      str->index = 1;
+    //  printf("curChar = %c\n",str->str[str->index]);
+			newToken->startColumn = 0;
+			TokenState currState = OperatorState;
+			TransitionForDecPointState( &newToken, &currState,str);
+      TEST_ASSERT_EQUAL(FloatingState,currState);
+			printf("No.59\n");
+}
+
+void test_StringTokenizer_given_string_dot_A_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	
+	OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".A"));
+		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,".A",newToken);
+		dumpToken(newToken);
+	printf("No.60\n");
+}
+
+
+void test_StringTokenizer_given_string_dot_times_8_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	
+	OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("........"));
+		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,"........",newToken);
+		dumpToken(newToken);
+	printf("No.60\n");
+}
+
+void test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_return_FloatToken(void){
+	
+	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".001"));
+		TEST_ASSERT_FLOAT_TOKEN(.001,0,4,".001",newToken);
+		dumpToken(newToken);
+	printf("No.61\n");
+}
+

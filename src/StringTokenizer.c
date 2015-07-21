@@ -34,23 +34,23 @@ Token *getToken(StringObject *strO){
 				switch (currentState)
 			{
 					case InitialState:
-					{
+					
 					printf("InitialState\n");
 					TransitionForIni(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
 						return newToken;
 					 }
 						break;
-					}//end of InitialState
+
 					case IntegerState:
-					{
+					
 					printf("IntegerState\n");
 					TransitionForInt(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
 						return newToken;
 					 }
 					break;
-					}//end of IntegerState 
+
 			   			
 						
 					case FloatingState:
@@ -65,6 +65,11 @@ Token *getToken(StringObject *strO){
 					break;
 					
 					case IdentifierState:
+          printf("IdentifierState\n");
+          TransitionForIden(&newToken,&currentState,strO);
+          if (newToken->type == TOKEN_IDENTIFIER_TYPE){
+            return newToken;
+          }
 					break;
 					
 					case OperatorState:
@@ -101,11 +106,11 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 							(*newToken)->startColumn = strO->index;
 						}else if(curChar == '\0'){
 							*newToken = createEndStrToken("$"); 
-						}else if (isknown(curChar) && isNot_space_newline_null(curChar) && curChar != '"' ){
+						}else if (isknown(curChar) && isNot_space_newline_null(curChar) && curChar != '"' && curChar != '_' ){
                 Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
 						}else {
 							checkFirstCh(strO,currentState,&((*newToken)->startColumn));
-              if(*currentState == StringState || *currentState == IntegerState){
+              if(*currentState == StringState || *currentState == IntegerState ||*currentState == IdentifierState){
                 	advance(strO);
                 //  printf("Hello World\n");
               }
@@ -114,23 +119,22 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 
 void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* strO){
 						 
-					if( isdigit(curChar) ) 
-					{
+					if( isdigit(curChar) ) {
 					//	printf("strO->str[%d] = %c\n",strO->index,strO->str[strO->index]); 
 						*currentState = IntegerState;
 						 advance(strO);
-					}else if( is_space_newline_null(curChar)  || isoperator(curChar))
-					{
+					}else if( is_space_newline_null(curChar)  || isoperator(curChar)){
 						printf("Create Token\n");
             (*InTk)->length = strO->index - (*InTk)->startColumn;
 						if(curChar == '\n' || curChar == ' '){
 						 advance(strO);
 						}
             *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length);
-					 }else if ( isalpha(curChar) )
-					{	
-						Throw(-1); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
-					}			
+					}else if ( isalpha(curChar) ){	
+						Throw(ERR_STR_INCLURE_ALPHA); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
+					}else if (isoperator(curChar) == 0){
+            Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+          }
 
 }
 
@@ -178,14 +182,30 @@ void TransitionForStr(Token** StrTk, TokenState* currentState , StringObject* st
           advance(strO);
           (*StrTk)->length = strO->index - (*StrTk)->startColumn;
            *StrTk = createStringToken(strO->str,(*StrTk)->startColumn,(*StrTk)->length);
-        //  printf("(*StrTk)->str = %s\n", (*StrTk)->str);
-       //   printf("strO->str = %s\n",strO->str);
         }else if(isprint(curChar)){
-          advance(strO);
-         	*currentState = StringState;
+            advance(strO);
+            *currentState = StringState;
         }else if(curChar == '\0'){
-          Throw(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE);
+            Throw(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE);
         }
+}
+
+void TransitionForIden(Token** IdenTk, TokenState* currentState , StringObject* strO){
+    if(isdigit_OR_alpha(curChar)||curChar == '_'){
+      advance(strO);
+       *currentState = IdentifierState;
+    }else if ( is_space_newline_null(curChar)  || isoperator(curChar))
+		{
+			printf("Create Token\n");
+      (*IdenTk)->length = strO->index - (*IdenTk)->startColumn;
+      if(curChar == '\n' || curChar == ' '){
+        advance(strO);
+        }
+     *IdenTk = createIdentifierToken (strO->str,(*IdenTk)->startColumn,(*IdenTk)->length);
+     }else if ( isoperator(curChar) == 0){
+       Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+     }
+
 }
 
 void dumpToken(Token* newToken){

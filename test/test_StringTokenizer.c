@@ -46,7 +46,7 @@ void tearDown(void){}
 */
 /*strO*/
 //1
-void test_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_NULL(void){
+void xtest_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_NULL(void){
 	
 		CEXCEPTION_T err;
 	Try{
@@ -478,7 +478,7 @@ void test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
 
 
 
-void test_TransitionForStr_given_string_given_double_quote_123s_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_double_quote_123s_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"123\""));
 		TEST_ASSERT_STRING_TOKEN("\"123\"",0,5,"\"123\"",newToken);
@@ -488,7 +488,7 @@ void test_TransitionForStr_given_string_given_double_quote_123s_should_return_st
 }
 
 
-void test_TransitionForStr_given_string_given_double_quote_symbol_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_double_quote_symbol_should_return_stringToken(void){
 //10+
 StringToken *newToken =(StringToken*) getToken(createStringObject(" \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" "));
 		TEST_ASSERT_STRING_TOKEN("\"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\"",1,63," \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" ",newToken);
@@ -498,7 +498,7 @@ StringToken *newToken =(StringToken*) getToken(createStringObject(" \"1234567890
 }
 
 
-void test_TransitionForStr_given_string_given_space_double_quote_symbol_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_space_double_quote_symbol_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject("  \"Hello    Hello\""));
 		TEST_ASSERT_STRING_TOKEN("\"Hello    Hello\"",2,16,"  \"Hello    Hello\"",newToken);
@@ -508,7 +508,7 @@ void test_TransitionForStr_given_string_given_space_double_quote_symbol_should_r
 			printf("No.41\n");
 }
 
-void test_TransitionForStr_given_string_given__double_quote_symbol_space_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given__double_quote_symbol_space_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"%%%%%%%%%\"        "));
 		TEST_ASSERT_STRING_TOKEN("\"%%%%%%%%%\"",0,11,"\"%%%%%%%%%\"        ",newToken);
@@ -517,7 +517,7 @@ void test_TransitionForStr_given_string_given__double_quote_symbol_space_should_
 
 }
 
-void test_TransitionForStr_given_string_given_double_quote_string_1234_123_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_double_quote_string_1234_123_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234\"123"));
 		TEST_ASSERT_STRING_TOKEN("\"1234\"",0,6,"\"1234\"123",newToken);
@@ -526,7 +526,7 @@ void test_TransitionForStr_given_string_given_double_quote_string_1234_123_shoul
 
 }
 
-void test_TransitionForStr_given_string_given_double_quote_string_space_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_double_quote_string_space_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject(" \"\" "));
 		TEST_ASSERT_STRING_TOKEN("\"\"",1,2," \"\" ",newToken);
@@ -535,7 +535,7 @@ void test_TransitionForStr_given_string_given_double_quote_string_space_should_r
 
 }
 
-void test_TransitionForStr_given_string_given_double_quote_string_1234234_should_return_stringToken(void){
+void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_throw_err_END_OF_STR_WITHOUT_DOUBLE_QUOTE(void){
 	CEXCEPTION_T err;
 	Try{
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234234 "));
@@ -546,15 +546,120 @@ void test_TransitionForStr_given_string_given_double_quote_string_1234234_should
 			printf("No.45\n");
 }
 
+void test_StringTokenizer_given_string_given_ABD1234_should_return_IdentifierToken(void){
 
+		StringToken *newToken =(StringToken*) getToken(createStringObject("ABD1234"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("ABD1234",0,7,"ABD1234",newToken);
+		dumpToken(newToken);
+			printf("No.46\n");
 
+}
 
+void test_StringTokenizer_given_string_given__1234_should_return_IdentifierToken(void){
 
+		StringToken *newToken =(StringToken*) getToken(createStringObject("_1234"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("_1234",0,5,"_1234",newToken);
+		dumpToken(newToken);
+			printf("No.47\n");
 
+}
 
+void test_StringTokenizer_given_string_given_should_return_IdentifierToken(void){
 
+		StringToken *newToken =(StringToken*) getToken(createStringObject("  A "));
+		TEST_ASSERT_IDENTIFIER_TOKEN("A",2,1,"  A ",newToken);
+		dumpToken(newToken);
+			printf("No.48\n");
+}
 
+void test_StringTokenizer_given_string_______given_should_return_IdentifierToken(void){
 
+		StringToken *newToken =(StringToken*) getToken(createStringObject("_____"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("_____",0,5,"_____",newToken);
+		dumpToken(newToken);
+			printf("No.49\n");
+}
 
+void test_StringTokenizer_given_string_A_B_C_1_2_given_should_return_IdentifierToken(void){
 
+		StringToken *newToken =(StringToken*) getToken(createStringObject("A_B_C_1_2"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("A_B_C_1_2",0,9,"A_B_C_1_2",newToken);
+		dumpToken(newToken);
+			printf("No.50\n");
+}
 
+void test_StringTokenizer_given_string_A_ABC_symbol_given_should_return_IdentifierToken(void){
+
+		StringToken *newToken =(StringToken*) getToken(createStringObject("A_ABC&+_"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("A_ABC",0,5,"A_ABC&+_",newToken);
+		dumpToken(newToken);
+			printf("No.51\n");
+}
+
+void test_StringTokenizer_given_string_ABC_ACB_symbol_given_should_return_IdentifierToken(void){
+  	StringObject *str = createStringObject("ABC\nACB");
+    
+		StringToken *newToken =(StringToken*) getToken(str);
+		TEST_ASSERT_IDENTIFIER_TOKEN("ABC",0,3,"ABC\nACB",newToken);
+		dumpToken(newToken);
+    
+     newToken = (StringToken*) getToken(str);
+    TEST_ASSERT_IDENTIFIER_TOKEN("ACB",4,3,"ABC\nACB",newToken);
+    dumpToken(newToken);
+    
+			printf("No.52\n");
+}
+
+void test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_IdentifierToken(void){
+  	StringObject *str = createStringObject("A12 B22");
+    
+		StringToken *newToken =(StringToken*) getToken(str);
+		TEST_ASSERT_IDENTIFIER_TOKEN("A12",0,3,"A12 B22",newToken);
+		dumpToken(newToken);
+    
+     newToken = (StringToken*) getToken(str);
+    TEST_ASSERT_IDENTIFIER_TOKEN("B22",4,3,"A12 B22",newToken);
+    dumpToken(newToken);
+    
+    OperatorToken *newToken1 = (OperatorToken*) getToken(str);
+    TEST_LAST_TOKEN(newToken1);
+    dumpToken(newToken1);
+    newToken1 = (OperatorToken*) getToken(str);
+    TEST_LAST_TOKEN(newToken1);
+    dumpToken(newToken1);
+			printf("No.53\n");
+}
+
+void test_StringTokenizer_given_string_A12_and_B22_given_should_return_IdentifierToken(void){
+  	StringObject *str = createStringObject("A12&B22");
+    
+		StringToken *newToken =(StringToken*) getToken(str);
+		TEST_ASSERT_IDENTIFIER_TOKEN("A12",0,3,"A12&B22",newToken);
+		dumpToken(newToken);
+    OperatorToken *newToken1 = (OperatorToken*) getToken(str);
+    TEST_ASSERT_OPERATOR_TOKEN("&",3,1,"A12&B22",newToken1);
+    dumpToken(newToken1);
+     newToken = (StringToken*) getToken(str);
+    TEST_ASSERT_IDENTIFIER_TOKEN("B22",4,3,"A12&B22",newToken);
+    dumpToken(newToken);
+			printf("No.54\n");
+}
+
+void test_StringTokenizer_given_string_A_A__symbol_given_should_return_IdentifierToken(void){
+
+		StringToken *newToken =(StringToken*) getToken(createStringObject("A_A_"));
+		TEST_ASSERT_IDENTIFIER_TOKEN("A_A_",0,4,"A_A_",newToken);
+		dumpToken(newToken);
+			printf("No.55\n");
+}
+
+void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
+	CEXCEPTION_T err;
+	Try{
+		StringToken *newToken =(StringToken*) getToken(createStringObject("AWDC_123$"));
+		}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.56\n");
+      }

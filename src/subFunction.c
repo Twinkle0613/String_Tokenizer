@@ -48,6 +48,8 @@ void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startCol
 			*currentState = OperatorState;
     }else if (startChar == '"'){
       *currentState = StringState;
+    }else if (startChar == '_' || isalpha(startChar)){
+      *currentState = IdentifierState; 
 		}else 
 			*currentState = UnknownState;
 }

@@ -249,7 +249,25 @@ void xtest_checkFirstCh_given_string_double_quote_should_return_StringState(void
    printf("currentState = %d",currentState);
 }
 
+void xtest_checkFirstCh_given_string___should_return_IdentifierState(void){
+	 StringObject* strO = malloc(sizeof(StringObject));
+	 strO->str = "_";
+		int startColumn = 0;
+	 TokenState currentState;
+	 checkFirstCh (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(IdentifierState,currentState);
+   printf("currentState = %d",currentState);
+}
 
+void xtest_checkFirstCh_given_string_AB_should_return_IdentifierState(void){
+	 StringObject* strO = malloc(sizeof(StringObject));
+	 strO->str = "AB";
+		int startColumn = 0;
+	 TokenState currentState;
+	 checkFirstCh (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(IdentifierState,currentState);
+   printf("currentState = %d",currentState);
+}
  /*********************CreateToken_Function_Test***************************/
 void xtest_createIntegerToken_given_1234_should_return_IntegerToken(void){
    

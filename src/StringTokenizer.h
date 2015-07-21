@@ -87,5 +87,6 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForTwinAssign(Token** newToken, TokenState* currentState , StringObject* strO);
 void TransitionForStr(Token** newToken, TokenState* currentState , StringObject* strO);
+void TransitionForIden(Token** StrTk, TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

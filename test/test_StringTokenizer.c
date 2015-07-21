@@ -700,8 +700,10 @@ void test_TransitionForDot_given_string_given_digit_should_return_FloatingState(
 void test_StringTokenizer_given_string_dot_A_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	
 	OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".A"));
-		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,".A",newToken);
-		dumpToken(newToken);
+	TEST_ASSERT_OPERATOR_TOKEN(".",0,1,".A",newToken);
+	dumpToken(newToken);
+    
+    
 	printf("No.60\n");
 }
 
@@ -711,7 +713,7 @@ void test_StringTokenizer_given_string_dot_times_8_symbol_given_should_throw_err
 	OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("........"));
 		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,"........",newToken);
 		dumpToken(newToken);
-	printf("No.60\n");
+	printf("No.61\n");
 }
 
 void test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_return_FloatToken(void){
@@ -719,6 +721,283 @@ void test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_ret
 	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".001"));
 		TEST_ASSERT_FLOAT_TOKEN(.001,0,4,".001",newToken);
 		dumpToken(newToken);
-	printf("No.61\n");
+	printf("No.62\n");
+}
+
+void test_StringTokenizer_given_string_decimal_point_01_plus_symbol_given_should_return_FloatToken(void){
+	
+	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01+"));
+		TEST_ASSERT_FLOAT_TOKEN(.01,0,3,".01+",newToken);
+		dumpToken(newToken);
+    	printf("No.63\n");
+
+}
+
+void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01A"));
+
+    }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_ALPHA,err);
+	}
+	printf("No.64\n");
+}
+
+void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_should_return_FloatToken(void){
+	CEXCEPTION_T err;
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01$"));
+
+    }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.65\n");
+}
+
+
+void test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_given_should_return_FloatToken(void){
+	CEXCEPTION_T err;
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".0.1"));
+
+    }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT,err);
+	}
+	printf("No.66\n");
+}
+
+
+void test_StringTokenizer_given_string_double_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return(void){
+	
+  StringObject* str = createStringObject("..123");
+	OperatorToken *newToken =(OperatorToken*) getToken(str);
+		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,"..123",newToken);
+	dumpToken(newToken);
+  FloatToken *newToken1 =(FloatToken*)getToken(str);
+  TEST_ASSERT_FLOAT_TOKEN(.123,1,4,"..123",newToken1);
+	dumpToken(newToken1);
+	printf("No.67\n");
+}
+
+void test_StringTokenizer_given_string_trible_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return(void){
+	
+  StringObject* str = createStringObject("...123  ");
+	OperatorToken *newToken =(OperatorToken*) getToken(str);
+		TEST_ASSERT_OPERATOR_TOKEN(".",0,1,"...123  ",newToken);
+	dumpToken(newToken);
+  newToken =(OperatorToken*) getToken(str);
+	TEST_ASSERT_OPERATOR_TOKEN(".",1,1,"...123  ",newToken);
+	dumpToken(newToken);
+  FloatToken *newToken1 =(FloatToken*)getToken(str);
+  TEST_ASSERT_FLOAT_TOKEN(.123,2,4,"...123  ",newToken1);
+	dumpToken(newToken1);
+	printf("No.68\n");
+}
+
+void test_StringTokenizer_given_string_dot_e123_symbol_given_should_return_OperatorToken_and_IdentifierToken(void){
+	
+   StringObject* str = createStringObject(".e123");
+	
+  OperatorToken *newToken =(OperatorToken*) getToken(str);
+	TEST_ASSERT_OPERATOR_TOKEN(".",0,1,".e123",newToken);
+	dumpToken(newToken);
+  
+	IdentifierToken *newToken1 =(IdentifierToken*) getToken(str);
+	TEST_ASSERT_IDENTIFIER_TOKEN("e123",1,4,".e123",newToken1);
+	dumpToken(newToken1);  
+    
+	printf("No.69\n");
+}
+
+void test_StringTokenizer_given_decimal_point_e1_symbol_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e1");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e1,0,4,".1e1",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.70\n");
+}
+
+void test_StringTokenizer_given_decimal_point_e10_and_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e10&");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e10,0,5,".1e10&",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.71\n");
+}
+
+
+void test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e10 ");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e10,0,5,".1e10 ",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.72\n");
+}
+
+
+void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e ");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT,err);
+	}
+	printf("No.73\n");
+}
+
+void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e2A");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_ALPHA,err);
+	}
+	printf("No.74\n");
+}
+
+void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e2$");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.75\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e2.1234");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT,err);
+	}
+	printf("No.76\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eminus10_and_space_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e-1");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e-1,0,5,".1e-1",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.77\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eplus10_and_space_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e+1");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e+1,0,5,".1e+1",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.78\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eplus1minus1234_given_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject(".1e+1-1234");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(.1e+1,0,5,".1e+1-1234",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.79\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e-2.123");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT,err);
+	}
+	printf("No.80\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e-2_");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.81\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject(".1e-2ASDSA");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_ALPHA,err);
+	}
+	printf("No.82\n");
+}
+
+void test_StringTokenizer_given_1dot1124_should_return_FloatToken(void){
+	
+   StringObject* str = createStringObject("1123123.1124");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(1123123.1124,0,12,"1123123.1124",newToken);
+	dumpToken(newToken);  
+    
+	printf("No.83\n");
+}
+
+void test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject("1.12A");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INTEGER_CANNOT_CONTAIN_ALPHA,err);
+	}
+	printf("No.84\n");
+}
+
+
+void test_StringTokenizer_given_1e12_given_should_return_IntegerToken(void){
+
+   StringObject* str = createStringObject("21e9");
+	FloatToken *newToken =(FloatToken*) getToken(str);
+	TEST_ASSERT_FLOAT_TOKEN(21e9,0,4,"21e9",newToken);
+  dumpToken(newToken);  
+
+	printf("No.85\n");
 }
 

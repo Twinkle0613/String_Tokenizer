@@ -114,10 +114,13 @@ void printError(int err){
             printf("Error: End of String without close double quote\n");
             break;
             case ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT:
-            printf("Error: Integer can't contain second decimal point");
+            printf("Error: Floating can't contain second decimal point\n");
             break;
             case ERR_INTEGER_CANNOT_CONTAIN_ALPHA:
-            printf("Error: Integer can't contain alpha");
+            printf("Error: Integer can't contain alpha\n");
+            break;
+            case ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT:
+            printf("Error: Behind the exponential must be a digit\n");
             break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);

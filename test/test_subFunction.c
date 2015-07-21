@@ -274,7 +274,7 @@ void xtest_checkFirstCh_given_string_dot_should_return_IdentifierState(void){
 		int startColumn = 0;
 	 TokenState currentState;
 	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(DotState,currentState);
+	 TEST_ASSERT_EQUAL(DecimalPointState,currentState);
     printf("currentState = %d",currentState);
 
 }
@@ -282,7 +282,7 @@ void xtest_checkFirstCh_given_string_dot_should_return_IdentifierState(void){
 void xtest_createIntegerToken_given_1234_should_return_IntegerToken(void){
    
   IntegerToken *InTk = malloc(sizeof(IntegerToken));
-  InTk = (IntegerToken*)createIntegerToken("1234",0,2);
+  InTk = (IntegerToken*)createIntegerToken("1234",0,2,Decimal);
   printf("InTk->value = %d",InTk->value);
   TEST_ASSERT_INTEGER_TOKEN(12,0,2,"1234",InTk);
    
@@ -322,4 +322,34 @@ void xtest_createStringToken_given_symbol_should_return_OperatorToken(void){
   printf("StTk->name = %s",StTk->name);
   TEST_ASSERT_STRING_TOKEN("\"asd\"",0,5,"\"asd\"",StTk);
    
+}
+
+
+void xtest_valid_integer(void){
+  double v = 1e2;
+  printf("v1 = %f\n",v);
+  v = 1.e2;
+  printf("v2 = %f\n",v);
+  v = .123;
+  printf("v3 = %f\n",v);
+  v = 0.1e2;
+  printf("v4 = %f\n",v);
+  v = 1e2;
+  printf("v5 = %f\n",v);
+  v = 0x123A;
+  printf("v6 = %f\n",v);
+  v = 0124;
+  printf("v7 = %f\n",v);
+  v =1e+2;
+  printf("v8 = %f\n",v);
+  v = 1e-2;
+  printf("v9 = %f\n",v);
+  v = 1.0e-2;
+  printf("v10 = %f\n",v);
+  v = 1.0e+2;
+  printf("v11 = %f\n",v);
+  v = 1.E2;
+  printf("v12 = %f\n",v);
+  v = 123e3;
+  printf("v13 = %f\n",v);
 }

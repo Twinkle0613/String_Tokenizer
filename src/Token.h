@@ -5,6 +5,10 @@
 
 #include <stdint.h>
 
+#define Octal 8
+#define Decimal 10
+#define Hexdecimal 16
+
 typedef enum {
 	TOKEN_UNKNOWN_TYPE,
 	TOKEN_INTEGER_TYPE,
@@ -68,7 +72,7 @@ typedef struct {
 	Token *token[0];
 } OperatorToken;
 
-Token *createIntegerToken(char *str,int start,int length);
+Token *createIntegerToken(char *str,int start,int length,int base);
 Token *createOperatorToken(char *str, int start, int length);
 Token *createStringToken(char *str,int start, int length);
 Token *createIdentifierToken(char *str,int start, int length);

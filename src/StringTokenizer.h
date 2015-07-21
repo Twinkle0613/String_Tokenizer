@@ -78,6 +78,10 @@ typedef enum{
 	FloatingState,
 	TwinAssignState,
   DecimalPointState,
+  ExponentState,
+  NegPosExponentState,
+  HexdecimalState,
+  OctalState,
 	UnknownState
 	
 }TokenState;
@@ -91,5 +95,8 @@ void TransitionForStr(Token** newToken, TokenState* currentState , StringObject*
 void TransitionForIden(Token** StrTk, TokenState* currentState , StringObject* strO);
 void TransitionForDecPointState(Token** IdenTk, TokenState* currentState , StringObject* strO);
 void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject* strO);
-
+void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject* strO);
+void TransitionForNegPosExpon(Token** FloatTk, TokenState* currentState , StringObject* strO);
+void TransitionForHex(Token** FloatTk, TokenState* currentState , StringObject* strO);
+void TransitionForOct(Token** FloatTk, TokenState* currentState , StringObject* strO);
 #endif // StringTokenizer_H

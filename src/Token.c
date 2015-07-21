@@ -52,10 +52,12 @@ Token *createFloatToken(char *str, int start, int length){
     return (Token*)FlTk;
 }
 
-Token *createIntegerToken(char *str,int start,int length){
+//Token *createIntegerToken(char *str,int start,int length){
+Token *createIntegerToken(char *str,int start,int length, int base){
     IntegerToken *InTk = malloc(sizeof(IntegerToken));
     InTk->type = TOKEN_INTEGER_TYPE;
-    InTk->value = atoi( createSubString(str,start,length) );
+    //InTk->value = atoi( createSubString(str,start,length) );
+    InTk->value = strtol( createSubString(str,start,length),NULL,base );
     InTk->startColumn = start;
     InTk->length = length;
     InTk->str = str;

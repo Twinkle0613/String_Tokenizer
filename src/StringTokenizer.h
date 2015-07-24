@@ -4,7 +4,7 @@
 #include "Token.h"
 #include "CException.h"
 #include "ErrorCode.h"
-
+#include "ErrorObject.h"
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
@@ -99,4 +99,8 @@ void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject
 void TransitionForNegPosExpon(Token** FloatTk, TokenState* currentState , StringObject* strO);
 void TransitionForHex(Token** FloatTk, TokenState* currentState , StringObject* strO);
 void TransitionForOct(Token** FloatTk, TokenState* currentState , StringObject* strO);
+
+
+// void throwError(char *message, ErrorCode errCode);
+// void freeError(ErrorObject* errObj);
 #endif // StringTokenizer_H

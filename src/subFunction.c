@@ -39,7 +39,7 @@ StringObject *createStringObject(char *ch){
 
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
 	
-	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
+//	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
 		if (isdigit(startChar)){
 			*currentState = IntegerState;
 		}else if (isalpha(startChar)){
@@ -132,8 +132,52 @@ void printError(int err){
 						printf("Unknown Error caught! Error code is :%d\n", err);
 						break;
 					}
-	
+          
+  // 1.throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
+  // 2.throwError("The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);
+	// 3.throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+  // 4.throwError("This is invalid octal integer\n",ERR_INVALID_OCTAL_1);
+  // 5.throwError("This is invalid Hexdecimal integer\n",ERR_INVALID_HEX_1);
+  // 6.throwError("End of string without double quote\n",ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1);
+  // 7.throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
+  // 8.throwError("Behind exponential must be a digit\n",ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1);
+  // 9.throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
 }
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("The String Object can't be a NULL\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_STR_OBJECT_CANNOT_BE_NULL_1,err->errorCode);  
+  
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("The String can't be a NULL\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_STR_CANNOT_BE_NULL_1,err->errorCode);
+
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL_1,err->errorCode);
+     
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("End of string without double quote\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,err->errorCode);
+     
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
+     
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("Behind exponential must be a digit\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1,err->errorCode);
+     
+      // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
  /*********************************checkOperator_Function*********************************/
 
 int operatorAtrributes[256] = {

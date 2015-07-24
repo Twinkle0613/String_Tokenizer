@@ -66,6 +66,7 @@
 typedef struct {
 	char *str;
 	int index;	
+  Token* tokenStorage;
 }StringObject;
 
 typedef enum{

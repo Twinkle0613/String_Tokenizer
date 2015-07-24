@@ -50,9 +50,7 @@ void test_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_
 		CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(NULL);
-		//printf("newToken->symbol = %c\n",newToken->symbol);
-		//TEST_LAST_TOKEN(newToken);
-	
+    TEST_FAIL_MESSAGE("Expect ERR_STR_OBJECT_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("The String Object can't be a NULL\n",err->errorMsg);
@@ -135,7 +133,9 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
 	Try{
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject(NULL));
 		printf("newToken->value = %d\n",newToken->value);
-		TEST_ASSERT_NULL(newToken);
+		
+    TEST_ASSERT_NULL(newToken);
+    TEST_FAIL_MESSAGE("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("The String can't be a NULL\n",err->errorMsg);
@@ -151,7 +151,7 @@ void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 	Try{
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("12A34"));
 		printf("newToken->value = %d\n",newToken->value);
-					TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234\n",newToken);
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -258,22 +258,17 @@ void test_TransitionForOp_given_string_symbol2_should_return_OperatorToken(void)
 
 void test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 
-			CEXCEPTION_T err;
+
 			OperatorToken* OpTk = malloc(sizeof(OperatorToken));
 			Token* newToken = malloc(sizeof(Token));
 			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
-			Try{
+
 				TransitionForOp( &newToken, &currState,createStringObject("+ +$!@#$%^"));
 				OpTk = (OperatorToken*)newToken;
 				TEST_ASSERT_EQUAL_STRING("+",OpTk->symbol);
 				dumpToken(newToken);
-			}Catch(err){
-      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
-     freeError(err);
-			}
+
 			printf("No.16\n");
 }
 
@@ -396,8 +391,9 @@ void test_StringTokenizer_given_string_symbol3_should_return_OperatorToken(void)
 	CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(">>=$"));
-	}Catch(err){
-		
+	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+
+  }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
@@ -435,7 +431,8 @@ void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CAN
 	CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("$++"));
-	}Catch(err){
+	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+  }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
@@ -448,7 +445,8 @@ void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTA
 	CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("$"));
-	}Catch(err){
+	   TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+  }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
@@ -460,7 +458,9 @@ void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTA
 void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_OperatorToken(void){
 	CEXCEPTION_T err;
 	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("==$"));
+      OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("==$"));
+    	TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+
 			}Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -476,8 +476,8 @@ void test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
 	CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("=$"));
-		TEST_ASSERT_OPERATOR_TOKEN("=",0,1,"==$",newToken);
-		dumpToken(newToken);
+	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+
 			}Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -550,7 +550,8 @@ void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_
 	CEXCEPTION_T err;
 	Try{
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234234 "));
-   		}Catch(err){
+    TEST_FAIL_MESSAGE("Expect ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1 to be thrown. But none thrown.");
+      }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("End of string without double quote\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,err->errorCode);
@@ -670,7 +671,8 @@ void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_thro
 	CEXCEPTION_T err;
 	Try{
 		StringToken *newToken =(StringToken*) getToken(createStringObject("AWDC_123$"));
-		}Catch(err){
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+	}Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
@@ -691,7 +693,8 @@ void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorT
 	CEXCEPTION_T err;
 	Try{
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".$"));
-		}Catch(err){
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+    }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
@@ -754,6 +757,7 @@ void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err
 	CEXCEPTION_T err;
 	Try{
 	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01A"));
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 
     }Catch(err){
      printf("%s",err->errorMsg);
@@ -768,7 +772,7 @@ void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_shou
 	CEXCEPTION_T err;
 	Try{
 	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01$"));
-
+  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
     }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -783,7 +787,7 @@ void test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_giv
 	CEXCEPTION_T err;
 	Try{
 	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".0.1"));
-
+     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
     }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
@@ -871,10 +875,9 @@ void test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_
 void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT(void){
 	CEXCEPTION_T err;
 	Try{
-   StringObject* str = createStringObject(".1e ");
-	FloatToken *newToken =(FloatToken*) getToken(str);
-
-	dumpToken(newToken);  
+    StringObject* str = createStringObject(".1e ");
+    FloatToken *newToken =(FloatToken*) getToken(str);
+    TEST_FAIL_MESSAGE("Expect ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1 to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Behind exponential must be a digit\n",err->errorMsg);
@@ -889,7 +892,7 @@ void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGE
 	Try{
    StringObject* str = createStringObject(".1e2A");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -904,7 +907,7 @@ void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err
 	Try{
    StringObject* str = createStringObject(".1e2$");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
    }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -919,7 +922,7 @@ void test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_give
 	Try{
    StringObject* str = createStringObject(".1e2.1234");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
@@ -964,7 +967,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1
 	Try{
    StringObject* str = createStringObject(".1e-2.123");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
@@ -979,7 +982,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_I
 	Try{
    StringObject* str = createStringObject(".1e-2_");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
    }Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -994,7 +997,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_
 	Try{
    StringObject* str = createStringObject(".1e-2ASDSA");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -1019,7 +1022,7 @@ void test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTE
 	Try{
    StringObject* str = createStringObject("1.12A");
 	FloatToken *newToken =(FloatToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -1045,7 +1048,7 @@ void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
 	Try{
    StringObject* str = createStringObject("09");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1060,7 +1063,7 @@ void test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA(void){
 	Try{
    StringObject* str = createStringObject("0A");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -1147,7 +1150,7 @@ void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0XS");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
@@ -1162,7 +1165,7 @@ void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0X&");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
@@ -1177,7 +1180,7 @@ void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0X");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
@@ -1192,7 +1195,7 @@ void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0X ");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
@@ -1207,7 +1210,7 @@ void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0X\n");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
@@ -1224,7 +1227,7 @@ void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0XADU");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -1239,7 +1242,7 @@ void test_StringTokenizer_given_0XADdoller_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0XAD$");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 	}Catch(err){
       printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -1264,8 +1267,7 @@ void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0823");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1281,8 +1283,7 @@ void test_StringTokenizer_given_0923_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("0923");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1298,7 +1299,6 @@ void test_StringTokenizer_given_0723_should_return_IntegerToken(void){
   StringObject* str = createStringObject("0723");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
   TEST_ASSERT_INTEGER_TOKEN(0723,0,4,"0723",newToken);
-	dumpToken(newToken);  
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1345,8 +1345,7 @@ void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("072823");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1362,8 +1361,7 @@ void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("072$23");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
-
-	dumpToken(newToken);  
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
@@ -1379,8 +1377,8 @@ void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 	Try{
   StringObject* str = createStringObject("072A23");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 
-	dumpToken(newToken);  
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
@@ -1399,37 +1397,100 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
   IdentifierToken* newToken0 =(IdentifierToken*)getToken(str);
 	TEST_ASSERT_IDENTIFIER_TOKEN("string",0,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken0);
   dumpToken(newToken0);  
+  
+  IdentifierToken* peepToken1 =(IdentifierToken*)peepToken(str);
+	TEST_ASSERT_IDENTIFIER_TOKEN("string",0,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken1);
+  dumpToken(peepToken1);  
 
   IntegerToken *newToken1 =(IntegerToken*) getToken(str);
    TEST_ASSERT_INTEGER_TOKEN(12342,7,5,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken1);
   dumpToken(newToken1);  
   
+  IntegerToken *peepToken2 =(IntegerToken*) peepToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(12342,7,5,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken2);
+  dumpToken(peepToken2);  
+  
   IdentifierToken* newToken2 =(IdentifierToken*)getToken(str);
 	TEST_ASSERT_IDENTIFIER_TOKEN("ser1234",13,7,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken2);
   dumpToken(newToken2);  
+  
+  peepToken1 =(IdentifierToken*)peepToken(str);
+	TEST_ASSERT_IDENTIFIER_TOKEN("ser1234",13,7,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken1);
+  dumpToken(peepToken1);  
   
   IntegerToken *newToken3 =(IntegerToken*) getToken(str);
    TEST_ASSERT_INTEGER_TOKEN(1,21,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken3);
   dumpToken(newToken3);  
   
+  peepToken2 =(IntegerToken*) peepToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(1,21,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken2);
+  dumpToken(peepToken2);  
+  
+  
   OperatorToken *newToken4 = (OperatorToken*) getToken(str);
   TEST_ASSERT_OPERATOR_TOKEN("+",22,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken4);
   dumpToken(newToken4);  
-   
+  
+   OperatorToken *peepToken3 = (OperatorToken*) peepToken(str);
+  TEST_ASSERT_OPERATOR_TOKEN("+",22,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken3);
+  dumpToken(peepToken3);  
+  
    StringToken* newToken5 =(StringToken*)getToken(str);
    TEST_ASSERT_STRING_TOKEN("\"1234\"",24,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken5);
    dumpToken(newToken5);  
 
+    StringToken* peepToken4 =(StringToken*)peepToken(str);
+   TEST_ASSERT_STRING_TOKEN("\"1234\"",24,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken4);
+   dumpToken(peepToken4);  
+   
    FloatToken* newToken6 =(FloatToken*)getToken(str);
    TEST_ASSERT_FLOAT_TOKEN(123.32,31,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken6);
    dumpToken(newToken6);  
-
+   
+   FloatToken* peepToken5 =(FloatToken*)peepToken(str);
+   TEST_ASSERT_FLOAT_TOKEN(123.32,31,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken5);
+   dumpToken(peepToken5);  
+   
    FloatToken* newToken7 =(FloatToken*)getToken(str);
    TEST_ASSERT_FLOAT_TOKEN(.1e2,38,4,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken7);
    dumpToken(newToken7); 
+   
+   peepToken5 =(FloatToken*)peepToken(str);
+   TEST_ASSERT_FLOAT_TOKEN(.1e2,38,4,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken5);
+   dumpToken(peepToken5);  
 
 	printf("No.112\n");
 
 }
 
-
+void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
+   StringObject* str = createStringObject("0212 12342");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0212,0,4,"0212 12342",newToken);
+	dumpToken(newToken);  
+	
+  IntegerToken *newToken1 =(IntegerToken*) peepToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0212,0,4,"0212 12342",newToken1);
+	dumpToken(newToken1); 
+  
+  IntegerToken *newToken2 =(IntegerToken*) peepToken(str);
+   TEST_ASSERT_INTEGER_TOKEN(0212,0,4,"0212 12342",newToken2);
+	dumpToken(newToken2);  
+  
+  newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(12342,5,5,"0212 12342",newToken);
+	dumpToken(newToken);  
+	
+  newToken1 =(IntegerToken*) peepToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(12342,5,5,"0212 12342",newToken1);
+	dumpToken(newToken1); 
+  
+  newToken2 =(IntegerToken*) peepToken(str);
+   TEST_ASSERT_INTEGER_TOKEN(12342,5,5,"0212 12342",newToken2);
+	dumpToken(newToken2);  
+  
+  
+	printf("No.113\n");
+  
+  
+}

@@ -1001,3 +1001,366 @@ void test_StringTokenizer_given_1e12_given_should_return_IntegerToken(void){
 	printf("No.85\n");
 }
 
+void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject("09");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL,err);
+	}
+	printf("No.86\n");
+}
+
+void test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA(void){
+	CEXCEPTION_T err;
+	Try{
+   StringObject* str = createStringObject("0A");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+   }Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_INCLURE_ALPHA,err);
+	}
+	printf("No.87\n");
+}
+
+
+void test_StringTokenizer_given_0x12A_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0x12A");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0x12A,0,5,"0x12A",newToken);
+	dumpToken(newToken);  
+
+	
+	printf("No.88\n");
+}
+
+void test_StringTokenizer_given_0X12B_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0X12B");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0X12B,0,5,"0X12B",newToken);
+	dumpToken(newToken);  
+
+	printf("No.89\n");
+}
+
+void test_StringTokenizer_given_0XA_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0XA,0,3,"0XA",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.90\n");
+}
+
+void test_StringTokenizer_given_0XA1234space_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA1234 ");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0XA1234,0,7,"0XA1234 ",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.91\n");
+}
+
+void test_StringTokenizer_given_0XA1234n_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA1234\n");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0XA1234,0,7,"0XA1234\n",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.92\n");
+}
+
+void test_StringTokenizer_given_0XA1and_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA1&");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0XA1,0,4,"0XA1&",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.93\n");
+}
+
+void test_StringTokenizer_given_0XA1point_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA1.");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0XA1,0,4,"0XA1.",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.94\n");
+}
+
+void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0XS");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_HEX,err);
+	}
+	printf("No.95\n");
+}
+
+void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0X&");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_HEX,err);
+	}
+	printf("No.96\n");
+}
+
+void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0X");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_HEX,err);
+	}
+	printf("No.97\n");
+}
+
+void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0X ");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_HEX,err);
+	}
+	printf("No.98\n");
+}
+
+void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0X\n");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_HEX,err);
+	}
+	printf("No.99\n");
+}
+
+
+
+void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0XADU");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_INCLURE_ALPHA,err);
+	}
+	printf("No.100\n");
+}
+
+void test_StringTokenizer_given_0XADdoller_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0XAD$");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+	}
+	printf("No.101\n");
+}
+
+void test_StringTokenizer_given_0124_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0123");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0123,0,4,"0123",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.102\n");
+}
+
+void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0823");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL,err);
+  }
+	printf("No.103\n");
+
+}
+
+void test_StringTokenizer_given_0923_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0923");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL,err);
+  }
+	printf("No.104\n");
+
+}
+void test_StringTokenizer_given_0723_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("0723");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0723,0,4,"0723",newToken);
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL,err);
+  }
+	printf("No.105\n");
+
+}
+
+void test_StringTokenizer_given_0212and_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0212&");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0212,0,4,"0212&",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.106\n");
+}
+
+void test_StringTokenizer_given_0312space_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0312 ");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0312,0,4,"0312 ",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.107\n");
+}
+
+void test_StringTokenizer_given_0412newline_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0412\n");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+  TEST_ASSERT_INTEGER_TOKEN(0412,0,4,"0412\n",newToken);
+	dumpToken(newToken);  
+	
+	printf("No.108\n");
+}
+
+
+void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("072823");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL,err);
+  }
+	printf("No.109\n");
+
+}
+
+void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("072$23");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL,err);
+  }
+	printf("No.110\n");
+
+}
+
+void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+	Try{
+  StringObject* str = createStringObject("072A23");
+	IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+	dumpToken(newToken);  
+	}Catch(err){
+		printError(err);
+		TEST_ASSERT_EQUAL(ERR_STR_INCLURE_ALPHA,err);
+  }
+	printf("No.111\n");
+
+}
+
+void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
+	CEXCEPTION_T err;
+
+  StringObject* str = createStringObject("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ");
+	
+  IdentifierToken* newToken0 =(IdentifierToken*)getToken(str);
+	TEST_ASSERT_IDENTIFIER_TOKEN("string",0,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken0);
+  dumpToken(newToken0);  
+
+  IntegerToken *newToken1 =(IntegerToken*) getToken(str);
+   TEST_ASSERT_INTEGER_TOKEN(12342,7,5,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken1);
+  dumpToken(newToken1);  
+  
+  IdentifierToken* newToken2 =(IdentifierToken*)getToken(str);
+	TEST_ASSERT_IDENTIFIER_TOKEN("ser1234",13,7,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken2);
+  dumpToken(newToken2);  
+  
+  IntegerToken *newToken3 =(IntegerToken*) getToken(str);
+   TEST_ASSERT_INTEGER_TOKEN(1,21,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken3);
+  dumpToken(newToken3);  
+  
+  OperatorToken *newToken4 = (OperatorToken*) getToken(str);
+  TEST_ASSERT_OPERATOR_TOKEN("+",22,1,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken4);
+  dumpToken(newToken4);  
+   
+   StringToken* newToken5 =(StringToken*)getToken(str);
+   TEST_ASSERT_STRING_TOKEN("\"1234\"",24,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken5);
+   dumpToken(newToken5);  
+
+   FloatToken* newToken6 =(FloatToken*)getToken(str);
+   TEST_ASSERT_FLOAT_TOKEN(123.32,31,6,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken6);
+   dumpToken(newToken6);  
+
+   FloatToken* newToken7 =(FloatToken*)getToken(str);
+   TEST_ASSERT_FLOAT_TOKEN(.1e2,38,4,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",newToken7);
+   dumpToken(newToken7); 
+
+	printf("No.112\n");
+
+}
+
+

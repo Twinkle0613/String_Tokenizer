@@ -122,6 +122,12 @@ void printError(int err){
             case ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT:
             printf("Error: Behind the exponential must be a digit\n");
             break;
+            case ERR_INVALID_OCTAL:
+            printf("Error: This is invalid octal\n");
+            break;
+            case ERR_INVALID_HEX:
+            printf("Error: This is invalid Hexdecimal\n");
+            break;
 						default:
 						printf("Unknown Error caught! Error code is :%d\n", err);
 						break;

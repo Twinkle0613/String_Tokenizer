@@ -20,6 +20,12 @@
 #define isNot_space_newline_null(x) ( x != '\0' && x != '\n' && x != ' ')
 #define advance(x) ((x->index)++)
 #define isexponent(x) (x == 'e' || x == 'E')
+#define ishexdecimal(x) (x == 'x' || x == 'X')
+#define isposOrneg(x) ( x == '+' || x == '-')
+#define isOtcNum(x) ( !(x == '8' || x == '9'))
+#define isAlphaForHex(x) ( x == 'A' || x == 'B' || x == 'C' || x == 'D' || x == 'E' || x == 'F' \
+                           || x == 'a' || x == 'b' || x == 'c' || x == 'd' || x == 'e' || x == 'd'  )
+                           
 Token *getToken(StringObject *strO){
 		if( strO == NULL){
 			 Throw(-5); 	// throwError("String Object can't be NULL",ERR_STR_OBJECT_CANNOT_BE_NULL);
@@ -58,7 +64,7 @@ Token *getToken(StringObject *strO){
            break;
            
           case OctalState:
-          printf("IntegerState\n");
+          printf("OctalState\n");
 					TransitionForOct(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
 						return newToken;
@@ -157,28 +163,41 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
 }
 
 void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* strO){
-					if(curChar == '.'){
+       
+          if( isdigit(curChar) && isOtcNum(curChar) == 0 && prevChar == '0'){
+            printf("err\n");
+            Throw(ERR_INVALID_OCTAL);
+          }else if( isdigit(curChar) && isOtcNum(curChar) && prevChar == '0'){
+             printf("advance\n");
+            advance(strO);
+            *currentState = OctalState;    
+          }else if(curChar == '.'){
 						advance(strO);
            *currentState = FloatingState;
           }else if( isexponent(curChar) && isdigit(prevChar) ) {
             advance(strO);
             *currentState = ExponentState;
+          }else if ( ishexdecimal(curChar) && prevChar == '0'){
+            advance(strO);
+            *currentState = HexdecimalState;
           }else if( isdigit(curChar) ) {
 						 advance(strO);
 						*currentState = IntegerState;
 					}else if( is_space_newline_null(curChar)  || isoperator(curChar)){
 						printf("Create Token\n");
             (*InTk)->length = strO->index - (*InTk)->startColumn;
+            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Decimal);
 						if(curChar == '\n' || curChar == ' '){
 						 advance(strO);
 						}
-            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Decimal);
 					}else if ( isalpha(curChar) ){	
+
 						Throw(ERR_STR_INCLURE_ALPHA); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
 					}else if (isoperator(curChar) == 0){
+
             Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
           }
-
+            printf("outside\n");
 }
 
 
@@ -241,10 +260,10 @@ void TransitionForIden(Token** IdenTk, TokenState* currentState , StringObject* 
 		{
 			printf("Create Token\n");
       (*IdenTk)->length = strO->index - (*IdenTk)->startColumn;
+     *IdenTk = createIdentifierToken (strO->str,(*IdenTk)->startColumn,(*IdenTk)->length);
       if(curChar == '\n' || curChar == ' '){
         advance(strO);
         }
-     *IdenTk = createIdentifierToken (strO->str,(*IdenTk)->startColumn,(*IdenTk)->length);
      }else if ( isoperator(curChar) == 0){
        Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
      }
@@ -255,10 +274,10 @@ void TransitionForDecPointState(Token** OpTk, TokenState* currentState , StringO
   if( is_space_newline_null(curChar)  || isoperator(curChar) || isalpha(curChar)){
 			printf("Create Token\n");
       (*OpTk)->length = strO->index - (*OpTk)->startColumn;
+     *OpTk = createOperatorToken (strO->str,(*OpTk)->startColumn,(*OpTk)->length);
       if(curChar == '\n' || curChar == ' '){
         advance(strO);
         }
-     *OpTk = createOperatorToken (strO->str,(*OpTk)->startColumn,(*OpTk)->length);
      }else if(isdigit(curChar)){
        advance(strO);
        *currentState = FloatingState;
@@ -280,10 +299,10 @@ void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject
     }else if( is_space_newline_null(curChar)  || isoperator(curChar) ){
        printf("Create Token\n");
        (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+       *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
        if(curChar == '\n' || curChar == ' '){
         advance(strO);
        }
-       *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
     }else if( isalpha(curChar) ){
        Throw(ERR_INTEGER_CANNOT_CONTAIN_ALPHA); 
     }else if( isoperator(curChar) == 0){
@@ -296,7 +315,7 @@ void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject
   
     if( curChar == '.'){
        Throw(ERR_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT);
-    }else if( (curChar == '+' || curChar == '-') && isexponent(prevChar) ){
+    }else if( isposOrneg(curChar) && isexponent(prevChar) ){
        advance(strO);
       *currentState = NegPosExponentState;
     }else if(isdigit(curChar) == 0 && isexponent(prevChar)){
@@ -307,10 +326,10 @@ void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject
     }else if( is_space_newline_null(curChar)  || isoperator(curChar) ){
         printf("Create Token\n");
        (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+       *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
        if(curChar == '\n' || curChar == ' '){
         advance(strO);
        }
-       *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
     }else if(isalpha(curChar)){
        Throw(ERR_INTEGER_CANNOT_CONTAIN_ALPHA); 
     }else if( isoperator(curChar) == 0){
@@ -328,24 +347,56 @@ void TransitionForNegPosExpon(Token** FloatTk, TokenState* currentState , String
       }else if( is_space_newline_null(curChar)  || isoperator(curChar) ){
             printf("Create Token\n");
           (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+          *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
           if(curChar == '\n' || curChar == ' '){
             advance(strO);
           }
-          *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
       }else if(isalpha(curChar)){
           Throw(ERR_INTEGER_CANNOT_CONTAIN_ALPHA); 
       }else if( isoperator(curChar) == 0){
-        Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+          Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
       }
 }
-void TransitionForHex(Token** FloatTk, TokenState* currentState , StringObject* strO){
-
+void TransitionForHex(Token** InTk, TokenState* currentState , StringObject* strO){
+      if( isdigit(curChar) == 0 && isAlphaForHex(curChar) == 0 && ishexdecimal(prevChar)){
+        Throw(ERR_INVALID_HEX);
+      }else if( isdigit(curChar) || isAlphaForHex(curChar) ){
+          advance(strO);
+          *currentState = HexdecimalState;
+      }else if( is_space_newline_null(curChar)  || isoperator(curChar)){
+						printf("Create Token\n");
+            (*InTk)->length = strO->index - (*InTk)->startColumn;
+            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Hexdecimal);
+						if(curChar == '\n' || curChar == ' '){
+						 advance(strO);
+						}
+			}else if ( isalpha(curChar) ){	
+						Throw(ERR_STR_INCLURE_ALPHA); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
+			}else if (isoperator(curChar) == 0){
+            Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+      }
 
 }
 
-void TransitionForOct(Token** FloatTk, TokenState* currentState , StringObject* strO){
-
-
+void TransitionForOct(Token** InTk, TokenState* currentState , StringObject* strO){
+      
+      if( isdigit(curChar) && isOtcNum(curChar) == 0 ){
+            Throw(ERR_INVALID_OCTAL);
+       }else if( isdigit(curChar) && isOtcNum(curChar) ){
+            advance(strO);
+            *currentState = OctalState;    
+       }else if( is_space_newline_null(curChar)  || isoperator(curChar)){
+						printf("Create Token\n");
+            (*InTk)->length = strO->index - (*InTk)->startColumn;
+            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Octal);
+						if(curChar == '\n' || curChar == ' '){
+						 advance(strO);
+						}
+			}else if ( isalpha(curChar) ){	
+						Throw(ERR_STR_INCLURE_ALPHA); 	// throwError("The String can't include Alpha",ERR_STR_INCLURE_ALPHA);
+			}else if (isoperator(curChar) == 0){
+            Throw(ERR_STR_CANNOT_CONTAIN_INVALID_SYMBOL);
+      }
 }
 void dumpToken(Token* newToken){
 	char* tokenType;
@@ -356,7 +407,9 @@ void dumpToken(Token* newToken){
 	case TOKEN_INTEGER_TYPE:
 					tokenType = "TOKEN_INTEGER_TYPE";
 					IntegerToken* InTk = (IntegerToken*)newToken;
-					printf("value = %d,",InTk->value);
+					printf("value = %d\n",InTk->value);
+          printf("value(HEX) = 0x%X\n",InTk->value);
+          printf("value(OCT) = 0%o,",InTk->value);
 				break;
 	case TOKEN_OPERATOR_TYPE:
 					tokenType = "TOKEN_OPERATOR_TYPE";

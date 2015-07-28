@@ -1,6 +1,6 @@
 #ifndef ErrorObject_H
 #define ErrorObject_H
-
+#include "Token.h"
 typedef enum{
     ERR_STR_OBJECT_CANNOT_BE_NULL_1,
     ERR_STR_CANNOT_BE_NULL_1,
@@ -20,5 +20,9 @@ typedef struct{
 
 void freeError(ErrorObject* errObj);
 void throwError(char *message, ErrorCode errCode);
-
+//void pinpointTokenLocation(Token *token);
 #endif // ErrorObject_H
+
+
+
+  

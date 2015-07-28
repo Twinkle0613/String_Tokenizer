@@ -2,6 +2,7 @@
 #include "subFunction.h"
 #include "unity.h"
 #include "Token.h"
+#include "OperatorChecker.h"
 
 
 
@@ -263,11 +264,10 @@ void test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_ST
 			Token* newToken = malloc(sizeof(Token));
 			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
-
-				TransitionForOp( &newToken, &currState,createStringObject("+ +$!@#$%^"));
-				OpTk = (OperatorToken*)newToken;
-				TEST_ASSERT_EQUAL_STRING("+",OpTk->symbol);
-				dumpToken(newToken);
+			TransitionForOp( &newToken, &currState,createStringObject("+ +$!@#$%^"));
+			OpTk = (OperatorToken*)newToken;
+			TEST_ASSERT_EQUAL_STRING("+",OpTk->symbol);
+			dumpToken(newToken);
 
 			printf("No.16\n");
 }
@@ -1299,6 +1299,8 @@ void test_StringTokenizer_given_0723_should_return_IntegerToken(void){
   StringObject* str = createStringObject("0723");
 	IntegerToken *newToken =(IntegerToken*) getToken(str);
   TEST_ASSERT_INTEGER_TOKEN(0723,0,4,"0723",newToken);
+  	dumpToken(newToken);  
+
 	}Catch(err){
      printf("%s",err->errorMsg);
      TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
@@ -1374,13 +1376,15 @@ void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
-	Try{
   StringObject* str = createStringObject("072A23");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken;
+	Try{
+    newToken =(IntegerToken*) getToken(str);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 
 	}Catch(err){
-     printf("%s",err->errorMsg);
+     printf("Error[%d][%d]:%s\n%s\n",__LINE__,str->index,err->errorMsg,str->str);
+   //  pinpointTokenLocation((Token*)newToken);
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
      freeError(err);
@@ -1459,6 +1463,14 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
    TEST_ASSERT_FLOAT_TOKEN(.1e2,38,4,"string 12342 ser1234 1+ \"1234\" 123.32 .1e2  ",peepToken5);
    dumpToken(peepToken5);  
 
+   newToken4 = (OperatorToken*) getToken(str);
+   TEST_LAST_TOKEN(newToken4);
+   dumpToken(newToken4);  
+  
+   newToken4 = (OperatorToken*) getToken(str);
+   TEST_LAST_TOKEN(newToken4);
+   dumpToken(newToken4);  
+  
 	printf("No.112\n");
 
 }

@@ -3,7 +3,7 @@
 #include "CException.h"
 #include "ErrorCode.h"
 #include "Token.h"
-
+#include "OperatorChecker.h"
 #include "unity.h"
 #include <string.h>
 #include <ctype.h>
@@ -179,7 +179,7 @@ void printError(int err){
      // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      // TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
  /*********************************checkOperator_Function*********************************/
-
+/*
 int operatorAtrributes[256] = {
 	
 	 ['<'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT, //< << <= <<= 
@@ -257,7 +257,7 @@ int isTwinAssign(int Operator){
 				return 1;
 			  return 0;
 }
-
+*/
 //#define currChar strO->str[strO->index]
 //#define nextChar strO->str[strO->index+1]
 //#define prevChar strO->str[strO->index-1]

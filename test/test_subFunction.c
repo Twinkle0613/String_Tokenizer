@@ -10,7 +10,7 @@
 #include "Token.h"
 #include "ErrorCode.h"
 #include <stdio.h>
-
+#include "OperatorChecker.h"
 
 
 void setUp(void){}
@@ -105,7 +105,7 @@ void xtest_createSubString(void){
 }
 
  /***************************checkOperator_Function_Test***************************/
-
+/*
 void xtest_isSingle (void){
 	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['(']));
 	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes[')']));
@@ -205,6 +205,7 @@ void xtest_isOperator(void){
 
 
 }
+*/
  /***************************checkFirstCh_Function_Test***************************/
 
 void xtest_checkFirstCh_given_1234_and_currentState_should_be_change_to_IntergerState(void){

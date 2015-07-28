@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "ErrorObject.h"
 #include "ErrorObject.c"
-
+#include "OperatorChecker.h"
 #define curChar (strO->str[strO->index])
 #define nextChar (strO->str[strO->index+1])
 #define prevChar (strO->str[strO->index-1])
@@ -34,21 +34,20 @@ Token *peepToken(StringObject *strO){
 Token *getToken(StringObject *strO){
 
 		if( strO == NULL){
-			// Throw(ERR_STR_OBJECT_CANNOT_BE_NULL); 
        throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
 		}
 	  Token* newToken = malloc(sizeof(Token)); 
 		TokenState currentState = InitialState;
 		newToken->startColumn = strO->index;
 		int loop = 0;
-	//	printf("-----------------\n");
+    //printf("-----------------\n");
    // printf("newToken->startColumn  = %d\n",newToken->startColumn);
 		while (loop < 100)
 		{
 				switch (currentState)
 			{
 					case InitialState:
-				//	printf("InitialState\n");
+          //printf("InitialState\n");
 					TransitionForIni(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
            strO->tokenStorage = newToken;
@@ -57,7 +56,7 @@ Token *getToken(StringObject *strO){
 						break;
 
 					case IntegerState:
-				//	printf("IntegerState\n");
+          //printf("IntegerState\n");
 					TransitionForInt(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
             strO->tokenStorage = newToken;
@@ -65,7 +64,7 @@ Token *getToken(StringObject *strO){
 					 }
 					break;
           case HexdecimalState:
-      //    printf("HexdecimalState\n");
+          //printf("HexdecimalState\n");
 					TransitionForHex(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
            strO->tokenStorage = newToken;
@@ -74,7 +73,7 @@ Token *getToken(StringObject *strO){
            break;
            
           case OctalState:
-       //   printf("OctalState\n");
+          //printf("OctalState\n");
 					TransitionForOct(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_INTEGER_TYPE){	
            strO->tokenStorage = newToken;
@@ -83,7 +82,7 @@ Token *getToken(StringObject *strO){
            break;
            
 					case FloatingState:
-       //   printf("FloatingState\n");
+          //printf("FloatingState\n");
           TransitionForFloat(&newToken,&currentState,strO);
           if (newToken->type == TOKEN_FLOAT_TYPE){	
           strO->tokenStorage = newToken;
@@ -92,7 +91,7 @@ Token *getToken(StringObject *strO){
 					break;
           
           case ExponentState:
-       //   printf("ExponentState\n");
+          //printf("ExponentState\n");
           TransitionForExpon(&newToken,&currentState,strO);
           if (newToken->type == TOKEN_FLOAT_TYPE){	
           strO->tokenStorage = newToken;
@@ -101,7 +100,7 @@ Token *getToken(StringObject *strO){
           break;
           
           case NegPosExponentState:
-      //   printf("NegPosExponentState\n");
+          //printf("NegPosExponentState\n");
           TransitionForNegPosExpon(&newToken,&currentState,strO);
           if (newToken->type == TOKEN_FLOAT_TYPE){	
           strO->tokenStorage = newToken;
@@ -109,7 +108,7 @@ Token *getToken(StringObject *strO){
 					 }
           break;
 					case DecimalPointState:
-      //    printf("DecimalPointState\n");
+          //printf("DecimalPointState\n");
           TransitionForDecPointState(&newToken,&currentState,strO);
           if (newToken->type == TOKEN_OPERATOR_TYPE){	
           strO->tokenStorage = newToken;
@@ -118,7 +117,7 @@ Token *getToken(StringObject *strO){
           break;
           
 					case StringState:
-     //     printf("StringState\n");
+          //printf("StringState\n");
           TransitionForStr(&newToken,&currentState,strO);
            if (newToken->type == TOKEN_STRING_TYPE){	
            strO->tokenStorage = newToken;
@@ -127,7 +126,7 @@ Token *getToken(StringObject *strO){
 					break;
 					
 					case IdentifierState:
-      //    printf("IdentifierState\n");
+          //printf("IdentifierState\n");
           TransitionForIden(&newToken,&currentState,strO);
           if (newToken->type == TOKEN_IDENTIFIER_TYPE){
             strO->tokenStorage = newToken;
@@ -136,7 +135,7 @@ Token *getToken(StringObject *strO){
 					break;
 					
 					case OperatorState:
-			//		printf("OperatorState\n");
+          //printf("OperatorState\n");
 					TransitionForOp(&newToken,&currentState,strO);
 					 if (newToken->type == TOKEN_OPERATOR_TYPE){	
            strO->tokenStorage = newToken;
@@ -145,7 +144,7 @@ Token *getToken(StringObject *strO){
 					break;
 					
 					case TwinAssignState:
-		//			printf("TwinAssignState\n");
+          //printf("TwinAssignState\n");
 					TransitionForTwinAssign(&newToken,&currentState,strO);
 					if (newToken->type == TOKEN_OPERATOR_TYPE){
             strO->tokenStorage = newToken;
@@ -315,7 +314,7 @@ void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject
              }
           }else if( isalpha(curChar) ){
              throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
-          }else if( isoperator(curChar) == 0){
+          }else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
           }
   
@@ -342,7 +341,7 @@ void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject
              }
           }else if(isalpha(curChar)){
             throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
-          }else if( isoperator(curChar) == 0){
+          }else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
           }
 
@@ -364,8 +363,7 @@ void TransitionForNegPosExpon(Token** FloatTk, TokenState* currentState , String
               } 
            }else if(isalpha(curChar)){
             throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
-
-           }else if( isoperator(curChar) == 0){
+           }else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
            }
 }
@@ -383,9 +381,9 @@ void TransitionForHex(Token** InTk, TokenState* currentState , StringObject* str
 						 advance(strO);
 						}
           }else if ( isalpha(curChar) ){	
-			        throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
-          }else if (isoperator(curChar) == 0){
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+			       throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+          }else{
+             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
           }
 
 }
@@ -407,44 +405,44 @@ void TransitionForOct(Token** InTk, TokenState* currentState , StringObject* str
 						}
           }else if ( isalpha(curChar) ){	
             throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
-          }else if (isoperator(curChar) == 0){
+          }else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
           } 
 }
 void dumpToken(Token* newToken){
-	char* tokenType;
-	switch(newToken->type){
-	case TOKEN_UNKNOWN_TYPE:
-				tokenType = "TOKEN_UNKNOWN_TYPE";
-				break;
-	case TOKEN_INTEGER_TYPE:
-					tokenType = "TOKEN_INTEGER_TYPE";
-					IntegerToken* InTk = (IntegerToken*)newToken;
-					printf("value = %d\n",InTk->value);
-          printf("value(HEX) = 0x%X\n",InTk->value);
-          printf("value(OCT) = 0%o,",InTk->value);
-				break;
-	case TOKEN_OPERATOR_TYPE:
-					tokenType = "TOKEN_OPERATOR_TYPE";
-					OperatorToken* OpTk = (OperatorToken*)newToken;
-					printf("symbol = %s,",OpTk->symbol);
-				break;
-	case TOKEN_FLOAT_TYPE:
-					tokenType = "TOKEN_FLOAT_TYPE";
-          FloatToken* FlTk = (FloatToken*)newToken;
-					printf("value = %f,",FlTk->value);
-				break;
-	case TOKEN_STRING_TYPE:
-					tokenType = "TOKEN_STRING_TYPE";
-          StringToken* StTk = (StringToken*)newToken;
-					printf("name = %s,",StTk->name);
-				break;
-	case TOKEN_IDENTIFIER_TYPE:
-					tokenType = "TOKEN_IDENTIFIER_TYPE";
-          IdentifierToken* IdTk = (IdentifierToken*)newToken;
-					printf("name = %s,",IdTk->name);
-				break;
-	default:break;
-	}
-	printf("[%s]\n",tokenType);
+          char* tokenType;
+          switch(newToken->type){
+            case TOKEN_UNKNOWN_TYPE:
+              tokenType = "TOKEN_UNKNOWN_TYPE";
+            break;
+            case TOKEN_INTEGER_TYPE:
+              tokenType = "TOKEN_INTEGER_TYPE";
+              IntegerToken* InTk = (IntegerToken*)newToken;
+              printf("value = %d\n",InTk->value);
+              printf("value(HEX) = 0x%X\n",InTk->value);
+              printf("value(OCT) = 0%o,",InTk->value);
+            break;
+            case TOKEN_OPERATOR_TYPE:
+              tokenType = "TOKEN_OPERATOR_TYPE";
+              OperatorToken* OpTk = (OperatorToken*)newToken;
+              printf("symbol = %s,",OpTk->symbol);
+            break;
+            case TOKEN_FLOAT_TYPE:
+              tokenType = "TOKEN_FLOAT_TYPE";
+              FloatToken* FlTk = (FloatToken*)newToken;
+              printf("value = %f,",FlTk->value);
+            break;
+            case TOKEN_STRING_TYPE:
+              tokenType = "TOKEN_STRING_TYPE";
+              StringToken* StTk = (StringToken*)newToken;
+              printf("name = %s,",StTk->name);
+            break;
+            case TOKEN_IDENTIFIER_TYPE:
+              tokenType = "TOKEN_IDENTIFIER_TYPE";
+              IdentifierToken* IdTk = (IdentifierToken*)newToken;
+              printf("name = %s,",IdTk->name);
+            break;
+            default:break;
+            }
+            printf("[%s]\n",tokenType);
 }

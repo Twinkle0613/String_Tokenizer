@@ -1,6 +1,6 @@
 #ifndef StringTokenizer_H
 #define StringTokenizer_H
-
+#include "OperatorChecker.h"
 #include "Token.h"
 #include "CException.h"
 #include "ErrorCode.h"

@@ -1,9 +1,11 @@
 #include "ErrorObject.h"
 #include "CException.h"
 #include <malloc.h>
-#define shouldFail 1
 
+#define shouldFail 1
 void throwError(char *message, ErrorCode errCode){
+    //printf("ERROR\n");
+     printf("ERROR[%d][%d]: %s",__LINE__,3,message);
     ErrorObject *errObj = malloc(sizeof(ErrorObject));
     errObj->errorMsg = message;
     errObj->errorCode = errCode;
@@ -15,12 +17,12 @@ void throwError(char *message, ErrorCode errCode){
    free(errObj); //inside the free(address)
  }
   
-  
-// int doSomething(){
-  	// ErrorObject *errObj = malloc(sizeof(ErrorObject));
 
-  // if(shouldFail){
-    // throwError("Hey! Something is really wrong here",ERR_STR_INCLURE_ALPHA);
-  // }
-  // return 1;
-   // }
+// void pinpointTokenLocation(Token *token){
+  
+   // int i;
+   // printf("%*s",token->startColumn+1,"^");
+   // for(i = 0; i < token->length - 1; i++)
+     // printf("~");
+   // puts("");
+// }

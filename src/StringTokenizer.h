@@ -66,17 +66,17 @@
 				}  
 Token *peepToken(StringObject *strO);
 Token *getToken(StringObject *strO);
-void TransitionForInt(Token**newToken, TokenState* currentState , StringObject* strO );
-void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForTwinAssign(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForStr(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForIden(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForDecPointState(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForFloat(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForExpon(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForNegPosExpon(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForHex(Token** newToken, TokenState* currentState , StringObject* strO);
-void TransitionForOct(Token** newToken, TokenState* currentState , StringObject* strO);
+void TransitionForInt(TokenState* currentState , StringObject* strO );
+void TransitionForIni(TokenState* currentState , StringObject* strO);
+void TransitionForOp(TokenState* currentState , StringObject* strO);
+void TransitionForTwinAssign(TokenState* currentState , StringObject* strO);
+void TransitionForStr(TokenState* currentState , StringObject* strO);
+void TransitionForIden(TokenState* currentState , StringObject* strO);
+void TransitionForDecPointState(TokenState* currentState , StringObject* strO);
+void TransitionForFloat(TokenState* currentState , StringObject* strO);
+void TransitionForExpon(TokenState* currentState , StringObject* strO);
+void TransitionForNegPosExpon(TokenState* currentState , StringObject* strO);
+void TransitionForHex(TokenState* currentState , StringObject* strO);
+void TransitionForOct(TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

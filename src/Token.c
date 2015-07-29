@@ -112,9 +112,9 @@
 Token *createOperatorToken(StringObject *strO){
     OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
     OpTk->type = TOKEN_OPERATOR_TYPE;
-    OpTk->symbol = createSubString(strO->str,strO->startIndex,strO->length);
+    OpTk->symbol = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
     OpTk->startColumn = strO->startIndex;
-    OpTk->length = strO->length;
+    OpTk->length = strO->index - strO->startIndex;
     OpTk->str = strO->str;	
     return (Token*)OpTk;
 }
@@ -122,9 +122,9 @@ Token *createOperatorToken(StringObject *strO){
 Token *createFloatToken(StringObject *strO){
     FloatToken *FlTk = malloc(sizeof(FloatToken));
     FlTk->type = TOKEN_FLOAT_TYPE;
-    FlTk->value = strtod(createSubString(strO->str,strO->startIndex,strO->length),NULL);
+    FlTk->value = strtod(createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL);
     FlTk->startColumn = strO->startIndex;
-    FlTk->length = strO->length;
+    FlTk->length = strO->index - strO->startIndex;
     FlTk->str = strO->str;	
     return (Token*)FlTk;
 }
@@ -132,9 +132,9 @@ Token *createFloatToken(StringObject *strO){
 Token *createIntegerToken(StringObject *strO, int base){
     IntegerToken *InTk = malloc(sizeof(IntegerToken));
     InTk->type = TOKEN_INTEGER_TYPE;
-    InTk->value = strtol( createSubString(strO->str,strO->startIndex,strO->length),NULL,base);
+    InTk->value = strtol( createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL,base);
     InTk->startColumn = strO->startIndex;
-    InTk->length = strO->length;
+    InTk->length = strO->index - strO->startIndex;
     InTk->str = strO->str;	
 	return (Token*)InTk;
 }
@@ -142,9 +142,9 @@ Token *createIntegerToken(StringObject *strO, int base){
 Token *createIdentifierToken(StringObject *strO){
     IdentifierToken *IdTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
     IdTk->type = TOKEN_IDENTIFIER_TYPE;
-    IdTk->name = createSubString(strO->str,strO->startIndex,strO->length);
+    IdTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
     IdTk->startColumn = strO->startIndex;
-    IdTk->length = strO->length;
+    IdTk->length = strO->index - strO->startIndex;
     IdTk->str = strO->str;	
   return (Token*)IdTk;
 }
@@ -152,9 +152,9 @@ Token *createIdentifierToken(StringObject *strO){
 Token *createStringToken(StringObject *strO){
     StringToken *StTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
     StTk->type = TOKEN_STRING_TYPE;
-    StTk->name = createSubString(strO->str,strO->startIndex,strO->length);
+    StTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
     StTk->startColumn = strO->startIndex;
-    StTk->length = strO->length;
+    StTk->length = strO->index - strO->startIndex;
     StTk->str = strO->str;	
   return (Token*)StTk;
 }

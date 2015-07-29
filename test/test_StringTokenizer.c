@@ -1455,6 +1455,8 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 	dumpToken(newToken2);  
   
   newToken =(IntegerToken*) getToken(str);
+  printf("newToken->type = %d\n",newToken->type);
+  printf("newToken->value = %d\n",newToken->value);
   TEST_ASSERT_INTEGER_TOKEN(12342,5,5,"0212 12342",newToken);
 	dumpToken(newToken);  
 	

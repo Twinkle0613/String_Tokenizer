@@ -93,11 +93,14 @@ typedef struct {
 } OperatorToken;
 
 typedef struct {
-	char *str;
+  
+	TokenType type;
+  char *str;
 	int index;	
   int startIndex;
   int length;
-  Token* tokenStorage;
+  
+  Token* token;
 }StringObject;
 
  Token *createIntegerToken(StringObject *strO,int base);

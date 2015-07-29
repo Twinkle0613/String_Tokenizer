@@ -14,15 +14,6 @@
 #include <stdio.h>
 
 
-// typedef struct {
-	// char *str;
-	// int index;	
-  // int startIndex;
-  // int length;
-  // Token* tokenStorage;
-// }StringObject;
-
-
 StringObject *createStringObject(char *ch);
 char *createSubString(char *str, int start , int length);
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);

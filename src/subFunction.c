@@ -76,7 +76,10 @@
  *        currentState that will be update and change to other state or remain.
 
  */
- 
+void resetState(StringObject* strO){
+  strO->type = TOKEN_UNKNOWN_TYPE;
+  strO->startIndex = 0;
+}
 void stringObjectAnchor(StringObject* strO){
   strO->startIndex = strO->index;
   printf("strO->startIndex = %d\n",strO->startIndex);

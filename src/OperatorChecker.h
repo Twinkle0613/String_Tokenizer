@@ -1,10 +1,10 @@
 #ifndef OperatorChecker_H
 #define OperatorChecker_H
 
-#define issingle(x) (isSingle(operatorAtrributes[x]))
+#define issingleOperator(x) (isSingle(operatorAtrributes[x]))
 #define isoperator(x) (isOperator(operatorAtrributes[x]))
-#define istwin(x) (isTwin(operatorAtrributes[x]))
-#define isassign(x) (isAssign(operatorAtrributes[x]))
+#define istwinOperator(x) (isTwin(operatorAtrributes[x]))
+#define isassignOperator(x) (isAssign(operatorAtrributes[x]))
 #define istwinassign(x) (isTwinAssign(operatorAtrributes[x]))
 #define SINGLE (1<<0)
 #define TWIN (1<<1)

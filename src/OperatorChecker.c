@@ -1,9 +1,48 @@
 #include "OperatorChecker.h"
 
-
-
- /*********************************checkOperator_Function*********************************/
-
+/**
+ * The function in OperatorChecker there are to identify the operator and differential the type of operator.
+ * Eg.
+ *                               -------------------
+ *                              |    Operator      |
+ *                              -------------------
+ *                              /    |      |      \
+ *                            /      |      |       \
+ *                          /        |      |        \
+ *                      single     twin    assign  twinassign
+ *                      ^,{       ==,++     +=,-=   <<=,>>=
+ *
+ *
+ * Array:
+ * This a array is use to store some of valid operator that was typed by user. 
+ * int operatorAtrributes[]
+ *  
+ * Function:
+ *  int isSingle(int Operator);
+ *  int isTwin(int Operator);
+ *  int isAssign(int Operator);
+ *  int isTwinAssign(int Operator);
+ *  int isOperator(int Operator);
+ *
+ * Input:
+ *	The input for all the function 
+ *  Operator - the Operator that is assign by the getToken function
+ *
+ *
+ * Return:
+ *    isSingle:
+ *    if the operator is single type , then that are return 1 
+ *    isTwin:
+ *    if the operator is Twin type , then that are return 1
+ *    isAssign:
+ *    if the operator is Assign type , then that are return 1
+ *    isTwinAssign:
+ *    if the operator is TwinAssign type , then that are return 1
+ *    isOperator:
+ *    if the operator is a valid operator , then that are return 1
+ *
+ */
+ 
 int operatorAtrributes[256] = {
 	
 	 ['<'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT, //< << <= <<= 

@@ -1,6 +1,12 @@
 #ifndef ErrorObject_H
 #define ErrorObject_H
+//Own module files
 #include "Token.h"
+#include "subFunction.h"
+
+
+
+
 typedef enum{
     ERR_STR_OBJECT_CANNOT_BE_NULL_1,
     ERR_STR_CANNOT_BE_NULL_1,

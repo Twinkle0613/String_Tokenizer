@@ -9,7 +9,6 @@ void tearDown(void)
 {
 }
 
- /***************************checkOperator_Function_Test***************************/
 
 void xtest_isSingle (void){
 	TEST_ASSERT_EQUAL(1,isSingle(operatorAtrributes['(']));

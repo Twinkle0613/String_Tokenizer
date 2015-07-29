@@ -1,40 +1,31 @@
 #ifndef subFunction_H
 #define subFunction_H
-#include "StringTokenizer.h"
-#include <malloc.h>
+
+//Own module files
 #include "Token.h"
-#include "CException.h"
-#include <string.h>
-#include <ctype.h>
-#include "ErrorCode.h"
-#include <stdio.h>
 #include "subFunction.h"
 #include "OperatorChecker.h"
-/*
-#define issingle(x) (isSingle(operatorAtrributes[x]))
-#define isoperator(x) (isOperator(operatorAtrributes[x]))
-#define istwin(x) (isTwin(operatorAtrributes[x]))
-#define isassign(x) (isAssign(operatorAtrributes[x]))
-#define istwinassign(x) (isTwinAssign(operatorAtrributes[x]))
-#define SINGLE (1<<0)
-#define TWIN (1<<1)
-#define ASSIGNMENT (1<<2)
-#define TWIN_ASSIGNMENT (1<<3)
-*/
-void printError(int err);
+#include "CException.h"
+
+// Library 
+#include <malloc.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdio.h>
+
+
+typedef struct {
+	char *str;
+	int index;	
+  Token* tokenStorage;
+}StringObject;
+
+
 StringObject *createStringObject(char *ch);
 char *createSubString(char *str, int start , int length);
 void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);
-int getValue (StringObject* strO, Token* InTk);
-char *getSymbol (StringObject* strO,Token* OpTk);
-/*
-extern int operatorAtrributes[];
-int isSingle(int Operator);
-int isTwin(int Operator);
-int isAssign(int Operator);
-int isTwinAssign(int Operator);
-int isOperator(int Operator);
-*/
+
+
 #endif // subFunction_H
 
 // extern int d; //.h

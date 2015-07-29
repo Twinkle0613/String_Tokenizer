@@ -24,3 +24,23 @@ void tearDown(void)
     // freeError(err);
   // }	
 // }
+// void test_pinpointTokenLocation(void){
+  
+  // *Token token = malloc(sizeof(Token));
+  
+  
+// }
+
+// void test_throwTokenizerError(void){
+  
+  	// ErrorObject* err; 
+    // Try{
+  ////     doSomething();
+    // }Catch(err){
+       // printf("%s",err->errorMsg);
+        // freeError(err);
+     // }
+ 
+// }
+
+

@@ -1,31 +1,45 @@
+//Own module files
 #include "Token.h"
+#include "StringTokenizer.h"
+
+//Library
 #include <malloc.h>
-#include "subFunction.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 /**
- * This Token function is collect the data and convert to a token that will differential data
- * to form different type of token.
- * Eg.
+ * Using the creatXXXXXToken function to create a token that was identified the type by getToken(...) function.  
  *
+ *
+ * Eg.
  *  Integer Token : 123 ,Ox1234 ,01234...
  *  Operator Token : "+","-"...
+ *  Identifier Token : "ADS_213","LOS123"
+ *  String Token : ""string"",""Hello world""
+ *  Float Token : 12.23 ,1e20...
+ *  
  * Function:
- *  Token *createOperatorToken(char *symbol, Arity AR);
- *  Token *createIntegerToken(int value);
- 
- * Input:
- *	createOperatorToken:
- *	symbol - the symbol that type by user
- *  AR     - that is type of arity such as INFIX, PREFIX and POSTFIX
+ *    Token *createIntegerToken(char *str,int start,int length,int base);
+ *    Token *createOperatorToken(char *str, int start, int length);
+ *    Token *createStringToken(char *str,int start, int length);
+ *    Token *createIdentifierToken(char *str,int start, int length);
+ *    Token *createFloatToken(char *str, int start, int length);
+ *    Token *createEndStrToken(char *symbol);
  *
- *  createIntegerToken：
-*		value - the value that type by user
+ * Input:
+ *	The input for all of createXXXXXToken(...) function execept createEndStrToken().
+ *	 str - That is a string was typed by user.
+ *   start - That collect the initial position of counter for getToken ().  
+ *   length - That length of string for token. 
+ *
+ *  createEndStrToken():
+ *  symbol - The symbol that are collect when getToken that get last token at the end of string.
+ *
  *
  * Return:
- *    that are return a tree that data type is Token
+ *    createXXXXXToken(...)：
+        Return a token that was identified the type by getToken(...) function.
  *
  */
  																										
@@ -92,3 +106,31 @@ Token *createEndStrToken(char *symbol){
 }
 
 
+	// throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,"Expected Character that is a digit, but that was '\c'",curChar);
+  
+// void throwTokenizerError(ErrorCode errCode,StringObject *strO,char *msg , ...){
+  
+  // ErrorObject *errObj=malloc(sizeof(ErrorObject));
+  // char *msgBuffer = malloc(1024);
+  // char *strBuffer;
+  // char *strArrow;
+  // int msgLength;
+  // int strLength;
+  
+  // va_list args;
+  // va_start(args,msg);
+  
+  // sprintf(strArrow,"%*s",strO->index,"^"); 
+  
+  // strLength = vsnprintf(strBuffer,0,msg,args);
+  // strBuffer = malloc(strLength + 1);
+  // vsprintf(strBuffer, msg, args);
+
+  // vsprintf(msgBuffer,"Error[%d]:%s\n%s\n%s",i,strBuffer,strO->str,strArrow);
+  
+  // errObj->errorMsg=msgBuffer;
+  // errObj->errorCode=errCode;
+
+  // va_end(args);
+  // Throw(errObj);
+// }

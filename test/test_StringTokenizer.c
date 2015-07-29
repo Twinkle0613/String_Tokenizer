@@ -1,49 +1,15 @@
+//Own module files
 #include "StringTokenizer.h"
 #include "subFunction.h"
-#include "unity.h"
-#include "Token.h"
 #include "OperatorChecker.h"
-
+#include "Token.h"
+#include "unity.h"
 
 
 void setUp(void){}
 
 void tearDown(void){}
-/*
-		str = "1234"
-	
-				 
-				1->2->3->4->\0 
-										||										 ----------------------
-										V											|  TOKEN_INTEGER_TYPE |
-					createIntegerToken()   =  			----------------------
-																				 |         1234        |
-																				 ----------------------
-				
-*/
-/*
-	TEST LIST
-	-----------------------------------------------------------------
-	NO	strO        TokenType 					        Return/Throw			 	Condition
-	-----------------------------------------------------------------
-	1		NULL					Error							        -5									Complete						
-	-----------------------------------------------------------------
-	NO	str					TokenType					        	Return/Throw       Condition
-	-----------------------------------------------------------------
-	1		"1234"     		InTk						 	        1234  							Complete 
-	2		"1234 "    		InTk 							        1234								Complete
-	3		"1234\n"    	InTk							        1234								Complete
-	4		"1234\0"    	InTk 							        1234								Complete
-	5		" "          	OpTk							        $ 									Complete
-	6		"1234"      	InTk OpTk OpTk 		        1234 '$' '$'				Complete
-	7		NULL        	Error							        -4									Complete
-	8		"12A34"       Error							        -1									Complete
-	9		"123*4"       Error							        -2									Complete
-	10	""            OpTk 							         $ 									Complete
-	11  "1234 1234"		InTk InTk	OpTk		        1234 4321 $         Complete
-  12  "123 4 214"   InTk InTk	OpTk OpTk       123 4 214 $         Complete    
-	-----------------------------------------------------------------
-*/
+
 /*strO*/
 //1
 void test_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_NULL(void){

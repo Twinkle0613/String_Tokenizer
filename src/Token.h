@@ -1,13 +1,30 @@
 #ifndef Token_H
 #define Token_H
 
- 
-
+//Library
 #include <stdint.h>
 
 #define Octal 8
 #define Decimal 10
 #define Hexdecimal 16
+
+typedef enum{
+
+	InitialState,
+	IntegerState,
+	IdentifierState,
+	StringState,
+	OperatorState,
+	FloatingState,
+	TwinAssignState,
+  DecimalPointState,
+  ExponentState,
+  NegPosExponentState,
+  HexdecimalState,
+  OctalState,
+	UnknownState
+	
+}TokenState;
 
 typedef enum {
 	TOKEN_UNKNOWN_TYPE,
@@ -31,18 +48,18 @@ typedef enum {
 } Associativity;                                                                                                                                           
 
 typedef struct {
-	TokenType type;
+  TokenType type;
   uint32_t startColumn;
   uint32_t length;
-	char *str;
+  char *str;
 } Token;
 
 typedef struct {
-	TokenType type;
+  TokenType type;
   uint32_t startColumn;
   uint32_t length;
-	int value;
-	char *str;
+  int value;
+  char *str;
 } IntegerToken;
 
 typedef struct {
@@ -54,22 +71,22 @@ typedef struct {
 } FloatToken;
 
 typedef struct {
-	TokenType type;
+  TokenType type;
   uint32_t startColumn;
   uint32_t length;
-	char *name;
-	char *str;
+  char *name;
+  char *str;
   Token *token;
 } IdentifierToken, StringToken;
 
 typedef struct {
-	TokenType type;
+  TokenType type;
   uint32_t startColumn;
   uint32_t length;
-	char *str;
-	char *symbol;
-	Arity arity;
-	Token *token[0];
+  char *str;
+  char *symbol;
+  Arity arity;
+  Token *token[0];
 } OperatorToken;
 
 Token *createIntegerToken(char *str,int start,int length,int base);

@@ -31,16 +31,5 @@ void tearDown(void)
   
 // }
 
-// void test_throwTokenizerError(void){
-  
-  	// ErrorObject* err; 
-    // Try{
-  ////     doSomething();
-    // }Catch(err){
-       // printf("%s",err->errorMsg);
-        // freeError(err);
-     // }
- 
-// }
 
 

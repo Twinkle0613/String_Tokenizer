@@ -2,7 +2,7 @@
 #define ErrorObject_H
 //Own module files
 #include "Token.h"
-#include "subFunction.h"
+
 
 
 

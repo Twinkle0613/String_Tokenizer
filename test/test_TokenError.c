@@ -13,7 +13,7 @@ void tearDown(void)
 
 void test_throwTokenizerError(void){
   
-  	ErrorObject* err; 
+  	CEXCEPTION_T err; 
     Try{
       //  doSomething();
     }Catch(err){

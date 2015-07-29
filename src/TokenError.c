@@ -2,14 +2,17 @@
 #include "ErrorObject.h"
 #include "subFunction.h"
 #include "CException.h"
+#include <stdarg.h>
+#include "OperatorChecker.h"
 
 void doSomething(){
   
   int  num = 6;
   char ch = 'O';
   StringObject *strO =createStringObject("123321");
+  strO->index = 2;
   int start = 0;
-	throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,start,"Expected Character that is a digit, but that was '%c'",ch);
+throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,start,"Expected Character that is a digit, but that was '%c'",ch);
 
   
 }
@@ -21,7 +24,7 @@ void throwTokenizerError(ErrorCode errCode,StringObject *strO,int start ,char *m
   ErrorObject *errObj=malloc(sizeof(ErrorObject));
   char *msgBuffer = malloc(1024);
   char *strBuffer;
-  char *strArrow;
+  char *strArrow= malloc(1024);
   int msgLength;
   int strLength;
   

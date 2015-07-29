@@ -3,6 +3,7 @@
 #include "ErrorObject.h"
 #include "subFunction.h"
 #include "CException.h"
+#include "OperatorChecker.h"
 void setUp(void)
 {
 }
@@ -15,7 +16,7 @@ void test_throwTokenizerError(void){
   
   	CEXCEPTION_T err; 
     Try{
-      //  doSomething();
+       doSomething();
     }Catch(err){
        printf("%s",err->errorMsg);
         freeError(err);

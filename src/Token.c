@@ -46,55 +46,116 @@
 
 
 
-Token *createOperatorToken(char *str, int start, int length){
+// Token *createOperatorToken(char *str, int start, int length){
+    // OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
+    // OpTk->type = TOKEN_OPERATOR_TYPE;
+    // OpTk->symbol = createSubString(str,start,length);
+    // OpTk->startColumn = start;
+    // OpTk->length = length;
+    // OpTk->str = str;	
+    // return (Token*)OpTk;
+// }
+
+// Token *createFloatToken(char *str, int start, int length){
+    // FloatToken *FlTk = malloc(sizeof(FloatToken));
+    // FlTk->type = TOKEN_FLOAT_TYPE;
+    // FlTk->value = strtod(createSubString(str,start,length),NULL);
+    // FlTk->startColumn = start;
+    // FlTk->length = length;
+    // FlTk->str = str;	
+    // return (Token*)FlTk;
+// }
+
+
+// Token *createIntegerToken(char *str,int start,int length, int base){
+    // IntegerToken *InTk = malloc(sizeof(IntegerToken));
+    // InTk->type = TOKEN_INTEGER_TYPE;
+    // InTk->value = strtol( createSubString(str,start,length),NULL,base );
+    // InTk->startColumn = start;
+    // InTk->length = length;
+    // InTk->str = str;
+	// return (Token*)InTk;
+// }
+
+// Token *createIdentifierToken(char *str,int start, int length){
+    // IdentifierToken *IdTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
+    // IdTk->type = TOKEN_IDENTIFIER_TYPE;
+    // IdTk->name = createSubString(str,start,length);
+    // IdTk->startColumn = start;
+    // IdTk->length = length;
+    // IdTk->str = str;
+  // return (Token*)IdTk;
+// }
+
+// Token *createStringToken(char *str,int start, int length){
+    // StringToken *StTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
+    // StTk->type = TOKEN_STRING_TYPE;
+    // StTk->name = createSubString(str,start,length);
+    // StTk->startColumn = start;
+    // StTk->length = length;
+    // StTk->str = str;
+  // return (Token*)StTk;
+// }
+
+// Token *createEndStrToken(char *symbol){
+    // OperatorToken *EndTk = malloc(sizeof(OperatorToken));
+    // EndTk->type = TOKEN_OPERATOR_TYPE;
+    // EndTk->symbol = symbol;
+    // return (Token*)EndTk;
+// }
+
+
+
+
+
+
+Token *createOperatorToken(StringObject *strO){
     OperatorToken *OpTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
     OpTk->type = TOKEN_OPERATOR_TYPE;
-    OpTk->symbol = createSubString(str,start,length);
-    OpTk->startColumn = start;
-    OpTk->length = length;
-    OpTk->str = str;	
+    OpTk->symbol = createSubString(strO->str,strO->startIndex,strO->length);
+    OpTk->startColumn = strO->startIndex;
+    OpTk->length = strO->length;
+    OpTk->str = strO->str;	
     return (Token*)OpTk;
 }
 
-Token *createFloatToken(char *str, int start, int length){
+Token *createFloatToken(StringObject *strO){
     FloatToken *FlTk = malloc(sizeof(FloatToken));
     FlTk->type = TOKEN_FLOAT_TYPE;
-    FlTk->value = strtod(createSubString(str,start,length),NULL);
-    FlTk->startColumn = start;
-    FlTk->length = length;
-    FlTk->str = str;	
+    FlTk->value = strtod(createSubString(strO->str,strO->startIndex,strO->length),NULL);
+    FlTk->startColumn = strO->startIndex;
+    FlTk->length = strO->length;
+    FlTk->str = strO->str;	
     return (Token*)FlTk;
 }
 
-//Token *createIntegerToken(char *str,int start,int length){
-Token *createIntegerToken(char *str,int start,int length, int base){
+Token *createIntegerToken(StringObject *strO, int base){
     IntegerToken *InTk = malloc(sizeof(IntegerToken));
     InTk->type = TOKEN_INTEGER_TYPE;
-    //InTk->value = atoi( createSubString(str,start,length) );
-    InTk->value = strtol( createSubString(str,start,length),NULL,base );
-    InTk->startColumn = start;
-    InTk->length = length;
-    InTk->str = str;
+    InTk->value = strtol( createSubString(strO->str,strO->startIndex,strO->length),NULL,base);
+    InTk->startColumn = strO->startIndex;
+    InTk->length = strO->length;
+    InTk->str = strO->str;	
 	return (Token*)InTk;
 }
 
-Token *createIdentifierToken(char *str,int start, int length){
+Token *createIdentifierToken(StringObject *strO){
     IdentifierToken *IdTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
     IdTk->type = TOKEN_IDENTIFIER_TYPE;
-    IdTk->name = createSubString(str,start,length);
-    IdTk->startColumn = start;
-    IdTk->length = length;
-    IdTk->str = str;
+    IdTk->name = createSubString(strO->str,strO->startIndex,strO->length);
+    IdTk->startColumn = strO->startIndex;
+    IdTk->length = strO->length;
+    IdTk->str = strO->str;	
   return (Token*)IdTk;
 }
 
-Token *createStringToken(char *str,int start, int length){
+Token *createStringToken(StringObject *strO){
     StringToken *StTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
     StTk->type = TOKEN_STRING_TYPE;
-    StTk->name = createSubString(str,start,length);
-    StTk->startColumn = start;
-    StTk->length = length;
-    StTk->str = str;
+    StTk->name = createSubString(strO->str,strO->startIndex,strO->length);
+    StTk->startColumn = strO->startIndex;
+    StTk->length = strO->length;
+    StTk->str = strO->str;	
   return (Token*)StTk;
 }
 
@@ -104,33 +165,3 @@ Token *createEndStrToken(char *symbol){
     EndTk->symbol = symbol;
     return (Token*)EndTk;
 }
-
-
-	// throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,"Expected Character that is a digit, but that was '\c'",curChar);
-  
-// void throwTokenizerError(ErrorCode errCode,StringObject *strO,char *msg , ...){
-  
-  // ErrorObject *errObj=malloc(sizeof(ErrorObject));
-  // char *msgBuffer = malloc(1024);
-  // char *strBuffer;
-  // char *strArrow;
-  // int msgLength;
-  // int strLength;
-  
-  // va_list args;
-  // va_start(args,msg);
-  
-  // sprintf(strArrow,"%*s",strO->index,"^"); 
-  
-  // strLength = vsnprintf(strBuffer,0,msg,args);
-  // strBuffer = malloc(strLength + 1);
-  // vsprintf(strBuffer, msg, args);
-
-  // vsprintf(msgBuffer,"Error[%d]:%s\n%s\n%s",i,strBuffer,strO->str,strArrow);
-  
-  // errObj->errorMsg=msgBuffer;
-  // errObj->errorCode=errCode;
-
-  // va_end(args);
-  // Throw(errObj);
-// }

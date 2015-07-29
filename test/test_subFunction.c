@@ -151,46 +151,46 @@ void xtest_checkFirstCh_given_string_dot_should_return_IdentifierState(void){
  /*********************CreateToken_Function_Test***************************/
 void xtest_createIntegerToken_given_1234_should_return_IntegerToken(void){
    
-  IntegerToken *InTk = malloc(sizeof(IntegerToken));
-  InTk = (IntegerToken*)createIntegerToken("1234",0,2,Decimal);
-  printf("InTk->value = %d",InTk->value);
-  TEST_ASSERT_INTEGER_TOKEN(12,0,2,"1234",InTk);
+  // IntegerToken *InTk = malloc(sizeof(IntegerToken));
+  // InTk = (IntegerToken*)createIntegerToken("1234",0,2,Decimal);
+  // printf("InTk->value = %d",InTk->value);
+  // TEST_ASSERT_INTEGER_TOKEN(12,0,2,"1234",InTk);
    
  }
 	
 void xtest_createOperatorToken_given_symbol_should_return_OperatorToken(void){
    
-  OperatorToken *OpTk = malloc(sizeof(OperatorToken));
-  OpTk = (OperatorToken*)createOperatorToken("+--",0,1);
-  printf("OpTk->symbol = %s",OpTk->symbol);
-  TEST_ASSERT_OPERATOR_TOKEN("+",0,1,"+--",OpTk);
+  // OperatorToken *OpTk = malloc(sizeof(OperatorToken));
+  // OpTk = (OperatorToken*)createOperatorToken("+--",0,1);
+  // printf("OpTk->symbol = %s",OpTk->symbol);
+  // TEST_ASSERT_OPERATOR_TOKEN("+",0,1,"+--",OpTk);
    
  }
  
 void xtest_createFloatToken_given_1_23_should_return_OperatorToken(void){
    
-  FloatToken *FlTk = malloc(sizeof(FloatToken));
-  FlTk = (FloatToken*)createFloatToken("1.23",0,4);
-  printf("FlTk->value = %f",FlTk->value);
-  TEST_ASSERT_FLOAT_TOKEN(1.23,0,4,"1.23",FlTk);
+  // FloatToken *FlTk = malloc(sizeof(FloatToken));
+  // FlTk = (FloatToken*)createFloatToken("1.23",0,4);
+  // printf("FlTk->value = %f",FlTk->value);
+  // TEST_ASSERT_FLOAT_TOKEN(1.23,0,4,"1.23",FlTk);
    
  }
  
 void xtest_createIdentifierToken_given_asda1234_should_return_OperatorToken(void){
  
-  IdentifierToken *IdTk = malloc(sizeof(IdentifierToken));
-  IdTk = (IdentifierToken*)createIdentifierToken("asda1234",0,4);
-  printf("IdTk->name = %s",IdTk->name);
-  TEST_ASSERT_IDENTIFIER_TOKEN("asda",0,4,"asda1234",IdTk);
+  // IdentifierToken *IdTk = malloc(sizeof(IdentifierToken));
+  // IdTk = (IdentifierToken*)createIdentifierToken("asda1234",0,4);
+  // printf("IdTk->name = %s",IdTk->name);
+  // TEST_ASSERT_IDENTIFIER_TOKEN("asda",0,4,"asda1234",IdTk);
    
 }
 
 void xtest_createStringToken_given_symbol_should_return_OperatorToken(void){
  
-  StringToken *StTk = malloc(sizeof(IdentifierToken));
-  StTk = (StringToken*)createStringToken("\"asd\"",0,5);
-  printf("StTk->name = %s",StTk->name);
-  TEST_ASSERT_STRING_TOKEN("\"asd\"",0,5,"\"asd\"",StTk);
+  // StringToken *StTk = malloc(sizeof(IdentifierToken));
+  // StTk = (StringToken*)createStringToken("\"asd\"",0,5);
+  // printf("StTk->name = %s",StTk->name);
+  // TEST_ASSERT_STRING_TOKEN("\"asd\"",0,5,"\"asd\"",StTk);
    
 }
 

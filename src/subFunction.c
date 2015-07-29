@@ -77,9 +77,12 @@
 
  */
  
-
+void stringObjectAnchor(StringObject* strO){
+  strO->startIndex = strO->index;
+  printf("strO->startIndex = %d\n",strO->startIndex);
+}
  /***************************createStringObject_Function***************************/
-
+ //anchor
 StringObject *createStringObject(char *ch){
 		StringObject *strO = malloc(sizeof(StringObject));
 		strO->str = ch;

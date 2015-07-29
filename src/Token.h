@@ -1,12 +1,15 @@
 #ifndef Token_H
 #define Token_H
 
+
 //Library
 #include <stdint.h>
 
 #define Octal 8
 #define Decimal 10
 #define Hexdecimal 16
+
+
 
 typedef enum{
 
@@ -89,12 +92,27 @@ typedef struct {
   Token *token[0];
 } OperatorToken;
 
-Token *createIntegerToken(char *str,int start,int length,int base);
-Token *createOperatorToken(char *str, int start, int length);
-Token *createStringToken(char *str,int start, int length);
-Token *createIdentifierToken(char *str,int start, int length);
-Token *createFloatToken(char *str, int start, int length);
-Token *createEndStrToken(char *symbol);
+typedef struct {
+	char *str;
+	int index;	
+  int startIndex;
+  int length;
+  Token* tokenStorage;
+}StringObject;
+
+ Token *createIntegerToken(StringObject *strO,int base);
+ Token *createOperatorToken(StringObject *strO);
+ Token *createStringToken(StringObject *strO);
+ Token *createIdentifierToken(StringObject *strO);
+ Token *createFloatToken(StringObject *strO);
+ Token *createEndStrToken(char *symbol);
+
+//Token *createIntegerToken(char *str,int start,int length,int base);
+// Token *createOperatorToken(char *str, int start, int length);
+// Token *createStringToken(char *str,int start, int length);
+// Token *createIdentifierToken(char *str,int start, int length);
+// Token *createFloatToken(char *str, int start, int length);
+//Token *createEndStrToken(char *symbol);
 
 #endif // Token_H
 

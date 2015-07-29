@@ -14,11 +14,13 @@
 #include <stdio.h>
 
 
-typedef struct {
-	char *str;
-	int index;	
-  Token* tokenStorage;
-}StringObject;
+// typedef struct {
+	// char *str;
+	// int index;	
+  // int startIndex;
+  // int length;
+  // Token* tokenStorage;
+// }StringObject;
 
 
 StringObject *createStringObject(char *ch);

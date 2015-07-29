@@ -6,6 +6,8 @@
 #include "ErrorObject.c"
 #include "StringTokenizer.h"
 #include "OperatorChecker.h"
+#include "TokenError.h"
+
 //Library
 #include <malloc.h>
 #include <string.h>
@@ -101,6 +103,7 @@ Token *getToken(StringObject *strO){
 		if( strO == NULL){
        throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
 		}
+    stringObjectAnchor(strO);
 	  Token* newToken = malloc(sizeof(Token)); 
 		TokenState currentState = InitialState;
 		newToken->startColumn = strO->index;
@@ -231,13 +234,15 @@ void TransitionForIni(Token** newToken, TokenState* currentState , StringObject*
             throwError("The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);
 					}else if(curChar == ' '){
             advance(strO);
-						(*newToken)->startColumn = strO->index;
+						//(*newToken)->startColumn = strO->index;
+            stringObjectAnchor(strO);
 					}else if(curChar == '\0'){
 						*newToken = createEndStrToken("$"); 
 					}else if (isknown(curChar) && isNotspace(curChar) &&  isNotNULL(curChar) && curChar != '"' && curChar != '_' ){
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
 					}else {
-						checkFirstCh(strO,currentState,&((*newToken)->startColumn));
+            checkFirstCh(strO,currentState,&(strO->startIndex));
+						//checkFirstCh(strO,currentState,&((*newToken)->startColumn));
              if( isTokenstate(currentState) ){
                	advance(strO);
               }
@@ -265,13 +270,17 @@ void TransitionForInt(Token** InTk, TokenState* currentState , StringObject* str
 						*currentState = IntegerState;
 					}else if( isNULL(curChar) || isspace(curChar)  || isoperator(curChar)){
 						// printf("Create Token\n");
-            (*InTk)->length = strO->index - (*InTk)->startColumn;
-            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Decimal);
+            strO->length = strO->index - strO->startIndex;
+            *InTk = createIntegerToken(strO,Decimal);
+           // *InTk = createIntegerToken (strO->str,strO->startIndex,strO->length,Decimal);
+            //(*InTk)->length = strO->index - (*InTk)->startColumn;
+            //*InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Decimal);
 						if(curChar == '\n' || curChar == ' '){
 						 advance(strO);
 						}
 					}else if ( isalpha(curChar) ){	
             throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+
 					}else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
           }
@@ -284,8 +293,10 @@ void TransitionForOp(Token** OpTk, TokenState* currentState , StringObject* strO
 					if ( isNULL(nextChar) || isspace(nextChar) || isalnum(nextChar) || issingleOperator(curChar) ){
 						// printf("Create Token\n");
 						 advance(strO);
-						(*OpTk)->length = strO->index - (*OpTk)->startColumn;
-            *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *OpTk = createOperatorToken(strO);
+						//(*OpTk)->length = strO->index - (*OpTk)->startColumn;
+            //*OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
 					}else if ( isoperator(nextChar) == 0)  {
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
 					}else if ( istwinOperator(curChar) || isassignOperator(curChar) ){
@@ -303,12 +314,16 @@ void TransitionForTwinAssign(Token** OpTk, TokenState* currentState , StringObje
           if(isknown(curChar) && isNotspace(curChar) &&  isNotNULL(curChar) ){
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
 					}
-            (*OpTk)->length = strO->index - (*OpTk)->startColumn;
-            *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *OpTk = createOperatorToken(strO);
+           // (*OpTk)->length = strO->index - (*OpTk)->startColumn;
+           // *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
           }else if(isoperator(curChar)){
             // printf("Create Token\n");
-            (*OpTk)->length = strO->index - (*OpTk)->startColumn;
-            *OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *OpTk = createOperatorToken(strO);
+           // (*OpTk)->length = strO->index - (*OpTk)->startColumn;
+            //*OpTk = createOperatorToken(strO->str,(*OpTk)->startColumn,(*OpTk)->length);
           }
 }
 
@@ -316,8 +331,10 @@ void TransitionForStr(Token** StrTk, TokenState* currentState , StringObject* st
           if(curChar == '"'){
            // printf("Create Token\n");
             advance(strO);
-            (*StrTk)->length = strO->index - (*StrTk)->startColumn;
-            *StrTk = createStringToken(strO->str,(*StrTk)->startColumn,(*StrTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *StrTk = createStringToken(strO);
+            //(*StrTk)->length = strO->index - (*StrTk)->startColumn;
+            //*StrTk = createStringToken(strO->str,(*StrTk)->startColumn,(*StrTk)->length);
           }else if(isprint(curChar)){
             advance(strO);
             *currentState = StringState;
@@ -331,9 +348,11 @@ void TransitionForIden(Token** IdenTk, TokenState* currentState , StringObject* 
             advance(strO);
             *currentState = IdentifierState;
           }else if ( isNULL(curChar) || isspace(curChar)  || isoperator(curChar)){
-            // printf("Create Token\n");
-            (*IdenTk)->length = strO->index - (*IdenTk)->startColumn;
-            *IdenTk = createIdentifierToken (strO->str,(*IdenTk)->startColumn,(*IdenTk)->length);
+            //printf("Create Token\n");
+            strO->length = strO->index - strO->startIndex;
+            *IdenTk = createIdentifierToken(strO);
+            //(*IdenTk)->length = strO->index - (*IdenTk)->startColumn;
+            //*IdenTk = createIdentifierToken (strO->str,(*IdenTk)->startColumn,(*IdenTk)->length);
             if(curChar == '\n' || curChar == ' '){
             advance(strO);
             }
@@ -346,8 +365,10 @@ void TransitionForIden(Token** IdenTk, TokenState* currentState , StringObject* 
 void TransitionForDecPointState(Token** OpTk, TokenState* currentState , StringObject* strO){
           if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) || isalpha(curChar)){
             // printf("Create Token\n");
-            (*OpTk)->length = strO->index - (*OpTk)->startColumn;
-            *OpTk = createOperatorToken (strO->str,(*OpTk)->startColumn,(*OpTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *OpTk = createOperatorToken(strO);
+            //(*OpTk)->length = strO->index - (*OpTk)->startColumn;
+            //*OpTk = createOperatorToken (strO->str,(*OpTk)->startColumn,(*OpTk)->length);
             if(curChar == '\n' || curChar == ' '){
               advance(strO);
             }
@@ -371,8 +392,10 @@ void TransitionForFloat(Token** FloatTk, TokenState* currentState , StringObject
             *currentState = ExponentState;
           }else if( isNULL(curChar) || isspace(curChar)  || isoperator(curChar) ){
             // printf("Create Token\n");
-            (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
-            *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *FloatTk = createFloatToken(strO);
+            //(*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+            //*FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
             if(curChar == '\n' || curChar == ' '){
               advance(strO);
              }
@@ -398,8 +421,10 @@ void TransitionForExpon(Token** FloatTk, TokenState* currentState , StringObject
             *currentState = ExponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
-            (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
-            *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *FloatTk = createFloatToken(strO);
+            //(*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+            //*FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
             if(curChar == '\n' || curChar == ' '){
               advance(strO);
              }
@@ -420,8 +445,10 @@ void TransitionForNegPosExpon(Token** FloatTk, TokenState* currentState , String
             *currentState = ExponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
-            (*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
-            *FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
+            strO->length = strO->index - strO->startIndex;
+            *FloatTk = createFloatToken(strO);
+            //(*FloatTk)->length = strO->index - (*FloatTk)->startColumn;
+            //*FloatTk = createFloatToken(strO->str,(*FloatTk)->startColumn,(*FloatTk)->length);
               if(curChar == '\n' || curChar == ' '){
               advance(strO);
               } 
@@ -439,8 +466,11 @@ void TransitionForHex(Token** InTk, TokenState* currentState , StringObject* str
             *currentState = HexdecimalState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar)){
              // printf("Create Token\n");
-            (*InTk)->length = strO->index - (*InTk)->startColumn;
-            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Hexdecimal);
+            strO->length = strO->index - strO->startIndex;
+            *InTk = createIntegerToken(strO,Hexdecimal);
+            //*InTk = createIntegerToken(strO->str,strO->startIndex,strO->length,Hexdecimal);
+            //(*InTk)->length = strO->index - (*InTk)->startColumn;
+            //*InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Hexdecimal);
 						if(curChar == '\n' || curChar == ' '){
 						 advance(strO);
 						}
@@ -460,8 +490,11 @@ void TransitionForOct(Token** InTk, TokenState* currentState , StringObject* str
             *currentState = OctalState;    
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar)){
 						//printf("Create Token\n");
-            (*InTk)->length = strO->index - (*InTk)->startColumn;
-            *InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Octal);
+            strO->length = strO->index - strO->startIndex;
+            *InTk = createIntegerToken(strO,Octal);
+           // *InTk = createIntegerToken(strO->str,strO->startIndex,strO->length,Octal);            
+            //(*InTk)->length = strO->index - (*InTk)->startColumn;
+            //*InTk = createIntegerToken (strO->str,(*InTk)->startColumn,(*InTk)->length,Octal);
 						if(curChar == '\n' || curChar == ' '){
 						 advance(strO);
 						}

@@ -10,23 +10,22 @@ void setUp(void){}
 
 void tearDown(void){}
 
-/*strO*/
-//1
-void test_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_NULL(void){
+
+// void test_StringTokenizer_given_strO_NULL_should_throw_err_STR_OBJECT_CANNOT_BE_NULL(void){
 	
-		CEXCEPTION_T err;
-	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(NULL);
-    TEST_FAIL_MESSAGE("Expect ERR_STR_OBJECT_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
-	}Catch(err){
-     printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("The String Object can't be a NULL\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_STR_OBJECT_CANNOT_BE_NULL_1,err->errorCode); 
-     freeError(err);
-	}
+		// CEXCEPTION_T err;
+	// Try{
+		// OperatorToken *newToken =(OperatorToken*) getToken(NULL);
+    // TEST_FAIL_MESSAGE("Expect ERR_STR_OBJECT_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
+	// }Catch(err){
+     // printf("%s",err->errorMsg);
+     // TEST_ASSERT_EQUAL_STRING("The String Object can't be a NULL\n",err->errorMsg);
+     // TEST_ASSERT_EQUAL(ERR_STR_OBJECT_CANNOT_BE_NULL_1,err->errorCode); 
+     // freeError(err);
+	// }
 	
-}
-/*string*/
+// }
+
 void test_StringTokenizer_given_string_1_should_return_IntegerToken(void){
 
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1"));
@@ -42,7 +41,7 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
 		printf("No.1\n");
  }
-//2 
+ 
 void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void){
 
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234 "));
@@ -50,7 +49,7 @@ void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void
 		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234 ",newToken);
 		printf("No.2\n");
  }
-//3 
+ 
 void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(void){
 
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\n"));
@@ -58,13 +57,13 @@ void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(vo
 		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234\n",newToken);
 		printf("No.3\n");
  }
-//4
+
 void test_StringTokenizer_given_string_1234_0__should_return_IntegerToken(void){
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\0"));
 		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
 		printf("No.4\n");
  }
-//5 
+
 void test_StringTokenizer_given_string_space_should_return_OperatorToken_that_symbol_is_money(void){
 
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(" "));
@@ -74,7 +73,6 @@ void test_StringTokenizer_given_string_space_should_return_OperatorToken_that_sy
 	}
 	
 
-//6
 void test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_return_OperatorToken(void){
 		printf("No.6\n");
 
@@ -93,7 +91,7 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_retur
 	TEST_LAST_TOKEN(newToken3);
 
 }
-//7
+
 void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(void){
 
 		CEXCEPTION_T err;
@@ -111,7 +109,7 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
 	}
 		printf("No.7\n");
 }
-//8
+
 void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 
 	CEXCEPTION_T err;
@@ -127,14 +125,14 @@ void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 	}
 		printf("No.8\n");
 }	
-//9
+
 void test_StringTokenizer_given_string_123star4_should_return_INTEGER_TOKEN(void){
 		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("123*4"));
 		printf("newToken->value = %d\n",newToken->value);
 		TEST_ASSERT_INTEGER_TOKEN(123,0,3,"123*4",newToken);
 		printf("No.9\n");
 }
-//10
+
 void test_StringTokenizer_given_string_return_money(void){
 
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(""));
@@ -142,7 +140,7 @@ void test_StringTokenizer_given_string_return_money(void){
 		TEST_LAST_TOKEN(newToken);
 		printf("No.10\n");
 }
-//11 
+ 
 void test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken(void){
 
 	StringObject *str = createStringObject("1234 4321");
@@ -160,7 +158,7 @@ void test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken(vo
 				TEST_LAST_TOKEN(newToken3);
 		printf("No.11\n");
 }
-//12
+
 void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(void){
 
 
@@ -184,7 +182,7 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 		printf("No.12\n");
 	
 }
-//13
+
 // void test_TransitionForOp_given_string_symbol_should_return_OperatorToken(void){
 		// printf("No.13\n");
 
@@ -196,14 +194,15 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 			// dumpToken(OpTk);
 			
 // }
-//14
+
 void test_TransitionForOp_given_string_symbol1_should_return_OperatorToken(void){
 
 			OperatorToken* OpTk = malloc(sizeof(OperatorToken));
 			Token* newToken = malloc(sizeof(Token));
-			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
-			TransitionForOp( &newToken, &currState,createStringObject("^"));
+      StringObject* strO = createStringObject("^");
+      strO->startIndex = 0;
+			TransitionForOp( &newToken, &currState,strO);
 			OpTk = (OperatorToken*)newToken;
 			TEST_ASSERT_EQUAL_STRING("^",OpTk->symbol);
 			dumpToken(newToken);
@@ -214,9 +213,10 @@ void test_TransitionForOp_given_string_symbol2_should_return_OperatorToken(void)
 
 			OperatorToken* OpTk = malloc(sizeof(OperatorToken));
 			Token* newToken = malloc(sizeof(Token));
-			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
-			TransitionForOp( &newToken, &currState,createStringObject("+1234"));
+      StringObject* strO = createStringObject("+1234");
+      strO->startIndex = 0;
+			TransitionForOp( &newToken, &currState,strO);
 			OpTk = (OperatorToken*)newToken;
 			TEST_ASSERT_EQUAL_STRING("+",OpTk->symbol);
 			dumpToken(newToken);
@@ -228,9 +228,10 @@ void test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_ST
 
 			OperatorToken* OpTk = malloc(sizeof(OperatorToken));
 			Token* newToken = malloc(sizeof(Token));
-			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
-			TransitionForOp( &newToken, &currState,createStringObject("+ +$!@#$%^"));
+      StringObject* strO = createStringObject("+ +$!@#$%^");
+      strO->startIndex = 0;
+			TransitionForOp( &newToken, &currState,strO);
 			OpTk = (OperatorToken*)newToken;
 			TEST_ASSERT_EQUAL_STRING("+",OpTk->symbol);
 			dumpToken(newToken);
@@ -406,7 +407,7 @@ void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CAN
 	}
 		printf("No.35\n");
 }
-//=$ ==$ >>=$
+
 void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	CEXCEPTION_T err;
 	Try{
@@ -466,7 +467,7 @@ void test_StringTokenizer_given_string_given_double_quote_123s_should_return_str
 
 
 void test_StringTokenizer_given_string_given_double_quote_symbol_should_return_stringToken(void){
-//10+
+
 StringToken *newToken =(StringToken*) getToken(createStringObject(" \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" "));
 		TEST_ASSERT_STRING_TOKEN("\"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\"",1,63," \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" ",newToken);
 		dumpToken(newToken);
@@ -480,8 +481,6 @@ void test_StringTokenizer_given_string_given_space_double_quote_symbol_should_re
 		StringToken *newToken =(StringToken*) getToken(createStringObject("  \"Hello    Hello\""));
 		TEST_ASSERT_STRING_TOKEN("\"Hello    Hello\"",2,16,"  \"Hello    Hello\"",newToken);
 		dumpToken(newToken);
-   //  printf("newToken->name = %s\n", newToken->name);
-   // printf("newToken->str = %s\n", newToken->str);
 			printf("No.41\n");
 }
 
@@ -675,7 +674,7 @@ void test_TransitionForDot_given_string_given_digit_should_return_FloatingState(
 			Token* newToken = malloc(sizeof(Token));
       StringObject* str = createStringObject(".1123");
       str->index = 1;
-    //  printf("curChar = %c\n",str->str[str->index]);
+
 			newToken->startColumn = 0;
 			TokenState currState = OperatorState;
 			TransitionForDecPointState( &newToken, &currState,str);
@@ -1350,7 +1349,7 @@ void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 
 	}Catch(err){
      printf("Error[%d][%d]:%s\n%s\n",__LINE__,str->index,err->errorMsg,str->str);
-   //  pinpointTokenLocation((Token*)newToken);
+
      TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
      freeError(err);

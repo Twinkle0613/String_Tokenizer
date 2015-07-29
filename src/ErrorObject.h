@@ -4,9 +4,6 @@
 #include "Token.h"
 
 
-
-
-
 typedef enum{
     ERR_STR_OBJECT_CANNOT_BE_NULL_1,
     ERR_STR_CANNOT_BE_NULL_1,

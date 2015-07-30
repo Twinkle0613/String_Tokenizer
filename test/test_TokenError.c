@@ -12,7 +12,7 @@ void tearDown(void)
 {
 }
 
-void test_throwTokenizerError(void){
+void xtest_throwTokenizerError(void){
   
   	CEXCEPTION_T err; 
     Try{

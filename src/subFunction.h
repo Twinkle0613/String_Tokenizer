@@ -6,6 +6,7 @@
 #include "subFunction.h"
 #include "OperatorChecker.h"
 #include "CException.h"
+#include "TextCode.h"
 
 // Library 
 #include <malloc.h>

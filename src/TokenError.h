@@ -4,6 +4,6 @@
 #include "subFunction.h"
 #include "CException.h"
 #include "OperatorChecker.h"
-void throwTokenizerError(ErrorCode errCode,StringObject *strO,int start ,char *msg , ...);
+void throwTokenizerError(ErrorCode errCode,StringObject *strO ,char *msg , ...);
 
 #endif // TokenError_H

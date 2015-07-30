@@ -5,6 +5,8 @@
 #include "subFunction.h"
 #include "OperatorChecker.h"
 #include "StringTokenizer.h"
+#include "TextCode.h"
+#include "TokenError.h"
 //Library
 #include <malloc.h>
 #include <string.h>

@@ -107,7 +107,6 @@ Token *getToken(StringObject *strO){
        throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
 		}
     stringObjectAnchor(strO);
-
 		TokenState currentState = InitialState;
 
 		int loop = 0;
@@ -294,7 +293,9 @@ void TransitionForInt(TokenState* currentState , StringObject* strO){
 						// printf("Create Token\n");
              strO->type = TOKEN_INTEGER_TYPE;
 					}else if ( isalpha(curChar) ){	
-            throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+          //  throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+
 
 					}else{
             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);

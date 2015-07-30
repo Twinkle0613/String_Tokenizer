@@ -4,6 +4,8 @@
 #include "OperatorChecker.h"
 #include "Token.h"
 #include "unity.h"
+#include "TextCode.h"
+#include "TokenError.h"
 
 
 void setUp(void){}
@@ -111,16 +113,22 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
 }
 
 void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
-
+  StringObject* strO = createStringObject("12A34");
+  char buffer[256];
+  char ErrMsg[256];
 	CEXCEPTION_T err;
 	Try{
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("12A34"));
+		IntegerToken *newToken =(IntegerToken*) getToken(strO);
 		printf("newToken->value = %d\n",newToken->value);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+   //  TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+
+    sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+    sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 		printf("No.8\n");
@@ -1025,14 +1033,19 @@ void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
 
 void test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA(void){
 	CEXCEPTION_T err;
+   char buffer[256];
+   char ErrMsg[256];
+   StringObject* strO = createStringObject("0BSD");
 	Try{
-   StringObject* str = createStringObject("0A");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.87\n");
@@ -1473,3 +1486,29 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
   
   
 }
+
+
+    // char buffer[256];
+    // char ErrMsg[256];
+     // sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     // sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     // TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+void test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA(void){
+    char buffer[256];
+    char ErrMsg[256];
+
+	CEXCEPTION_T err;
+   StringObject* strO = createStringObject("12A");
+	Try{
+		IntegerToken *newToken =(IntegerToken*) getToken(strO);
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
+	}Catch(err){
+     printf("%s",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+	}
+		printf("No.114\n");
+}	

@@ -172,7 +172,7 @@ Token *getToken(StringObject *strO){
 					break;
           
           case ExponentState:
-          //printf("ExponentState\n");
+         // printf("ExponentState\n");
           TransitionForExpon(&currentState,strO);
           if (strO->type  == TOKEN_FLOAT_TYPE){	
             strO->token = createFloatToken(strO);
@@ -309,7 +309,7 @@ void TransitionForInt(TokenState* currentState , StringObject* strO){
 void TransitionForOp(TokenState* currentState , StringObject* strO){
 					if ( isNULL(curChar) || isspace(curChar) || isalnum(curChar) || issingleOperator(prevChar) ){
 						// printf("Create Token\n");
-						// advanceIndex(strO);
+						//advanceIndex(strO);
             strO->type = TOKEN_OPERATOR_TYPE;
 					}else if ( isoperator(curChar) == 0)  {
            // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
@@ -346,8 +346,10 @@ void TransitionForStr(TokenState* currentState , StringObject* strO){
             advanceIndex(strO);
             *currentState = StringState;
           }else if(curChar == '\0'){
-            throwError("End of string without double quote\n",ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1);
-          }
+           //throwError("Error:End of string without double quote\n",ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1);
+           throwTokenizerError(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,strO,"End of string without double quote\n");
+         
+         }
 }
 
 void TransitionForIden(TokenState* currentState , StringObject* strO){
@@ -358,7 +360,9 @@ void TransitionForIden(TokenState* currentState , StringObject* strO){
             //printf("Create Token\n");
              strO->type = TOKEN_IDENTIFIER_TYPE;
           }else if ( isoperator(curChar) == 0){
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            //throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is identifier, but that was unknown character'%c'",curChar);
+
           }
 
 }
@@ -371,14 +375,17 @@ void TransitionForDecPointState(TokenState* currentState , StringObject* strO){
               advanceIndex(strO);
               *currentState = FloatingState;
           }else if( isoperator(curChar) == 0){
-              throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+           //   throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is operator, but that was unknown character'%c'",curChar);
+
           }
 }
 
 void TransitionForFloat(TokenState* currentState , StringObject* strO){
     
           if( curChar == '.'){
-            throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
+            //throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
           }else if(isdigit(curChar)){
             advanceIndex(strO);
             *currentState = FloatingState;
@@ -389,9 +396,12 @@ void TransitionForFloat(TokenState* currentState , StringObject* strO){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
           }else if( isalpha(curChar) ){
-             throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+           throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+          //   throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
           }else{
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+          //  throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+           throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
+
           }
   
 }
@@ -399,45 +409,58 @@ void TransitionForFloat(TokenState* currentState , StringObject* strO){
 void TransitionForExpon(TokenState* currentState , StringObject* strO){
   
           if( curChar == '.'){
-            throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
-          }else if( isposOrneg(curChar) && isexponent(prevChar) ){
+//          throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
+         
+         }else if( isposOrneg(curChar) && isexponent(prevChar) ){
             advanceIndex(strO);
             *currentState = NegPosExponentState;
           }else if(isdigit(curChar) == 0 && isexponent(prevChar)){
-             throwError("Behind exponential must be a digit\n",ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1);
-          }else if (isdigit(curChar)){
+          // throwError("Behind exponential mus be a digit\n",ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1);
+           throwTokenizerError(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1,strO,"Expected Character is digit, but that was '%c'",curChar);
+
+         }else if (isdigit(curChar)){
             advanceIndex(strO);
             *currentState = ExponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
           }else if(isalpha(curChar)){
-            throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            //throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+           throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+
           }else{
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
+
           }
 
 }
 
 void TransitionForNegPosExpon(TokenState* currentState , StringObject* strO){
           if( curChar == '.'){
-            throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
+          //  throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
 
           }else if (isdigit(curChar)){
             advanceIndex(strO);
-            *currentState = ExponentState;
+            *currentState = NegPosExponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
            }else if(isalpha(curChar)){
-            throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+         //   throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+
            }else{
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
            }
 }
 void TransitionForHex(TokenState* currentState , StringObject* strO){
           if( isxdigit(curChar) == 0 && ishexdecimal(prevChar)){
-            throwError("This is invalid Hexdecimal integer\n",ERR_INVALID_HEX_1);
+            //throwError("This is invalid Hexdecimal integer\n",ERR_INVALID_HEX_1);
+            throwTokenizerError(ERR_INVALID_HEX_1,strO,"Expected Character is digit, but that was '%c'",curChar);
           }else if( isxdigit(curChar) ){
             advanceIndex(strO);
             *currentState = HexdecimalState;
@@ -445,16 +468,21 @@ void TransitionForHex(TokenState* currentState , StringObject* strO){
              // printf("Create Token\n");
             strO->type = TOKEN_INTEGER_TYPE;
           }else if ( isalpha(curChar) ){	
-			       throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+			      // throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+
           }else{
-             throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
+
           }
 }
 
 void TransitionForOct(TokenState* currentState , StringObject* strO){
       
           if( isdigit(curChar) && isOtcNum(curChar) == 0 ){
-            throwError("This is invalid octal integer\n",ERR_INVALID_OCTAL_1);
+           // throwError("This is invalid octal integer\n",ERR_INVALID_OCTAL_1);
+            throwTokenizerError(ERR_INVALID_OCTAL_1,strO,"Expected Character is digit less than 8, but that was '%c'",curChar);
+
           }else if( isdigit(curChar) && isOtcNum(curChar) ){
              advanceIndex(strO);
             *currentState = OctalState;    
@@ -462,9 +490,13 @@ void TransitionForOct(TokenState* currentState , StringObject* strO){
 						//printf("Create Token\n");
             strO->type = TOKEN_INTEGER_TYPE;
           }else if ( isalpha(curChar) ){	
-            throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            //throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
+            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
+
           }else{
-            throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            //throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
+            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
+
           } 
 }
 void dumpToken(Token* newToken){

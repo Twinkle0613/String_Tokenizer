@@ -82,7 +82,7 @@ void resetState(StringObject* strO){
 }
 void stringObjectAnchor(StringObject* strO){
   strO->startIndex = strO->index;
-  printf("strO->startIndex = %d\n",strO->startIndex);
+//printf("strO->startIndex = %d\n",strO->startIndex);
 }
  /***************************createStringObject_Function***************************/
  //anchor

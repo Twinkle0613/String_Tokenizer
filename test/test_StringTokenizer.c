@@ -461,7 +461,7 @@ void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_Operat
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
       TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
       freeError(err);
-	}
+    }
 			printf("No.37\n");
             
 }
@@ -546,13 +546,19 @@ void test_StringTokenizer_given_string_given_double_quote_string_space_should_re
 
 void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_throw_err_END_OF_STR_WITHOUT_DOUBLE_QUOTE(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+    StringObject* strO = createStringObject("\"1234234 ");
 	Try{
-		StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234234 "));
+		StringToken *newToken =(StringToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1 to be thrown. But none thrown.");
       }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("End of string without double quote\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Error:End of string without double quote\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,err->errorCode);
+     sprintf(ErrMsg,"End of string without double quote\n");
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"         ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
       }
 			printf("No.45\n");
@@ -667,13 +673,19 @@ void test_StringTokenizer_given_string_A_A__symbol_given_should_return_Identifie
 
 void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	CEXCEPTION_T err;
+   char buffer[256];
+   char ErrMsg[256];
+   StringObject* strO = createStringObject("AWDC_123$");
 	Try{
-		StringToken *newToken =(StringToken*) getToken(createStringObject("AWDC_123$"));
+		StringToken *newToken =(StringToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 	}Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is identifier, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"        ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.56\n");
@@ -689,13 +701,20 @@ void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorT
       
  void test_StringTokenizer_given_string_dot_dollar_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject(".$");
 	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".$"));
+		OperatorToken *newToken =(OperatorToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
     }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     
      freeError(err);
 	}
 	printf("No.58\n");
@@ -753,14 +772,20 @@ void test_StringTokenizer_given_string_decimal_point_01_plus_symbol_given_should
 
 void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+    StringObject* strO = createStringObject(".01A");
 	Try{
-	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01A"));
+    FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 
     }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+   //  TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.64\n");
@@ -768,13 +793,19 @@ void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err
 
 void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_should_return_FloatToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject(".01$");
 	Try{
-	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01$"));
+	FloatToken *newToken =(FloatToken*) getToken(strO);
   TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
     }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.65\n");
@@ -783,13 +814,19 @@ void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_shou
 
 void test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_given_should_return_FloatToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject(".0.1");
 	Try{
-	FloatToken *newToken =(FloatToken*) getToken(createStringObject(".0.1"));
+	FloatToken *newToken =(FloatToken*) getToken(strO);
      TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
     }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.66\n");
@@ -872,14 +909,19 @@ void test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_
 
 void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+    StringObject* strO = createStringObject(".1e ");
 	Try{
-    StringObject* str = createStringObject(".1e ");
-    FloatToken *newToken =(FloatToken*) getToken(str);
+    FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1 to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Behind exponential must be a digit\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Behind exponential must be a digit\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'",strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.73\n");
@@ -887,14 +929,20 @@ void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err
 
 void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  
+   StringObject* strO = createStringObject(".1e2A");
 	Try{
-   StringObject* str = createStringObject(".1e2A");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.74\n");
@@ -902,14 +950,20 @@ void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGE
 
 void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e2$");
 	Try{
-   StringObject* str = createStringObject(".1e2$");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
    }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+
+     sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.75\n");
@@ -917,15 +971,20 @@ void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err
 
 void test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+	  char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e2.1234");
 	Try{
-   StringObject* str = createStringObject(".1e2.1234");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
-	freeError(err);
+//     TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
+    TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+  freeError(err);
   }
 	printf("No.76\n");
 }
@@ -962,29 +1021,40 @@ void test_StringTokenizer_given_decimal_point_1eplus1minus1234_given_should_retu
 
 void test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+    
+   StringObject* strO = createStringObject(".1e-2.123");
 	Try{
-   StringObject* str = createStringObject(".1e-2.123");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
+   //  TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
-     freeError(err);
+     sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);    
+    freeError(err);
   }
 	printf("No.80\n");
 }
 
 void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e-2_");
 	Try{
-   StringObject* str = createStringObject(".1e-2_");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
    }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.81\n");
@@ -992,14 +1062,19 @@ void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_I
 
 void test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+   char buffer[256];
+   char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e-2ASDSA");
 	Try{
-   StringObject* str = createStringObject(".1e-2ASDSA");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.82\n");
@@ -1017,14 +1092,20 @@ void test_StringTokenizer_given_1dot1124_should_return_FloatToken(void){
 
 void test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+   StringObject* strO = createStringObject("1.12A");
+  
 	Try{
-   StringObject* str = createStringObject("1.12A");
-	FloatToken *newToken =(FloatToken*) getToken(str);
+	FloatToken *newToken =(FloatToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.84\n");
@@ -1150,14 +1231,19 @@ void test_StringTokenizer_given_0XA1point_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("0XS");
 	Try{
-  StringObject* str = createStringObject("0XS");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.95\n");
@@ -1165,14 +1251,20 @@ void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("0X&");
 	Try{
-  StringObject* str = createStringObject("0X&");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     
      freeError(err);
 	}
 	printf("No.96\n");
@@ -1180,14 +1272,19 @@ void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("0X");
 	Try{
-  StringObject* str = createStringObject("0X");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.97\n");
@@ -1195,14 +1292,19 @@ void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("0X ");
 	Try{
-  StringObject* str = createStringObject("0X ");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.98\n");
@@ -1210,14 +1312,19 @@ void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("0X\n");
 	Try{
-  StringObject* str = createStringObject("0X\n");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
+   //  TEST_ASSERT_EQUAL_STRING("This is invalid Hexdecimal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_HEX_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.99\n");
@@ -1227,14 +1334,19 @@ void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256]; 
+  StringObject* strO = createStringObject("0XADU");
 	Try{
-  StringObject* str = createStringObject("0XADU");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.100\n");
@@ -1242,14 +1354,19 @@ void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0XADdoller_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256]; 
+  StringObject* strO = createStringObject("0XAD$");
 	Try{
-  StringObject* str = createStringObject("0XAD$");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 	}Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.101\n");
@@ -1347,14 +1464,19 @@ void test_StringTokenizer_given_0412newline_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("072823");
 	Try{
-  StringObject* str = createStringObject("072823");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.109\n");
@@ -1363,14 +1485,19 @@ void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("072$23");
 	Try{
-  StringObject* str = createStringObject("072$23");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.110\n");
@@ -1379,17 +1506,22 @@ void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
-  StringObject* str = createStringObject("072A23");
+    char buffer[256];
+    char ErrMsg[256];
+  StringObject* strO = createStringObject("072A23");
 	IntegerToken *newToken;
 	Try{
-    newToken =(IntegerToken*) getToken(str);
+    newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
 
 	}Catch(err){
-     printf("Error[%d][%d]:%s\n%s\n",__LINE__,str->index,err->errorMsg,str->str);
-
-     TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
+     //printf("Error[%d][%d]:%s\n%s\n",__LINE__,str->index,err->errorMsg,str->str);
+     printf("%s",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain any alphabet\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.111\n");
@@ -1538,11 +1670,7 @@ void test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA(void){
 		printf("No.114\n");
 }	
 
-    // char buffer[256];
-    // char ErrMsg[256];
-     // sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
-     // sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
-     // TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+
 void test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA(void){
     char buffer[256];
     char ErrMsg[256];
@@ -1561,3 +1689,85 @@ void test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA(void
 	}
 		printf("No.115\n");
 }	
+
+
+void test_StringTokenizer_given_string_point1emunispoint_symbol_given_should_return_FloatToken(void){
+	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject(".1e-.");
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(strO);
+     TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown.");
+    }Catch(err){
+     printf("%s",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain contain two of decimal point in Floating\n",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+  }
+	printf("No.116\n");
+}
+
+
+void test_StringTokenizer_given_decimal_point_1eplus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
+	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e&_");
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(strO);
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+   }Catch(err){
+      printf("%s",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+	}
+	printf("No.117\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eplusA23__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
+	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e+1A23");
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(strO);
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+   }Catch(err){
+      printf("%s",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_CANNOT_CONTAIN_ALPHA,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+	}
+	printf("No.118\n");
+}
+
+void test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT(void){
+	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject(".1e+123$");
+	Try{
+	FloatToken *newToken =(FloatToken*) getToken(strO);
+    TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
+   }Catch(err){
+      printf("%s",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"       ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+	}
+	printf("No.119\n");
+}

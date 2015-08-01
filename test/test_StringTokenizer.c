@@ -247,7 +247,7 @@ void test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_ST
 			printf("No.16\n");
 }
 
-
+//--------------------------------------------
 void test_StringTokenizer_given_string_symbol_should_return_OperatorToken(void){
 	
 		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("^"));
@@ -364,14 +364,20 @@ void test_StringTokenizer_given_string_symbol2_should_return_OperatorToken(void)
 
 void test_StringTokenizer_given_string_symbol3_should_return_OperatorToken(void){
 	CEXCEPTION_T err;
-	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(">>=$"));
+  char buffer[256];
+  char ErrMsg[256];
+	StringObject* strO = createStringObject(">>=$");
+  Try{
+		OperatorToken *newToken =(OperatorToken*) getToken(strO);
 	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
 
   }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 			printf("No.31\n");
@@ -404,13 +410,18 @@ void test_StringTokenizer_given_string_Assignment_A_Assignment_should_return_Ope
 
 void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject("$++");
 	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("$++"));
+		OperatorToken *newToken =(OperatorToken*) getToken(strO);
 	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
   }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is valid character, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 		printf("No.35\n");
@@ -418,13 +429,18 @@ void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CAN
 
 void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+    StringObject* strO =createStringObject("$");
 	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("$"));
+		OperatorToken *newToken =(OperatorToken*) getToken(strO);
 	   TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
   }Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is valid character, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 		printf("No.36\n");
@@ -432,15 +448,19 @@ void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTA
 
 void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_OperatorToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+    StringObject* strO =createStringObject(("==$"));
 	Try{
-      OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("==$"));
+      OperatorToken *newToken =(OperatorToken*) getToken(strO);
     	TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
-
 			}Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
-     freeError(err);
+      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+      sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+      freeError(err);
 	}
 			printf("No.37\n");
             
@@ -449,20 +469,25 @@ void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_Operat
 
 void test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken(void){
 	CEXCEPTION_T err;
+  StringObject* strO = createStringObject("=$");
 	Try{
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("=$"));
+		OperatorToken *newToken =(OperatorToken*) getToken(strO);
 	  TEST_FAIL_MESSAGE("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown.");
-
 			}Catch(err){
       printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
-     freeError(err);
+      // TEST_ASSERT_EQUAL_STRING("Can't contain invalid unknown symbol\n",err->errorMsg);
+     char buffer[256];
+     char ErrMsg[256];
+      sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
+      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+      TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+      freeError(err);
 	}
 			printf("No.38\n");
 }            
 
-
+//------------------------------------------------------------------------
 
 void test_StringTokenizer_given_string_given_double_quote_123s_should_return_stringToken(void){
 
@@ -500,7 +525,7 @@ void test_StringTokenizer_given_string_given__double_quote_symbol_space_should_r
 			printf("No.42\n");
 
 }
-
+//Note!!
 void test_StringTokenizer_given_string_given_double_quote_string_1234_123_should_return_stringToken(void){
 
 		StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234\"123"));
@@ -1511,4 +1536,28 @@ void test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA(void){
      freeError(err);
 	}
 		printf("No.114\n");
+}	
+
+    // char buffer[256];
+    // char ErrMsg[256];
+     // sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+     // sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     // TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+void test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA(void){
+    char buffer[256];
+    char ErrMsg[256];
+	CEXCEPTION_T err;
+   StringObject* strO = createStringObject("1223$");
+	Try{
+		IntegerToken *newToken =(IntegerToken*) getToken(strO);
+    TEST_FAIL_MESSAGE("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown.");
+	}Catch(err){
+     printf("%s",err->errorMsg);
+     TEST_ASSERT_EQUAL(ERR_INVALID_UNKNOWN_SYMBOL,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
+     TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
+     freeError(err);
+	}
+		printf("No.115\n");
 }	

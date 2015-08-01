@@ -32,7 +32,7 @@ void throwTokenizerError(ErrorCode errCode,StringObject *strO ,char *msg , ...){
 
   va_start(args,msg);
   
-  sprintf(strArrow,"%*s^",strO->index," "); 
+  sprintf(strArrow,"%*s^",strO->index,""); 
   
   strLength = vsnprintf(strBuffer,0,msg,args);
   strBuffer = malloc(strLength + 1);

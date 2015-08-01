@@ -23,3 +23,11 @@ void xtest_throwTokenizerError(void){
      }
  
 }
+
+
+void xtest_Error(void){
+  
+  printf("%*s^",2,"");
+  
+  
+}

@@ -1,0 +1,775 @@
+---
+:source:
+  :path: test
+  :file: test_StringTokenizer.c
+:successes:
+- :test: test_StringTokenizer_given_string_1_should_return_IntegerToken
+  :line: 31
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234_should_return_IntegerToken
+  :line: 39
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234space_should_return_IntegerToken
+  :line: 47
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234endline_should_return_IntegerToken
+  :line: 55
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234_0__should_return_IntegerToken
+  :line: 63
+  :message: ''
+- :test: test_StringTokenizer_given_string_space_should_return_OperatorToken_that_symbol_is_money
+  :line: 69
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_return_OperatorToken
+  :line: 78
+  :message: ''
+- :test: test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL
+  :line: 97
+  :message: ''
+- :test: test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA
+  :line: 115
+  :message: ''
+- :test: test_StringTokenizer_given_string_123star4_should_return_INTEGER_TOKEN
+  :line: 137
+  :message: ''
+- :test: test_StringTokenizer_given_string_return_money
+  :line: 144
+  :message: ''
+- :test: test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken
+  :line: 152
+  :message: ''
+- :test: test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken
+  :line: 170
+  :message: ''
+- :test: test_TransitionForOp_given_string_symbol1_should_return_OperatorToken
+  :line: 206
+  :message: ''
+- :test: test_TransitionForOp_given_string_symbol2_should_return_OperatorToken
+  :line: 220
+  :message: ''
+- :test: test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 234
+  :message: ''
+- :test: test_StringTokenizer_given_string_symbol_should_return_OperatorToken
+  :line: 251
+  :message: ''
+- :test: test_StringTokenizer_given_string_plus_0_should_return_OperatorToken
+  :line: 258
+  :message: ''
+- :test: test_StringTokenizer_given_string_symbol1_should_return_OperatorToken
+  :line: 267
+  :message: ''
+- :test: test_StringTokenizer_given_string_TwinOperator_should_return_OperatorToken
+  :line: 275
+  :message: ''
+- :test: test_StringTokenizer_given_string_AssignmentOperator_should_return_OperatorToken
+  :line: 283
+  :message: ''
+- :test: test_StringTokenizer_given_string_TwinAssignmentOperator_should_return_OperatorToken
+  :line: 292
+  :message: ''
+- :test: test_StringTokenizer_given_string_TwinAssignmentOperator_shift_assignemt_should_return_OperatorToken
+  :line: 300
+  :message: ''
+- :test: test_StringTokenizer_given_string_space_AssignmentOperator_should_return_OperatorToken
+  :line: 309
+  :message: ''
+- :test: test_StringTokenizer_given_string_space_space_TwinOperator_should_return_OperatorToken
+  :line: 317
+  :message: ''
+- :test: test_StringTokenizer_given_string_singleOperator_should_return_OperatorToken
+  :line: 325
+  :message: ''
+- :test: test_StringTokenizer_given_string_singleOperator_paket_should_return_OperatorToken
+  :line: 333
+  :message: ''
+- :test: test_StringTokenizer_given_string_TwinOperator_assignment_should_return_OperatorToken
+  :line: 341
+  :message: ''
+- :test: test_StringTokenizer_given_string_plus_n_should_return_OperatorToken
+  :line: 349
+  :message: ''
+- :test: test_StringTokenizer_given_string_symbol2_should_return_OperatorToken
+  :line: 357
+  :message: ''
+- :test: test_StringTokenizer_given_string_symbol3_should_return_OperatorToken
+  :line: 365
+  :message: ''
+- :test: test_StringTokenizer_given_string_TwinAssignmentOperator3_should_return_OperatorToken
+  :line: 386
+  :message: ''
+- :test: test_StringTokenizer_given_string_AssignmentOperator3_should_return_OperatorToken
+  :line: 394
+  :message: ''
+- :test: test_StringTokenizer_given_string_Assignment_A_Assignment_should_return_OperatorToken
+  :line: 401
+  :message: ''
+- :test: test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 411
+  :message: ''
+- :test: test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 430
+  :message: ''
+- :test: test_StringTokenizer_given_string_Assign_Assign_doller_should_return_OperatorToken
+  :line: 449
+  :message: ''
+- :test: test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
+  :line: 470
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_123s_should_return_stringToken
+  :line: 492
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_symbol_should_return_stringToken
+  :line: 502
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_space_double_quote_symbol_should_return_stringToken
+  :line: 512
+  :message: ''
+- :test: test_StringTokenizer_given_string_given__double_quote_symbol_space_should_return_stringToken
+  :line: 520
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_string_1234_123_should_return_stringToken
+  :line: 529
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_string_space_should_return_stringToken
+  :line: 538
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_string_1234234_should_throw_err_END_OF_STR_WITHOUT_DOUBLE_QUOTE
+  :line: 547
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_ABD1234_should_return_IdentifierToken
+  :line: 567
+  :message: ''
+- :test: test_StringTokenizer_given_string_given__1234_should_return_IdentifierToken
+  :line: 576
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_should_return_IdentifierToken
+  :line: 585
+  :message: ''
+- :test: test_StringTokenizer_given_string_______given_should_return_IdentifierToken
+  :line: 593
+  :message: ''
+- :test: test_StringTokenizer_given_string_A_B_C_1_2_given_should_return_IdentifierToken
+  :line: 601
+  :message: ''
+- :test: test_StringTokenizer_given_string_A_ABC_symbol_given_should_return_IdentifierToken
+  :line: 609
+  :message: ''
+- :test: test_StringTokenizer_given_string_ABC_ACB_symbol_given_should_return_IdentifierToken
+  :line: 617
+  :message: ''
+- :test: test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_IdentifierToken
+  :line: 631
+  :message: ''
+- :test: test_StringTokenizer_given_string_A12_and_B22_given_should_return_IdentifierToken
+  :line: 651
+  :message: ''
+- :test: test_StringTokenizer_given_string_A_A__symbol_given_should_return_IdentifierToken
+  :line: 666
+  :message: ''
+- :test: test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 674
+  :message: ''
+- :test: test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorToken
+  :line: 694
+  :message: ''
+- :test: test_StringTokenizer_given_string_dot_dollar_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 702
+  :message: ''
+- :test: test_TransitionForDot_given_string_given_digit_should_return_FloatingState
+  :line: 723
+  :message: ''
+- :test: test_StringTokenizer_given_string_dot_A_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 737
+  :message: ''
+- :test: test_StringTokenizer_given_string_dot_times_8_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
+  :line: 748
+  :message: ''
+- :test: test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_return_FloatToken
+  :line: 756
+  :message: ''
+- :test: test_StringTokenizer_given_string_decimal_point_01_plus_symbol_given_should_return_FloatToken
+  :line: 764
+  :message: ''
+- :test: test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 773
+  :message: ''
+- :test: test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_should_return_FloatToken
+  :line: 794
+  :message: ''
+- :test: test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_given_should_return_FloatToken
+  :line: 815
+  :message: ''
+- :test: test_StringTokenizer_given_string_double_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return
+  :line: 836
+  :message: ''
+- :test: test_StringTokenizer_given_string_trible_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return
+  :line: 848
+  :message: ''
+- :test: test_StringTokenizer_given_string_dot_e123_symbol_given_should_return_OperatorToken_and_IdentifierToken
+  :line: 863
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_e1_symbol_given_should_return_FloatToken
+  :line: 878
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_e10_and_given_should_return_FloatToken
+  :line: 888
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_FloatToken
+  :line: 899
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT
+  :line: 910
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 930
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 951
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 972
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eminus10_and_space_given_should_return_FloatToken
+  :line: 992
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eplus10_and_space_given_should_return_FloatToken
+  :line: 1002
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eplus1minus1234_given_should_return_FloatToken
+  :line: 1012
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
+  :line: 1022
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
+  :line: 1043
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 1063
+  :message: ''
+- :test: test_StringTokenizer_given_1dot1124_should_return_FloatToken
+  :line: 1083
+  :message: ''
+- :test: test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
+  :line: 1093
+  :message: ''
+- :test: test_StringTokenizer_given_1e12_given_should_return_IntegerToken
+  :line: 1115
+  :message: ''
+- :test: test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL
+  :line: 1125
+  :message: ''
+- :test: test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA
+  :line: 1146
+  :message: ''
+- :test: test_StringTokenizer_given_0x12A_should_return_IntegerToken
+  :line: 1167
+  :message: ''
+- :test: test_StringTokenizer_given_0X12B_should_return_IntegerToken
+  :line: 1178
+  :message: ''
+- :test: test_StringTokenizer_given_0XA_should_return_IntegerToken
+  :line: 1188
+  :message: ''
+- :test: test_StringTokenizer_given_0XA1234space_should_return_IntegerToken
+  :line: 1198
+  :message: ''
+- :test: test_StringTokenizer_given_0XA1234n_should_return_IntegerToken
+  :line: 1208
+  :message: ''
+- :test: test_StringTokenizer_given_0XA1and_should_return_IntegerToken
+  :line: 1218
+  :message: ''
+- :test: test_StringTokenizer_given_0XA1point_should_return_IntegerToken
+  :line: 1228
+  :message: ''
+- :test: test_StringTokenizer_given_0XS_should_return_IntegerToken
+  :line: 1238
+  :message: ''
+- :test: test_StringTokenizer_given_0Xand_should_return_IntegerToken
+  :line: 1258
+  :message: ''
+- :test: test_StringTokenizer_given_0X_should_return_IntegerToken
+  :line: 1279
+  :message: ''
+- :test: test_StringTokenizer_given_0Xspace_should_return_IntegerToken
+  :line: 1299
+  :message: ''
+- :test: test_StringTokenizer_given_0Xnewline_should_return_IntegerToken
+  :line: 1319
+  :message: ''
+- :test: test_StringTokenizer_given_0XADU_should_return_IntegerToken
+  :line: 1341
+  :message: ''
+- :test: test_StringTokenizer_given_0XADdoller_should_return_IntegerToken
+  :line: 1361
+  :message: ''
+- :test: test_StringTokenizer_given_0124_should_return_IntegerToken
+  :line: 1381
+  :message: ''
+- :test: test_StringTokenizer_given_0823_should_return_IntegerToken
+  :line: 1391
+  :message: ''
+- :test: test_StringTokenizer_given_0923_should_return_IntegerToken
+  :line: 1412
+  :message: ''
+- :test: test_StringTokenizer_given_0723_should_return_IntegerToken
+  :line: 1432
+  :message: ''
+- :test: test_StringTokenizer_given_0212and_should_return_IntegerToken
+  :line: 1450
+  :message: ''
+- :test: test_StringTokenizer_given_0312space_should_return_IntegerToken
+  :line: 1460
+  :message: ''
+- :test: test_StringTokenizer_given_0412newline_should_return_IntegerToken
+  :line: 1470
+  :message: ''
+- :test: test_StringTokenizer_given_072823_should_return_IntegerToken
+  :line: 1481
+  :message: ''
+- :test: test_StringTokenizer_given_072doller23_should_return_IntegerToken
+  :line: 1502
+  :message: ''
+- :test: test_StringTokenizer_given_072A23_should_return_IntegerToken
+  :line: 1523
+  :message: ''
+- :test: test_StringTokenizer_given_Long_STR_should_return_IntegerToken
+  :line: 1547
+  :message: ''
+- :test: test_peepToken_given_0212_12342_should_return_IntegerToken
+  :line: 1629
+  :message: ''
+- :test: test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA
+  :line: 1669
+  :message: ''
+- :test: test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA
+  :line: 1690
+  :message: ''
+- :test: test_StringTokenizer_given_string_point1emunispoint_symbol_given_should_return_FloatToken
+  :line: 1710
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eplus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
+  :line: 1731
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eplusA23__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
+  :line: 1751
+  :message: ''
+- :test: test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
+  :line: 1771
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 119
+  :passed: 119
+  :failed: 0
+  :ignored: 0
+:stdout:
+- newToken->value = 1
+- value = 1
+- value(HEX) = 0x1
+- value(OCT) = 01,[TOKEN_INTEGER_TYPE]
+- No.1
+- newToken->value = 1234
+- No.1
+- newToken->value = 1234
+- No.2
+- newToken->value = 1234
+- No.3
+- No.4
+- newToken->symbol = $
+- No.5
+- No.6
+- newToken->value = 1234
+- newToken->symbol = $
+- newToken->symbol = $
+- Error:The String can't be a NULL
+- No.7
+- Error[2]:Expected Character is digit, but that was 'A'
+- 12A34
+- "  ^"
+- No.8
+- newToken->value = 123
+- No.9
+- newToken->symbol = $
+- No.10
+- newToken->value = 1234
+- newToken->value = 4321
+- newToken->symbol = $
+- No.11
+- newToken->value = 123
+- newToken->value = 4
+- newToken->value = 214
+- newToken->symbol = $
+- No.12
+- No.14
+- No.15
+- No.16
+- symbol = ^,[TOKEN_OPERATOR_TYPE]
+- No.17
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- No.18
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- No.19
+- symbol = ++,[TOKEN_OPERATOR_TYPE]
+- No.20
+- symbol = +=,[TOKEN_OPERATOR_TYPE]
+- No.21
+- symbol = >>=,[TOKEN_OPERATOR_TYPE]
+- No.22
+- symbol = <<=,[TOKEN_OPERATOR_TYPE]
+- No.23
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- No.24
+- symbol = ++,[TOKEN_OPERATOR_TYPE]
+- No.25
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- No.26
+- symbol = (,[TOKEN_OPERATOR_TYPE]
+- No.27
+- symbol = ==,[TOKEN_OPERATOR_TYPE]
+- No.28
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- No.29
+- symbol = ^,[TOKEN_OPERATOR_TYPE]
+- No.30
+- Error[3]:Expected Character is operator, but that was unknown character'$'
+- ">>=$"
+- "   ^"
+- No.31
+- symbol = <<=,[TOKEN_OPERATOR_TYPE]
+- No.32
+- symbol = <=,[TOKEN_OPERATOR_TYPE]
+- No.33
+- symbol = =,[TOKEN_OPERATOR_TYPE]
+- No.34
+- Error[0]:Expected Character is valid character, but that was unknown character'$'
+- "$++"
+- "^"
+- No.35
+- Error[0]:Expected Character is valid character, but that was unknown character'$'
+- "$"
+- "^"
+- No.36
+- Error[2]:Expected Character is operator, but that was unknown character'$'
+- "==$"
+- "  ^"
+- No.37
+- Error[1]:Expected Character is operator, but that was unknown character'$'
+- "=$"
+- " ^"
+- No.38
+- name = "123",[TOKEN_STRING_TYPE]
+- No.39
+- name = "1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';",[TOKEN_STRING_TYPE]
+- No.40
+- name = "Hello    Hello",[TOKEN_STRING_TYPE]
+- No.41
+- name = "%%%%%%%%%",[TOKEN_STRING_TYPE]
+- No.42
+- name = "1234",[TOKEN_STRING_TYPE]
+- No.43
+- name = "",[TOKEN_STRING_TYPE]
+- No.44
+- Error[9]:End of string without double quote
+- ''
+- "\"1234234 "
+- "         ^"
+- No.45
+- name = ABD1234,[TOKEN_IDENTIFIER_TYPE]
+- No.46
+- name = _1234,[TOKEN_IDENTIFIER_TYPE]
+- No.47
+- name = A,[TOKEN_IDENTIFIER_TYPE]
+- No.48
+- name = _____,[TOKEN_IDENTIFIER_TYPE]
+- No.49
+- name = A_B_C_1_2,[TOKEN_IDENTIFIER_TYPE]
+- No.50
+- name = A_ABC,[TOKEN_IDENTIFIER_TYPE]
+- No.51
+- name = ABC,[TOKEN_IDENTIFIER_TYPE]
+- name = ACB,[TOKEN_IDENTIFIER_TYPE]
+- No.52
+- name = A12,[TOKEN_IDENTIFIER_TYPE]
+- name = B22,[TOKEN_IDENTIFIER_TYPE]
+- symbol = $,[TOKEN_OPERATOR_TYPE]
+- symbol = $,[TOKEN_OPERATOR_TYPE]
+- No.53
+- name = A12,[TOKEN_IDENTIFIER_TYPE]
+- symbol = &,[TOKEN_OPERATOR_TYPE]
+- name = B22,[TOKEN_IDENTIFIER_TYPE]
+- No.54
+- name = A_A_,[TOKEN_IDENTIFIER_TYPE]
+- No.55
+- Error[8]:Expected Character is identifier, but that was unknown character'$'
+- AWDC_123$
+- "        ^"
+- No.56
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- No.57
+- Error[1]:Expected Character is operator, but that was unknown character'$'
+- ".$"
+- " ^"
+- No.58
+- No.59
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- No.60
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- No.61
+- value = 0.001000,[TOKEN_FLOAT_TYPE]
+- No.62
+- value = 0.010000,[TOKEN_FLOAT_TYPE]
+- No.63
+- Error[3]:Expected Character is digit, but that was 'A'
+- ".01A"
+- "   ^"
+- No.64
+- Error[3]:Expected Character is digit, but that was unknown character'$'
+- ".01$"
+- "   ^"
+- No.65
+- Error[2]:Expected Character is digit, but that was floating point'.'
+- ".0.1"
+- "  ^"
+- No.66
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- value = 0.123000,[TOKEN_FLOAT_TYPE]
+- No.67
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- value = 0.123000,[TOKEN_FLOAT_TYPE]
+- No.68
+- symbol = .,[TOKEN_OPERATOR_TYPE]
+- name = e123,[TOKEN_IDENTIFIER_TYPE]
+- No.69
+- value = 1.000000,[TOKEN_FLOAT_TYPE]
+- No.70
+- value = 1000000000.000000,[TOKEN_FLOAT_TYPE]
+- No.71
+- value = 1000000000.000000,[TOKEN_FLOAT_TYPE]
+- No.72
+- Error[3]:Expected Character is digit, but that was ' '
+- ".1e "
+- "   ^"
+- No.73
+- Error[4]:Expected Character is digit, but that was 'A'
+- ".1e2A"
+- "    ^"
+- No.74
+- Error[4]:Expected Character is digit, but that was unknown character'$'
+- ".1e2$"
+- "    ^"
+- No.75
+- Error[4]:Expected Character is digit, but that was floating point'.'
+- ".1e2.1234"
+- "    ^"
+- No.76
+- value = 0.010000,[TOKEN_FLOAT_TYPE]
+- No.77
+- value = 1.000000,[TOKEN_FLOAT_TYPE]
+- No.78
+- value = 1.000000,[TOKEN_FLOAT_TYPE]
+- No.79
+- Error[5]:Expected Character is digit, but that was floating point'.'
+- ".1e-2.123"
+- "     ^"
+- No.80
+- Error[5]:Expected Character is digit, but that was unknown character'_'
+- ".1e-2_"
+- "     ^"
+- No.81
+- Error[5]:Expected Character is digit, but that was 'A'
+- ".1e-2ASDSA"
+- "     ^"
+- No.82
+- value = 1123123.112400,[TOKEN_FLOAT_TYPE]
+- No.83
+- Error[4]:Expected Character is digit, but that was 'A'
+- 1.12A
+- "    ^"
+- No.84
+- value = 21000000000.000000,[TOKEN_FLOAT_TYPE]
+- No.85
+- Error[1]:Expected Character is digit less than 8, but that was '9'
+- 09
+- " ^"
+- No.86
+- Error[1]:Expected Character is digit, but that was 'B'
+- 0BSD
+- " ^"
+- No.87
+- value = 298
+- value(HEX) = 0x12A
+- value(OCT) = 0452,[TOKEN_INTEGER_TYPE]
+- No.88
+- value = 299
+- value(HEX) = 0x12B
+- value(OCT) = 0453,[TOKEN_INTEGER_TYPE]
+- No.89
+- value = 10
+- value(HEX) = 0xA
+- value(OCT) = 012,[TOKEN_INTEGER_TYPE]
+- No.90
+- value = 660020
+- value(HEX) = 0xA1234
+- value(OCT) = 02411064,[TOKEN_INTEGER_TYPE]
+- No.91
+- value = 660020
+- value(HEX) = 0xA1234
+- value(OCT) = 02411064,[TOKEN_INTEGER_TYPE]
+- No.92
+- value = 161
+- value(HEX) = 0xA1
+- value(OCT) = 0241,[TOKEN_INTEGER_TYPE]
+- No.93
+- value = 161
+- value(HEX) = 0xA1
+- value(OCT) = 0241,[TOKEN_INTEGER_TYPE]
+- No.94
+- Error[2]:Expected Character is digit, but that was 'S'
+- 0XS
+- "  ^"
+- No.95
+- Error[2]:Expected Character is digit, but that was '&'
+- 0X&
+- "  ^"
+- No.96
+- Error[2]:Expected Character is digit, but that was '
+- 0X
+- "  ^"
+- No.97
+- Error[2]:Expected Character is digit, but that was ' '
+- '0X '
+- "  ^"
+- No.98
+- Error[2]:Expected Character is digit, but that was '
+- "'"
+- 0X
+- ''
+- "  ^"
+- No.99
+- Error[4]:Expected Character is digit, but that was 'U'
+- 0XADU
+- "    ^"
+- No.100
+- Error[4]:Expected Character is digit, but that was unknown character'$'
+- 0XAD$
+- "    ^"
+- No.101
+- value = 83
+- value(HEX) = 0x53
+- value(OCT) = 0123,[TOKEN_INTEGER_TYPE]
+- No.102
+- Error[1]:Expected Character is digit less than 8, but that was '8'
+- 0823
+- " ^"
+- No.103
+- Error[1]:Expected Character is digit less than 8, but that was '9'
+- 0923
+- " ^"
+- No.104
+- value = 467
+- value(HEX) = 0x1D3
+- value(OCT) = 0723,[TOKEN_INTEGER_TYPE]
+- No.105
+- value = 138
+- value(HEX) = 0x8A
+- value(OCT) = 0212,[TOKEN_INTEGER_TYPE]
+- No.106
+- value = 202
+- value(HEX) = 0xCA
+- value(OCT) = 0312,[TOKEN_INTEGER_TYPE]
+- No.107
+- value = 266
+- value(HEX) = 0x10A
+- value(OCT) = 0412,[TOKEN_INTEGER_TYPE]
+- No.108
+- Error[3]:Expected Character is digit less than 8, but that was '8'
+- 072823
+- "   ^"
+- No.109
+- Error[3]:Expected Character is digit, but that was unknown character'$'
+- 072$23
+- "   ^"
+- No.110
+- Error[3]:Expected Character is digit, but that was 'A'
+- 072A23
+- "   ^"
+- No.111
+- name = string,[TOKEN_IDENTIFIER_TYPE]
+- name = string,[TOKEN_IDENTIFIER_TYPE]
+- value = 12342
+- value(HEX) = 0x3036
+- value(OCT) = 030066,[TOKEN_INTEGER_TYPE]
+- value = 12342
+- value(HEX) = 0x3036
+- value(OCT) = 030066,[TOKEN_INTEGER_TYPE]
+- name = ser1234,[TOKEN_IDENTIFIER_TYPE]
+- name = ser1234,[TOKEN_IDENTIFIER_TYPE]
+- value = 1
+- value(HEX) = 0x1
+- value(OCT) = 01,[TOKEN_INTEGER_TYPE]
+- value = 1
+- value(HEX) = 0x1
+- value(OCT) = 01,[TOKEN_INTEGER_TYPE]
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- symbol = +,[TOKEN_OPERATOR_TYPE]
+- name = "1234",[TOKEN_STRING_TYPE]
+- name = "1234",[TOKEN_STRING_TYPE]
+- value = 123.320000,[TOKEN_FLOAT_TYPE]
+- value = 123.320000,[TOKEN_FLOAT_TYPE]
+- value = 10.000000,[TOKEN_FLOAT_TYPE]
+- value = 10.000000,[TOKEN_FLOAT_TYPE]
+- symbol = $,[TOKEN_OPERATOR_TYPE]
+- symbol = $,[TOKEN_OPERATOR_TYPE]
+- No.112
+- value = 138
+- value(HEX) = 0x8A
+- value(OCT) = 0212,[TOKEN_INTEGER_TYPE]
+- value = 138
+- value(HEX) = 0x8A
+- value(OCT) = 0212,[TOKEN_INTEGER_TYPE]
+- value = 138
+- value(HEX) = 0x8A
+- value(OCT) = 0212,[TOKEN_INTEGER_TYPE]
+- newToken->type = 1
+- newToken->value = 12342
+- value = 12342
+- value(HEX) = 0x3036
+- value(OCT) = 030066,[TOKEN_INTEGER_TYPE]
+- value = 12342
+- value(HEX) = 0x3036
+- value(OCT) = 030066,[TOKEN_INTEGER_TYPE]
+- value = 12342
+- value(HEX) = 0x3036
+- value(OCT) = 030066,[TOKEN_INTEGER_TYPE]
+- No.113
+- Error[2]:Expected Character is digit, but that was 'A'
+- 12A
+- "  ^"
+- No.114
+- Error[4]:Expected Character is digit, but that was unknown character'$'
+- 1223$
+- "    ^"
+- No.115
+- Error[4]:Expected Character is digit, but that was floating point'.'
+- ".1e-."
+- "    ^"
+- No.116
+- Error[3]:Expected Character is digit, but that was '&'
+- ".1e&_"
+- "   ^"
+- No.117
+- Error[5]:Expected Character is digit, but that was 'A'
+- ".1e+1A23"
+- "     ^"
+- No.118
+- Error[7]:Expected Character is digit, but that was unknown character'$'
+- ".1e+123$"
+- "       ^"
+- No.119
+- ''

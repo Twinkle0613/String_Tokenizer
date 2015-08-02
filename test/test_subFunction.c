@@ -77,76 +77,76 @@ void xtest_createSubString(void){
   TEST_ASSERT_EQUAL_STRING("4321",newStr);
 }
 
- /***************************checkFirstCh_Function_Test***************************/
+ /***************************stateTransition_Function_Test***************************/
 
-void xtest_checkFirstCh_given_1234_and_currentState_should_be_change_to_IntergerState(void){
+void xtest_stateTransition_given_1234_and_currentState_should_be_change_to_IntergerState(void){
 		TokenState currentState;
 			StringObject *strO = createStringObject("1234");
-		checkFirstCh(strO,&currentState,0);
-		TEST_ASSERT_EQUAL(IntegerState,currentState);
+		stateTransition(strO,&currentState,0);
+		TEST_ASSERT_EQUAL(integerState,currentState);
 	
 }
 
-void xtest_checkFirstCh_given_ASS_and_currentState_should_be_change_to_IdentifierState(void){
+void xtest_stateTransition_given_ASS_and_currentState_should_be_change_to_IdentifierState(void){
 		TokenState currentState;
 			StringObject *strO = createStringObject("ASS");
-		checkFirstCh(strO,&currentState,0);
-		TEST_ASSERT_EQUAL(IdentifierState,currentState);
+		stateTransition(strO,&currentState,0);
+		TEST_ASSERT_EQUAL(identifierState,currentState);
 }
 
-void xtest_checkFirstCh_given_string_starSymbol_should_return_OperatorState(void){
+void xtest_stateTransition_given_string_starSymbol_should_return_OperatorState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "*";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(OperatorState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(operatorState,currentState);
 }
-void xtest_checkFirstCh_given_string_8_should_return_IntegerState(void){
+void xtest_stateTransition_given_string_8_should_return_IntegerState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "8";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(IntegerState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(integerState,currentState);
 }
 
-void xtest_checkFirstCh_given_string_double_quote_should_return_StringState(void){
+void xtest_stateTransition_given_string_double_quote_should_return_StringState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "\"";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(StringState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(stringState,currentState);
    printf("currentState = %d",currentState);
 }
 
-void xtest_checkFirstCh_given_string___should_return_IdentifierState(void){
+void xtest_stateTransition_given_string___should_return_IdentifierState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "_";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(IdentifierState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(identifierState,currentState);
    printf("currentState = %d",currentState);
 }
 
-void xtest_checkFirstCh_given_string_AB_should_return_IdentifierState(void){
+void xtest_stateTransition_given_string_AB_should_return_IdentifierState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = "AB";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(IdentifierState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(identifierState,currentState);
    printf("currentState = %d",currentState);
 }
-void xtest_checkFirstCh_given_string_dot_should_return_IdentifierState(void){
+void xtest_stateTransition_given_string_dot_should_return_IdentifierState(void){
 	 StringObject* strO = malloc(sizeof(StringObject));
 	 strO->str = ".";
 		int startColumn = 0;
 	 TokenState currentState;
-	 checkFirstCh (strO,&currentState,&startColumn);
-	 TEST_ASSERT_EQUAL(DecimalPointState,currentState);
+	 stateTransition (strO,&currentState,&startColumn);
+	 TEST_ASSERT_EQUAL(decimalPointState,currentState);
     printf("currentState = %d",currentState);
 
 }

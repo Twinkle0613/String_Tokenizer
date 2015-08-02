@@ -18,7 +18,7 @@
 /**
  * In the subFunction, the functions there are tool to develop the getToken(...) function.
  * Using the createStringObject(...) functions to create a string object element. 
- * Using the checkFirstCh(...) functions to identify the tyoe of first character then from initial state go to next state.
+ * Using the stateTransition(...) functions to identify the tyoe of first character then from initial state go to next state.
  * Using the createSubString(...) functions to select the any part of string. 
  * Eg.
  *
@@ -36,7 +36,7 @@
  *      subStr = createSubString(char *str, int start , int length);
  *      The subStr that contain "1234".
  *
- *    checkFirstCh(...):
+ *    stateTransition(...):
  *      
  *    strO->str = "123 1234"                  strO->str = "ASDSAS"
  *                 ^                                       ^
@@ -48,7 +48,7 @@
  * Function:
  *   StringObject *createStringObject(char *ch);
  *   char *createSubString(char *str, int start , int length);
- *   void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);
+ *   void stateTransition ( StringObject* strO , TokenState *currentState, int* startColumn);
  *
  * Input:
  *
@@ -60,9 +60,13 @@
  *    start - record the start point for counter of getToken(...) function.
  *    length - store the length for string that need to form a token
  *  
- *  checkFirstCh(...):
- *    strO - store the string was typed by user in strO->str
- *         - record the transiton times in strO->index 
+ *  stateTransition(...):
+ *    strO - store the string was typed by user in strO->str.
+ *       - record the transiton times in strO->index.
+ *       - record the start point in strO->startIndex.
+ *       - store the type of newToken when a newToken was created.
+ *       - store a token when a newToken was created.
+ 
  *    currentState - record the the current state in getToken(...) function. 
  *    startColumn - record the start point for counter in getToken(...) function.
  *
@@ -72,62 +76,50 @@
  *       return string object element that has contain the string that typed by user 
  *    createSubString(...):
  *       return the string that was selected by getToken(...) function.
- *    checkFirstCh(...):
+ *    stateTransition(...):
  *        currentState that will be update and change to other state or remain.
 
  */
-void resetState(StringObject* strO){
-  strO->type = TOKEN_UNKNOWN_TYPE;
-  strO->startIndex = 0;
-}
-void stringObjectAnchor(StringObject* strO){
-  strO->startIndex = strO->index;
-//printf("strO->startIndex = %d\n",strO->startIndex);
-}
- /***************************createStringObject_Function***************************/
- //anchor
-StringObject *createStringObject(char *ch){
-		StringObject *strO = malloc(sizeof(StringObject));
-		strO->str = ch;
-		strO->index = 0;
-		return strO;
-		}
- /*****************************checkFirstCh_Function******************************/
 
-void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn){
-	
-//	printf("strO->str[%d] = %c\n",*startColumn,strO->str[*startColumn]);
+ /***************************createStringObject_Function***************************/
+StringObject *createStringObject(char *str){
+		  StringObject *strO = malloc(sizeof(StringObject));
+		  strO->str = str;
+		  strO->index = 0;
+		  return strO;
+		}
+ /*****************************stateTransition_Function******************************/
+
+ void stateTransition ( StringObject* strO , TokenState *currentState, int* startColumn){
 		if (isdigit(startChar)){
-			*currentState = IntegerState;
+			*currentState = integerState;
 		}else if (isalpha(startChar)){
-			*currentState = IdentifierState;
+			*currentState = identifierState;
 		}else if (startChar == '.'){
-     *currentState = DecimalPointState; 
+      *currentState = decimalPointState; 
     }else if (isoperator(startChar)){
-			*currentState = OperatorState;
+			*currentState = operatorState;
     }else if (startChar == '"'){
-      *currentState = StringState;
+      *currentState = stringState;
     }else if (startChar == '_' || isalpha(startChar)){
-      *currentState = IdentifierState; 
-		}else 
-			*currentState = UnknownState;
+      *currentState = identifierState; 
+		}else{
+			*currentState = unknownState;
+    }
 }
  /***************************createSubString_Function***************************/
 
 char *createSubString(char *str, int start , int len){
-	
-  char *newStr = malloc(sizeof(char)*(len+1));
-	int i = 0;
-	int j = start;
-	
-	while ( j < (len+start) ){
-	newStr[i] = str[j];
-    i++;
-		j++;
-  }
-  newStr[i] = 0;
-	return newStr;
-
+    char *newStr = malloc(sizeof(char)*(len+1));
+	  int i = 0;
+	  int j = start;
+	  while ( j < (len+start) ){
+	    newStr[i] = str[j];
+      i++;
+		  j++;
+    }
+    newStr[i] = 0;
+	  return newStr;
 }
 
   // 1.throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);

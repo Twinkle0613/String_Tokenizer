@@ -3,8 +3,6 @@
 #include "CException.h"
 
 
-
-
 //Labrary
 #include <malloc.h>
 #include <stdarg.h>
@@ -38,7 +36,6 @@
 
  */
 void throwError(char *message, ErrorCode errCode){
-
     ErrorObject *errObj = malloc(sizeof(ErrorObject));
     errObj->errorMsg = message;
     errObj->errorCode = errCode;
@@ -46,18 +43,17 @@ void throwError(char *message, ErrorCode errCode){
   }
 
   
- void freeError(ErrorObject* errObj){
+void freeError(ErrorObject* errObj){
    free(errObj); //inside the free(address)
- }
+}
   
 
-void pinpointTokenLocation(Token *token){
-  
-   int i;
-   printf("%*s",token->startColumn+1,"^");
-   for(i = 0; i < token->length - 1; i++)
-     printf("~");
-   puts("");
-}
+// void pinpointTokenLocation(Token *token){
+   // int i;
+   // printf("%*s",token->startColumn+1,"^");
+   // for(i = 0; i < token->length - 1; i++)
+     // printf("~");
+   // puts("");
+// }
 
 

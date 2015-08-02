@@ -18,15 +18,15 @@
  * int operatorAtrributes[]
  *  
  * Function:
- *  int isSingle(int Operator);
- *  int isTwin(int Operator);
- *  int isAssign(int Operator);
- *  int isTwinAssign(int Operator);
- *  int isOperator(int Operator);
+ *  int isSingle(int symbol);
+ *  int isTwin(int symbol);
+ *  int isAssign(int symbol);
+ *  int isTwinAssign(int symbol);
+ *  int issymbol(int symbol);
  *
  * Input:
  *	The input for all the function 
- *  Operator - the Operator that is assign by the getToken function
+ *  symbol - the Operator that is assign by the getToken function
  *
  *
  * Return:
@@ -72,51 +72,51 @@ int operatorAtrributes[256] = {
 	 ['?'] = SINGLE
 };
 
-int isOperator(int Operator){
-			if(SINGLE == Operator)
+int isOperator(int symbol){
+			if(SINGLE == symbol)
 				return 1;
-			else if ((SINGLE | TWIN) == Operator)
+			else if ((SINGLE | TWIN) == symbol)
 				return 1;
-			else if ((SINGLE | ASSIGNMENT) == Operator)
+			else if ((SINGLE | ASSIGNMENT) == symbol)
 				return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT) == Operator)
+			else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
 			  return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == Operator)
+			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
 				return 1;
 			else 
 				return 0;
 }
 
-int isSingle(int Operator){
-			if (SINGLE == Operator)
+int isSingle(int symbol){
+			if (SINGLE == symbol)
 				 return 1;
 			   return 0;
  }
 
-int isTwin(int Operator){
-			if ((SINGLE | TWIN) == Operator)
+int isTwin(int symbol){
+			if ((SINGLE | TWIN) == symbol)
 				return 1;
-			else if ( (SINGLE | TWIN | ASSIGNMENT) == Operator )
+			else if ( (SINGLE | TWIN | ASSIGNMENT) == symbol )
 			  return 1;
-			else if ( (SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == Operator)
+			else if ( (SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
 				return 1;
 			else 
 				return 0;
 }
 
-int isAssign(int Operator){
-			if ((SINGLE | ASSIGNMENT) == Operator)
+int isAssign(int symbol){
+			if ((SINGLE | ASSIGNMENT) == symbol)
 				 return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT) == Operator)
+			else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
 				 return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == Operator)
+			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
 				 return 1;
 			else
 			   return 0;
  }
 
-int isTwinAssign(int Operator){
-			if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == Operator)
+int isTwinAssign(int symbol){
+			if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
 				return 1;
 			  return 0;
 }

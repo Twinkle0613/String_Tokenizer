@@ -13,19 +13,19 @@
 
 typedef enum{
 
-	InitialState,
-	IntegerState,
-	IdentifierState,
-	StringState,
-	OperatorState,
-	FloatingState,
-	TwinAssignState,
-  DecimalPointState,
-  ExponentState,
-  NegPosExponentState,
-  HexdecimalState,
-  OctalState,
-	UnknownState
+	initialState,
+	integerState,
+	identifierState,
+	stringState,
+	operatorState,
+	floatingState,
+	twinAssignState,
+  decimalPointState,
+  exponentState,
+  negPosExponentState,
+  hexdecimalState,
+  octalState,
+	unknownState
 	
 }TokenState;
 
@@ -93,13 +93,10 @@ typedef struct {
 } OperatorToken;
 
 typedef struct {
-  
 	TokenType type;
   char *str;
 	int index;	
   int startIndex;
-  int length;
-  
   Token* token;
 }StringObject;
 
@@ -109,13 +106,6 @@ typedef struct {
  Token *createIdentifierToken(StringObject *strO);
  Token *createFloatToken(StringObject *strO);
  Token *createEndStrToken(char *symbol);
-
-//Token *createIntegerToken(char *str,int start,int length,int base);
-// Token *createOperatorToken(char *str, int start, int length);
-// Token *createStringToken(char *str,int start, int length);
-// Token *createIdentifierToken(char *str,int start, int length);
-// Token *createFloatToken(char *str, int start, int length);
-//Token *createEndStrToken(char *symbol);
 
 #endif // Token_H
 

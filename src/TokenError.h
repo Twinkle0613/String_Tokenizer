@@ -5,5 +5,4 @@
 #include "CException.h"
 #include "OperatorChecker.h"
 void throwTokenizerError(ErrorCode errCode,StringObject *strO ,char *msg , ...);
-
 #endif // TokenError_H

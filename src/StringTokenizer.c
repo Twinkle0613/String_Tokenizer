@@ -25,12 +25,12 @@
  *                   str = " Name     =    "Herry"    1993   "
  *                            |       |       |        |
  *                           |       |       |        |
- *                        IdenTk   OpTk    StrTk   InTk
+ *                        idenTk   opTk    strTk   inTk
  *
- *    IdenTk = Identifier Token
- *    OpTk = Operator Token
- *    StrTk = String Token
- *    InTk = Integer Token
+ *    idenTk = Identifier Token
+ *    opTk = Operator Token
+ *    strTk = String Token
+ *    inTk = Integer Token
  *
  * Function:
  *
@@ -78,227 +78,233 @@
  *    Return a new token that has identify the type of token.
  */
  
-#define curChar (strO->str[strO->index])
-#define nextChar (strO->str[strO->index+1])
-#define prevChar (strO->str[strO->index-1])
-
+#define curChar             (strO->str[strO->index])
+#define nextChar            (strO->str[strO->index+1])
+#define prevChar            (strO->str[strO->index-1])
 //Checker
-#define isTokenstate(x) (*x == StringState || *x == IntegerState ||*x == IdentifierState ||*x == DecimalPointState || *x == OperatorState)
-#define isknown(x) (isoperator(x) == 0 && isdigit(x) == 0 && isalpha(x) == 0 )
-#define isNotspace(x) ( x != '\n' && x != ' ' && x != '\t')
-#define isexponent(x) (x == 'e' || x == 'E')
-#define ishexdecimal(x) (x == 'x' || x == 'X')
-#define isOtcNum(x) (!(x == '8' || x == '9'))
-#define isposOrneg(x) ( x == '+' || x == '-')
-#define advance(x) ((x->index)++)
-#define advanceIndex(x) ((x->index)++)
-#define isNotNULL(x) (x != '\0')
-#define isNULL(x) (x == '\0')
-#define AdvanceForspace(x,y) if(isspace(x)){          \
-                              advanceIndex(y);             \
-                             }
-                                      
+#define isTokenstate(x)     ( *x == stringState || *x == integerState || *x == identifierState ||*x == decimalPointState || *x == operatorState)
+#define isknown(x)          ( isoperator(x) == 0 && isdigit(x) == 0 && isalpha(x) == 0 )
+#define isNotspace(x)       ( x != '\n' && x != ' ' && x != '\t')
+#define isexponent(x)       ( x == 'e' || x == 'E')
+#define ishexdecimal(x)     (x == 'x' || x == 'X')
+#define isOtcNum(x)         (!(x == '8' || x == '9'))
+#define isposOrneg(x)       ( x == '+' || x == '-')
+#define advanceIndex(x)     ((x->index)++)
+#define isNotNULL(x)        (x != '\0')
+#define isNULL(x)           (x == '\0')
+#define advanceForspace(x,y)   {                                    \
+                                  if(isspace(x))                    \
+                                  advanceIndex(y);                  \
+                               }
+#define resetTokenType(x)      {                                    \
+                                  x->type = TOKEN_UNKNOWN_TYPE;     \
+                                  x->startIndex = 0;                \
+                               }
+#define startIndexAnchor(x)    {                                    \
+                                  strO->startIndex = strO->index;   \
+                               }
 Token *peepToken(StringObject *strO){
   return strO->token;
 }
 
 Token *getToken(StringObject *strO){
-
 		if( strO == NULL){
        throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
 		}
-    stringObjectAnchor(strO);
-		TokenState currentState = InitialState;
-
-		int loop = 0;
-    //printf("-----------------\n");
-   // printf("newToken->startColumn  = %d\n",newToken->startColumn);
-		while (loop < 100)
+    startIndexAnchor(strO);
+		TokenState currentState = initialState;
+    Token *newToken;
+		while (1)
 		{
 				switch (currentState)
 			{
-					case InitialState:
-          //printf("InitialState\n");
-					TransitionForIni(&currentState,strO);
+					case initialState:
+          //printf("initialState\n");
+					transitionForIni(&currentState,strO);
 					 if (strO->type  == TOKEN_OPERATOR_TYPE){	
-           strO->token = createEndStrToken("$");
-           resetState(strO);
-						return strO->token;
+           newToken = createEndStrToken("$");
+           strO->token = newToken;
+           resetTokenType(strO);
+						return newToken;
 					 }
 						break;
 
-					case IntegerState:
-          //printf("IntegerState\n");
-					TransitionForInt(&currentState,strO);
+					case integerState:
+          //printf("integerState\n");
+					transitionForInt(&currentState,strO);
 					 if (strO->type  == TOKEN_INTEGER_TYPE){	
-            strO->token = createIntegerToken(strO,Decimal);
-            AdvanceForspace(curChar,strO);
-            resetState(strO);
-						return strO->token;
+            newToken = createIntegerToken(strO,Decimal);
+            strO->token = newToken;
+            advanceForspace(curChar,strO);
+            resetTokenType(strO);
+						return newToken;
 					 }
 					break;
-          case HexdecimalState:
-          //printf("HexdecimalState\n");
-					TransitionForHex(&currentState,strO);
+          case hexdecimalState:
+          //printf("hexdecimalState\n");
+					transitionForHex(&currentState,strO);
 					 if (strO->type  == TOKEN_INTEGER_TYPE){	
-           strO->token = createIntegerToken(strO,Hexdecimal);
-           AdvanceForspace(curChar,strO);
-           resetState(strO);
-
-						return strO->token;
+           newToken = createIntegerToken(strO,Hexdecimal);
+           strO->token = newToken;
+           advanceForspace(curChar,strO);
+           resetTokenType(strO);
+						return newToken;
 					 }
            break;
            
-          case OctalState:
-          //printf("OctalState\n");
-					TransitionForOct(&currentState,strO);
+          case octalState:
+          //printf("octalState\n");
+					transitionForOct(&currentState,strO);
 					 if (strO->type  == TOKEN_INTEGER_TYPE){	
-           strO->token = createIntegerToken(strO,Octal);
-           AdvanceForspace(curChar,strO);
-           resetState(strO);
-						return  strO->token;
+           newToken = createIntegerToken(strO,Octal);
+           strO->token = newToken;
+           advanceForspace(curChar,strO);
+           resetTokenType(strO);
+						return  newToken;
 					 }
            break;
            
-					case FloatingState:
-          //printf("FloatingState\n");
-          TransitionForFloat(&currentState,strO);
-          if (strO->type  == TOKEN_FLOAT_TYPE){	
-           strO->token = createFloatToken(strO);
-           AdvanceForspace(curChar,strO);
-            resetState(strO);
-						return strO->token;
+					case floatingState:
+          //printf("floatingState\n");
+          transitionForFloat(&currentState,strO);
+          if (strO->type  == TOKEN_FLOAT_TYPE){
+           newToken = createFloatToken(strO);
+           strO->token = newToken;
+           advanceForspace(curChar,strO);
+            resetTokenType(strO);
+						return newToken;
 					 }
 					break;
           
-          case ExponentState:
-         // printf("ExponentState\n");
-          TransitionForExpon(&currentState,strO);
+          case exponentState:
+         // printf("exponentState\n");
+          transitionForExpon(&currentState,strO);
           if (strO->type  == TOKEN_FLOAT_TYPE){	
-            strO->token = createFloatToken(strO);
-            AdvanceForspace(curChar,strO);
-          resetState(strO);
-						return strO->token;
+            newToken = createFloatToken(strO);
+            strO->token = newToken;
+            advanceForspace(curChar,strO);
+            resetTokenType(strO);
+						return newToken;
 					 }
           break;
           
-          case NegPosExponentState:
-          //printf("NegPosExponentState\n");
-          TransitionForNegPosExpon(&currentState,strO);
+          case negPosExponentState:
+          //printf("negPosExponentState\n");
+          transitionForNegPosExpon(&currentState,strO);
           if (strO->type  == TOKEN_FLOAT_TYPE){	
-           strO->token = createFloatToken(strO);
-           AdvanceForspace(curChar,strO);
-            resetState(strO);
-						return  strO->token;
+             newToken = createFloatToken(strO);
+             strO->token = newToken;
+             advanceForspace(curChar,strO);
+             resetTokenType(strO);
+             return  newToken;
 					 }
           break;
-					case DecimalPointState:
-          //printf("DecimalPointState\n");
-          TransitionForDecPointState(&currentState,strO);
+					case decimalPointState:
+          //printf("decimalPointState\n");
+          transitionForDecPointState(&currentState,strO);
           if (strO->type  == TOKEN_OPERATOR_TYPE){	
-             strO->token = createOperatorToken(strO);
-             AdvanceForspace(curChar,strO);
-             resetState(strO);
-						return strO->token;
-					 }//end of OperatorState
+             newToken = createOperatorToken(strO);
+             strO->token = newToken;
+             advanceForspace(curChar,strO);
+             resetTokenType(strO);
+						return newToken;
+					 }
           break;
           
-					case StringState:
-          //printf("StringState\n");
-          TransitionForStr(&currentState,strO);
+					case stringState:
+          //printf("stringState\n");
+          transitionForStr(&currentState,strO);
            if (strO->type  == TOKEN_STRING_TYPE){	
-             strO->token = createStringToken(strO);
-             resetState(strO);
-						return  strO->token;
+             newToken = createStringToken(strO);
+             strO->token = newToken;
+             resetTokenType(strO);
+						 return  newToken;
 					 }
 					break;
 					
-					case IdentifierState:
-          //printf("IdentifierState\n");
-          TransitionForIden(&currentState,strO);
+					case identifierState:
+          //printf("identifierState\n");
+          transitionForIden(&currentState,strO);
           if (strO->type  == TOKEN_IDENTIFIER_TYPE){
-            strO->token = createIdentifierToken(strO);
-            AdvanceForspace(curChar,strO);
-            resetState(strO);
-            return strO->token;
+            newToken = createIdentifierToken(strO);
+            strO->token = newToken;
+            advanceForspace(curChar,strO);
+            resetTokenType(strO);
+            return newToken;
           }
 					break;
 					
-					case OperatorState:
-          //printf("OperatorState\n");
-					TransitionForOp(&currentState,strO);
+					case operatorState:
+          //printf("operatorState\n");
+					transitionForOp(&currentState,strO);
 					 if (strO->type  == TOKEN_OPERATOR_TYPE){	
-           strO->token = createOperatorToken(strO);
-           resetState(strO);
-						return strO->token;
-					 }//end of OperatorState
+           newToken = createOperatorToken(strO);
+           strO->token = newToken;
+           resetTokenType(strO);
+						return newToken;
+					 }
 					break;
 					
-					case TwinAssignState:
-          //printf("TwinAssignState\n");
-					TransitionForTwinAssign(&currentState,strO);
+					case twinAssignState:
+          //printf("twinAssignState\n");
+					transitionForTwinAssign(&currentState,strO);
 					if (strO->type  == TOKEN_OPERATOR_TYPE){
-            strO->token = createOperatorToken(strO);
-            resetState(strO);
-						return strO->token;
-					}//end of TwinAssignState
+            newToken = createOperatorToken(strO);
+            strO->token = newToken;
+            resetTokenType(strO);
+						return newToken;
+					}
 					break;
 					
-					default:InitialState;
+					default:initialState;
 					break;
 					
-		  } //end of switch 
-			loop++;
-	}//end of while loop
-
-		return strO->token;
-}//end of program
-void TransitionForIni(TokenState* currentState , StringObject* strO){
+		  } 
+	}
+}
+void transitionForIni(TokenState* currentState , StringObject* strO){
 					if(strO->str == NULL){
-            throwError("The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);
+            throwError("Error:The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);
 					}else if(curChar == ' '){
             advanceIndex(strO);
-            stringObjectAnchor(strO);
+            startIndexAnchor(strO);
 					}else if(curChar == '\0'){
             strO->type = TOKEN_OPERATOR_TYPE;
 					}else if (isknown(curChar) && isNotspace(curChar) &&  isNotNULL(curChar) && curChar != '"' && curChar != '_' ){
-           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is valid character, but that was unknown character'%c'",curChar);
 					}else {
-            checkFirstCh(strO,currentState,&(strO->startIndex));
+            stateTransition(strO,currentState,&(strO->startIndex));
              if( isTokenstate(currentState) ){
                	advanceIndex(strO);
               }
 					}
 }
 
-void TransitionForInt(TokenState* currentState , StringObject* strO){
+void transitionForInt(TokenState* currentState , StringObject* strO){
        
           if( isdigit(curChar) && isOtcNum(curChar) == 0 && prevChar == '0'){
-            throwError("This is invalid octal integer\n",ERR_INVALID_OCTAL_1);
+            throwTokenizerError(ERR_INVALID_OCTAL_1,strO,"Expected Character is digit less than 8, but that was '%c'",curChar);
           }else if( isdigit(curChar) && isOtcNum(curChar) && prevChar == '0'){
             advanceIndex(strO);
-            *currentState = OctalState;    
+            *currentState = octalState;    
           }else if(curChar == '.'){
 						advanceIndex(strO);
-           *currentState = FloatingState;
+           *currentState = floatingState;
           }else if( isexponent(curChar) && isdigit(prevChar) ) {
             advanceIndex(strO);
-            *currentState = ExponentState;
+            *currentState = exponentState;
           }else if ( ishexdecimal(curChar) && prevChar == '0'){
             advanceIndex(strO);
-            *currentState = HexdecimalState;
+            *currentState = hexdecimalState;
           }else if( isdigit(curChar) ) {
 						 advanceIndex(strO);
-						*currentState = IntegerState;
+						*currentState = integerState;
 					}else if( isNULL(curChar) || isspace(curChar)  || isoperator(curChar)){
 						// printf("Create Token\n");
              strO->type = TOKEN_INTEGER_TYPE;
 					}else if ( isalpha(curChar) ){	
-          //  throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
             throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
 					}else{
-           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
           }
           
@@ -306,29 +312,24 @@ void TransitionForInt(TokenState* currentState , StringObject* strO){
 
 //nextChar->curChar
 //curChar->prevChar
-void TransitionForOp(TokenState* currentState , StringObject* strO){
+void transitionForOp(TokenState* currentState , StringObject* strO){
 					if ( isNULL(curChar) || isspace(curChar) || isalnum(curChar) || issingleOperator(prevChar) ){
 						// printf("Create Token\n");
-						//advanceIndex(strO);
             strO->type = TOKEN_OPERATOR_TYPE;
 					}else if ( isoperator(curChar) == 0)  {
-           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is operator, but that was unknown character'%c'",curChar);
 					}else if ( istwinOperator(prevChar) || isassignOperator(prevChar) ){
-						//advanceIndex(strO);
-						*currentState = TwinAssignState;
+						*currentState = twinAssignState;
           }
 }
 
-void TransitionForTwinAssign(TokenState* currentState , StringObject* strO){
+void transitionForTwinAssign(TokenState* currentState , StringObject* strO){
           if (istwinassign(curChar)){
             advanceIndex(strO);
           }else if (curChar == '=' || ((curChar == prevChar)&&istwinOperator(curChar)) ){
-            // printf("Create Token\n");
             advanceIndex(strO); 
           if(isknown(curChar) && isNotspace(curChar) &&  isNotNULL(curChar) ){
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is operator, but that was unknown character'%c'",curChar);
-            //throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
 					}
             strO->type = TOKEN_OPERATOR_TYPE;
           }else if(isoperator(curChar)){
@@ -337,166 +338,134 @@ void TransitionForTwinAssign(TokenState* currentState , StringObject* strO){
           }
 }
 
-void TransitionForStr(TokenState* currentState , StringObject* strO){
+void transitionForStr(TokenState* currentState , StringObject* strO){
           if(curChar == '"'){
            // printf("Create Token\n");
             advanceIndex(strO);
             strO->type = TOKEN_STRING_TYPE;
           }else if(isprint(curChar)){
             advanceIndex(strO);
-            *currentState = StringState;
+            *currentState = stringState;
           }else if(curChar == '\0'){
-           //throwError("Error:End of string without double quote\n",ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1);
            throwTokenizerError(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,strO,"End of string without double quote\n");
          
          }
 }
 
-void TransitionForIden(TokenState* currentState , StringObject* strO){
+void transitionForIden(TokenState* currentState , StringObject* strO){
           if(isalnum(curChar)||curChar == '_'){
             advanceIndex(strO);
-            *currentState = IdentifierState;
+            *currentState = identifierState;
           }else if ( isNULL(curChar) || isspace(curChar)  || isoperator(curChar)){
             //printf("Create Token\n");
              strO->type = TOKEN_IDENTIFIER_TYPE;
           }else if ( isoperator(curChar) == 0){
-            //throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is identifier, but that was unknown character'%c'",curChar);
 
           }
 
 }
 
-void TransitionForDecPointState(TokenState* currentState , StringObject* strO){
+void transitionForDecPointState(TokenState* currentState , StringObject* strO){
           if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) || isalpha(curChar)){
             // printf("Create Token\n");
             strO->type = TOKEN_OPERATOR_TYPE;
           }else if(isdigit(curChar)){
               advanceIndex(strO);
-              *currentState = FloatingState;
+              *currentState = floatingState;
           }else if( isoperator(curChar) == 0){
-           //   throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is operator, but that was unknown character'%c'",curChar);
-
           }
 }
 
-void TransitionForFloat(TokenState* currentState , StringObject* strO){
-    
+void transitionForFloat(TokenState* currentState , StringObject* strO){
           if( curChar == '.'){
             throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
-            //throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
           }else if(isdigit(curChar)){
             advanceIndex(strO);
-            *currentState = FloatingState;
+            *currentState = floatingState;
           }else if( isexponent(curChar) && isdigit(prevChar) ) {
             advanceIndex(strO);
-            *currentState = ExponentState;
+            *currentState = exponentState;
           }else if( isNULL(curChar) || isspace(curChar)  || isoperator(curChar) ){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
           }else if( isalpha(curChar) ){
            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
-          //   throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
           }else{
-          //  throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
-
           }
   
 }
 
-void TransitionForExpon(TokenState* currentState , StringObject* strO){
-  
+void transitionForExpon(TokenState* currentState , StringObject* strO){
           if( curChar == '.'){
-//          throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
             throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
-         
          }else if( isposOrneg(curChar) && isexponent(prevChar) ){
             advanceIndex(strO);
-            *currentState = NegPosExponentState;
+            *currentState = negPosExponentState;
           }else if(isdigit(curChar) == 0 && isexponent(prevChar)){
-          // throwError("Behind exponential mus be a digit\n",ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1);
            throwTokenizerError(ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1,strO,"Expected Character is digit, but that was '%c'",curChar);
-
          }else if (isdigit(curChar)){
-            advanceIndex(strO);
-            *currentState = ExponentState;
+           advanceIndex(strO);
+           *currentState = exponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
           }else if(isalpha(curChar)){
-            //throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
            throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
-
           }else{
-           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
-            throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
+           throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
 
           }
 
 }
 
-void TransitionForNegPosExpon(TokenState* currentState , StringObject* strO){
+void transitionForNegPosExpon(TokenState* currentState , StringObject* strO){
           if( curChar == '.'){
-          //  throwError("Can't contain contain two of decimal point in Floating\n",ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING);
             throwTokenizerError(ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING,strO,"Expected Character is digit, but that was floating point'%c'",curChar);
-
           }else if (isdigit(curChar)){
             advanceIndex(strO);
-            *currentState = NegPosExponentState;
+            *currentState = negPosExponentState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar) ){
             // printf("Create Token\n");
             strO->type = TOKEN_FLOAT_TYPE;
            }else if(isalpha(curChar)){
-         //   throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
             throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
-
            }else{
-           // throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
            }
 }
-void TransitionForHex(TokenState* currentState , StringObject* strO){
+void transitionForHex(TokenState* currentState , StringObject* strO){
           if( isxdigit(curChar) == 0 && ishexdecimal(prevChar)){
-            //throwError("This is invalid Hexdecimal integer\n",ERR_INVALID_HEX_1);
             throwTokenizerError(ERR_INVALID_HEX_1,strO,"Expected Character is digit, but that was '%c'",curChar);
           }else if( isxdigit(curChar) ){
             advanceIndex(strO);
-            *currentState = HexdecimalState;
+            *currentState = hexdecimalState;
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar)){
              // printf("Create Token\n");
             strO->type = TOKEN_INTEGER_TYPE;
           }else if ( isalpha(curChar) ){	
-			      // throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
             throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
-
           }else{
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
-
           }
 }
 
-void TransitionForOct(TokenState* currentState , StringObject* strO){
-      
+void transitionForOct(TokenState* currentState , StringObject* strO){
           if( isdigit(curChar) && isOtcNum(curChar) == 0 ){
-           // throwError("This is invalid octal integer\n",ERR_INVALID_OCTAL_1);
             throwTokenizerError(ERR_INVALID_OCTAL_1,strO,"Expected Character is digit less than 8, but that was '%c'",curChar);
-
           }else if( isdigit(curChar) && isOtcNum(curChar) ){
              advanceIndex(strO);
-            *currentState = OctalState;    
+            *currentState = octalState;    
           }else if( isNULL(curChar) || isspace(curChar) || isoperator(curChar)){
 						//printf("Create Token\n");
             strO->type = TOKEN_INTEGER_TYPE;
           }else if ( isalpha(curChar) ){	
-            //throwError("Can't contain any alphabet\n",ERR_CANNOT_CONTAIN_ALPHA);
             throwTokenizerError(ERR_CANNOT_CONTAIN_ALPHA,strO,"Expected Character is digit, but that was '%c'",curChar);
 
           }else{
-            //throwError("Can't contain invalid unknown symbol\n",ERR_INVALID_UNKNOWN_SYMBOL);
             throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is digit, but that was unknown character'%c'",curChar);
-
           } 
 }
 void dumpToken(Token* newToken){
@@ -507,30 +476,30 @@ void dumpToken(Token* newToken){
             break;
             case TOKEN_INTEGER_TYPE:
               tokenType = "TOKEN_INTEGER_TYPE";
-              IntegerToken* InTk = (IntegerToken*)newToken;
-              printf("value = %d\n",InTk->value);
-              printf("value(HEX) = 0x%X\n",InTk->value);
-              printf("value(OCT) = 0%o,",InTk->value);
+              IntegerToken* inTk = (IntegerToken*)newToken;
+              printf("value = %d\n",inTk->value);
+              printf("value(HEX) = 0x%X\n",inTk->value);
+              printf("value(OCT) = 0%o,",inTk->value);
             break;
             case TOKEN_OPERATOR_TYPE:
               tokenType = "TOKEN_OPERATOR_TYPE";
-              OperatorToken* OpTk = (OperatorToken*)newToken;
-              printf("symbol = %s,",OpTk->symbol);
+              OperatorToken* opTk = (OperatorToken*)newToken;
+              printf("symbol = %s,",opTk->symbol);
             break;
             case TOKEN_FLOAT_TYPE:
               tokenType = "TOKEN_FLOAT_TYPE";
-              FloatToken* FlTk = (FloatToken*)newToken;
-              printf("value = %f,",FlTk->value);
+              FloatToken* flTk = (FloatToken*)newToken;
+              printf("value = %f,",flTk->value);
             break;
             case TOKEN_STRING_TYPE:
               tokenType = "TOKEN_STRING_TYPE";
-              StringToken* StTk = (StringToken*)newToken;
-              printf("name = %s,",StTk->name);
+              StringToken* stTk = (StringToken*)newToken;
+              printf("name = %s,",stTk->name);
             break;
             case TOKEN_IDENTIFIER_TYPE:
               tokenType = "TOKEN_IDENTIFIER_TYPE";
-              IdentifierToken* IdTk = (IdentifierToken*)newToken;
-              printf("name = %s,",IdTk->name);
+              IdentifierToken* idTk = (IdentifierToken*)newToken;
+              printf("name = %s,",idTk->name);
             break;
             default:break;
             }

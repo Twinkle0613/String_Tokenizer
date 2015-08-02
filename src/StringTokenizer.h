@@ -16,17 +16,17 @@
 
 Token *peepToken(StringObject *strO);
 Token *getToken(StringObject *strO);
-void TransitionForInt(TokenState* currentState , StringObject* strO );
-void TransitionForIni(TokenState* currentState , StringObject* strO);
-void TransitionForOp(TokenState* currentState , StringObject* strO);
-void TransitionForTwinAssign(TokenState* currentState , StringObject* strO);
-void TransitionForStr(TokenState* currentState , StringObject* strO);
-void TransitionForIden(TokenState* currentState , StringObject* strO);
-void TransitionForDecPointState(TokenState* currentState , StringObject* strO);
-void TransitionForFloat(TokenState* currentState , StringObject* strO);
-void TransitionForExpon(TokenState* currentState , StringObject* strO);
-void TransitionForNegPosExpon(TokenState* currentState , StringObject* strO);
-void TransitionForHex(TokenState* currentState , StringObject* strO);
-void TransitionForOct(TokenState* currentState , StringObject* strO);
+void transitionForInt(TokenState* currentState , StringObject* strO );
+void transitionForIni(TokenState* currentState , StringObject* strO);
+void transitionForOp(TokenState* currentState , StringObject* strO);
+void transitionForTwinAssign(TokenState* currentState , StringObject* strO);
+void transitionForStr(TokenState* currentState , StringObject* strO);
+void transitionForIden(TokenState* currentState , StringObject* strO);
+void transitionForDecPointState(TokenState* currentState , StringObject* strO);
+void transitionForFloat(TokenState* currentState , StringObject* strO);
+void transitionForExpon(TokenState* currentState , StringObject* strO);
+void transitionForNegPosExpon(TokenState* currentState , StringObject* strO);
+void transitionForHex(TokenState* currentState , StringObject* strO);
+void transitionForOct(TokenState* currentState , StringObject* strO);
 
 #endif // StringTokenizer_H

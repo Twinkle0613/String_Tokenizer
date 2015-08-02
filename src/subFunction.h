@@ -17,7 +17,7 @@
 
 StringObject *createStringObject(char *ch);
 char *createSubString(char *str, int start , int length);
-void checkFirstCh ( StringObject* strO , TokenState *currentState, int* startColumn);
+void stateTransition( StringObject* strO , TokenState *currentState, int* startColumn);
 
 
 #endif // subFunction_H

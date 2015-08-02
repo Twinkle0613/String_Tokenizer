@@ -12,10 +12,10 @@
 #define TWIN_ASSIGNMENT (1<<3)
 
 extern int operatorAtrributes[];
-int isSingle(int Operator);
-int isTwin(int Operator);
-int isAssign(int Operator);
-int isTwinAssign(int Operator);
-int isOperator(int Operator);
+int isSingle(int symbol);
+int isTwin(int symbol);
+int isAssign(int symbol);
+int isTwinAssign(int symbol);
+int isOperator(int symbol);
 
 #endif // OperatorChecker_H

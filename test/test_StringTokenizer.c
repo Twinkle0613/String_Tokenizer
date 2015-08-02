@@ -105,7 +105,7 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
     TEST_FAIL_MESSAGE("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("The String can't be a NULL\n",err->errorMsg);
+     TEST_ASSERT_EQUAL_STRING("Error:The String can't be a NULL\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_STR_CANNOT_BE_NULL_1,err->errorCode);
      freeError(err);
 	}
@@ -113,10 +113,10 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
 }
 
 void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
+	CEXCEPTION_T err;
   StringObject* strO = createStringObject("12A34");
   char buffer[256];
   char ErrMsg[256];
-	CEXCEPTION_T err;
 	Try{
 		IntegerToken *newToken =(IntegerToken*) getToken(strO);
 		printf("newToken->value = %d\n",newToken->value);
@@ -1124,14 +1124,20 @@ void test_StringTokenizer_given_1e12_given_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
 	CEXCEPTION_T err;
+    char buffer[256];
+    char ErrMsg[256];
+   StringObject* strO = createStringObject("09");
+    
 	Try{
-   StringObject* str = createStringObject("09");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
    }Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
 	}
 	printf("No.86\n");
@@ -1384,14 +1390,19 @@ void test_StringTokenizer_given_0124_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject("0823");
 	Try{
-  StringObject* str = createStringObject("0823");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
+     //TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.103\n");
@@ -1400,14 +1411,19 @@ void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
 
 void test_StringTokenizer_given_0923_should_return_IntegerToken(void){
 	CEXCEPTION_T err;
+  char buffer[256];
+  char ErrMsg[256];
+  StringObject* strO = createStringObject("0923");
 	Try{
-  StringObject* str = createStringObject("0923");
-	IntegerToken *newToken =(IntegerToken*) getToken(str);
+	IntegerToken *newToken =(IntegerToken*) getToken(strO);
     TEST_FAIL_MESSAGE("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown.");
 	}Catch(err){
      printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
+    // TEST_ASSERT_EQUAL_STRING("This is invalid octal integer\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_INVALID_OCTAL_1,err->errorCode);
+     sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
+     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
+      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
   }
 	printf("No.104\n");
@@ -1602,7 +1618,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
    TEST_LAST_TOKEN(newToken4);
    dumpToken(newToken4);  
   
-   newToken4 = (OperatorToken*) getToken(str);
+   newToken4 = (OperatorToken*) peepToken(str);
    TEST_LAST_TOKEN(newToken4);
    dumpToken(newToken4);  
   

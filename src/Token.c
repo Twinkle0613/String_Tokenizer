@@ -45,60 +45,72 @@
  *
  */
  																										
+char *createSubString(char *str, int start , int len){
+  char *newStr = malloc(sizeof(char)*(len+1));
+  int i = 0;
+  int j = start;
+  while ( j < (len+start) ){
+    newStr[i] = str[j];
+    i++;
+    j++;
+  }
+  newStr[i] = 0;
+  return newStr;
+}
 
 Token *createOperatorToken(StringObject *strO){
-    OperatorToken *opTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
-    opTk->type = TOKEN_OPERATOR_TYPE;
-    opTk->symbol = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
-    opTk->startColumn = strO->startIndex;
-    opTk->length = strO->index - strO->startIndex;
-    opTk->str = strO->str;	
-    return (Token*)opTk;
+  OperatorToken *opTk = malloc(sizeof(OperatorToken)+(sizeof(Token*)*2));
+  opTk->type = TOKEN_OPERATOR_TYPE;
+  opTk->symbol = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
+  opTk->startColumn = strO->startIndex;
+  opTk->length = strO->index - strO->startIndex;
+  opTk->str = strO->str;	
+  return (Token*)opTk;
 }
 
 Token *createFloatToken(StringObject *strO){
-    FloatToken *flTk = malloc(sizeof(FloatToken));
-    flTk->type = TOKEN_FLOAT_TYPE;
-    flTk->value = strtod(createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL);
-    flTk->startColumn = strO->startIndex;
-    flTk->length = strO->index - strO->startIndex;
-    flTk->str = strO->str;	
-    return (Token*)flTk;
+  FloatToken *flTk = malloc(sizeof(FloatToken));
+  flTk->type = TOKEN_FLOAT_TYPE;
+  flTk->value = strtod(createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL);
+  flTk->startColumn = strO->startIndex;
+  flTk->length = strO->index - strO->startIndex;
+  flTk->str = strO->str;	
+  return (Token*)flTk;
 }
 
 Token *createIntegerToken(StringObject *strO, int base){
-    IntegerToken *inTk = malloc(sizeof(IntegerToken));
-    inTk->type = TOKEN_INTEGER_TYPE;
-    inTk->value = strtol(createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL,base);
-    inTk->startColumn = strO->startIndex;
-    inTk->length = strO->index - strO->startIndex;
-    inTk->str = strO->str;	
+  IntegerToken *inTk = malloc(sizeof(IntegerToken));
+  inTk->type = TOKEN_INTEGER_TYPE;
+  inTk->value = strtol(createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex),NULL,base);
+  inTk->startColumn = strO->startIndex;
+  inTk->length = strO->index - strO->startIndex;
+  inTk->str = strO->str;	
 	return (Token*)inTk;
 }
 
 Token *createIdentifierToken(StringObject *strO){
-    IdentifierToken *idTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
-    idTk->type = TOKEN_IDENTIFIER_TYPE;
-    idTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
-    idTk->startColumn = strO->startIndex;
-    idTk->length = strO->index - strO->startIndex;
-    idTk->str = strO->str;	
+  IdentifierToken *idTk = malloc(sizeof(IdentifierToken)+(sizeof(Token*)*1));
+  idTk->type = TOKEN_IDENTIFIER_TYPE;
+  idTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
+  idTk->startColumn = strO->startIndex;
+  idTk->length = strO->index - strO->startIndex;
+  idTk->str = strO->str;	
   return (Token*)idTk;
 }
 
 Token *createStringToken(StringObject *strO){
-    StringToken *stTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
-    stTk->type = TOKEN_STRING_TYPE;
-    stTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
-    stTk->startColumn = strO->startIndex;
-    stTk->length = strO->index - strO->startIndex;
-    stTk->str = strO->str;	
+  StringToken *stTk = malloc(sizeof(StringToken)+(sizeof(Token*)*1));
+  stTk->type = TOKEN_STRING_TYPE;
+  stTk->name = createSubString(strO->str,strO->startIndex,strO->index - strO->startIndex);
+  stTk->startColumn = strO->startIndex;
+  stTk->length = strO->index - strO->startIndex;
+  stTk->str = strO->str;	
   return (Token*)stTk;
 }
 
 Token *createEndStrToken(char *symbol){
-    OperatorToken *endTk = malloc(sizeof(OperatorToken));
-    endTk->type = TOKEN_OPERATOR_TYPE;
-    endTk->symbol = symbol;
-    return (Token*)endTk;
+  OperatorToken *endTk = malloc(sizeof(OperatorToken));
+  endTk->type = TOKEN_OPERATOR_TYPE;
+  endTk->symbol = symbol;
+  return (Token*)endTk;
 }

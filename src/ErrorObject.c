@@ -36,15 +36,15 @@
 
  */
 void throwError(char *message, ErrorCode errCode){
-    ErrorObject *errObj = malloc(sizeof(ErrorObject));
-    errObj->errorMsg = message;
-    errObj->errorCode = errCode;
-    Throw(errObj);
+  ErrorObject *errObj = malloc(sizeof(ErrorObject));
+  errObj->errorMsg = message;
+  errObj->errorCode = errCode;
+  Throw(errObj);
   }
 
   
 void freeError(ErrorObject* errObj){
-   free(errObj); //inside the free(address)
+  free(errObj); //inside the free(address)
 }
   
 

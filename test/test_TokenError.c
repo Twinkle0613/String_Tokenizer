@@ -12,22 +12,22 @@ void tearDown(void)
 {
 }
 
-void xtest_throwTokenizerError(void){
+// void xtest_throwTokenizerError(void){
   
-  	CEXCEPTION_T err; 
-    Try{
-       doSomething();
-    }Catch(err){
-       printf("%s",err->errorMsg);
-        freeError(err);
-     }
+  	// CEXCEPTION_T err; 
+    // Try{
+       // doSomething();
+    // }Catch(err){
+       // printf("%s",err->errorMsg);
+        // freeError(err);
+     // }
  
-}
+// }
 
 
-void xtest_Error(void){
+// void xtest_Error(void){
   
-  printf("%*s^",2,"");
+  // printf("%*s^",2,"");
   
   
-}
+// }

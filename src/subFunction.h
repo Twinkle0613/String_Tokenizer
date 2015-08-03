@@ -15,9 +15,9 @@
 #include <stdio.h>
 
 
-StringObject *createStringObject(char *ch);
-char *createSubString(char *str, int start , int length);
-void stateTransition( StringObject* strO , TokenState *currentState, int* startColumn);
+// StringObject *createStringObject(char *ch);
+// char *createSubString(char *str, int start , int length);
+// void stateTransition( StringObject* strO , TokenState *currentState, int* startColumn);
 
 
 #endif // subFunction_H

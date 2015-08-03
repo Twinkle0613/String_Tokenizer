@@ -82,45 +82,45 @@
  */
 
  /***************************createStringObject_Function***************************/
-StringObject *createStringObject(char *str){
-		  StringObject *strO = malloc(sizeof(StringObject));
-		  strO->str = str;
-		  strO->index = 0;
-		  return strO;
-		}
+// StringObject *createStringObject(char *str){
+		  // StringObject *strO = malloc(sizeof(StringObject));
+		  // strO->str = str;
+		  // strO->index = 0;
+		  // return strO;
+		// }
  /*****************************stateTransition_Function******************************/
 
- void stateTransition ( StringObject* strO , TokenState *currentState, int* startColumn){
-		if (isdigit(startChar)){
-			*currentState = integerState;
-		}else if (isalpha(startChar)){
-			*currentState = identifierState;
-		}else if (startChar == '.'){
-      *currentState = decimalPointState; 
-    }else if (isoperator(startChar)){
-			*currentState = operatorState;
-    }else if (startChar == '"'){
-      *currentState = stringState;
-    }else if (startChar == '_' || isalpha(startChar)){
-      *currentState = identifierState; 
-		}else{
-			*currentState = unknownState;
-    }
-}
+ // void stateTransition ( StringObject* strO , TokenState *currentState, int* startColumn){
+		// if (isdigit(startChar)){
+			// *currentState = integerState;
+		// }else if (isalpha(startChar)){
+			// *currentState = identifierState;
+		// }else if (startChar == '.'){
+      // *currentState = decimalPointState; 
+    // }else if (isoperator(startChar)){
+			// *currentState = operatorState;
+    // }else if (startChar == '"'){
+      // *currentState = stringState;
+    // }else if (startChar == '_' || isalpha(startChar)){
+      // *currentState = identifierState; 
+		// }else{
+			// *currentState = unknownState;
+    // }
+// }
  /***************************createSubString_Function***************************/
 
-char *createSubString(char *str, int start , int len){
-    char *newStr = malloc(sizeof(char)*(len+1));
-	  int i = 0;
-	  int j = start;
-	  while ( j < (len+start) ){
-	    newStr[i] = str[j];
-      i++;
-		  j++;
-    }
-    newStr[i] = 0;
-	  return newStr;
-}
+// char *createSubString(char *str, int start , int len){
+    // char *newStr = malloc(sizeof(char)*(len+1));
+	  // int i = 0;
+	  // int j = start;
+	  // while ( j < (len+start) ){
+	    // newStr[i] = str[j];
+      // i++;
+		  // j++;
+    // }
+    // newStr[i] = 0;
+	  // return newStr;
+// }
 
   // 1.throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
   // 2.throwError("The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);

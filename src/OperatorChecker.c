@@ -72,7 +72,7 @@ int operatorAtrributes[256] = {
 	 ['?'] = SINGLE
 };
 
-int isOperator(int symbol){
+int isValidOperator(int symbol){
 			if(SINGLE == symbol)
 				return 1;
 			else if ((SINGLE | TWIN) == symbol)

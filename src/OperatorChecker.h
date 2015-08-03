@@ -1,11 +1,11 @@
 #ifndef OperatorChecker_H
 #define OperatorChecker_H
 
-#define issingleOperator(x) (isSingle(operatorAtrributes[x]))
-#define isoperator(x) (isOperator(operatorAtrributes[x]))
-#define istwinOperator(x) (isTwin(operatorAtrributes[x]))
-#define isassignOperator(x) (isAssign(operatorAtrributes[x]))
-#define istwinassign(x) (isTwinAssign(operatorAtrributes[x]))
+#define isSingleOperator(x) (isSingle(operatorAtrributes[x]))
+#define isOperator(x) (isValidOperator(operatorAtrributes[x]))
+#define isTwinOperator(x) (isTwin(operatorAtrributes[x]))
+#define isAssignOperator(x) (isAssign(operatorAtrributes[x]))
+#define isTwinassign(x) (isTwinAssign(operatorAtrributes[x]))
 #define SINGLE (1<<0)
 #define TWIN (1<<1)
 #define ASSIGNMENT (1<<2)
@@ -16,6 +16,6 @@ int isSingle(int symbol);
 int isTwin(int symbol);
 int isAssign(int symbol);
 int isTwinAssign(int symbol);
-int isOperator(int symbol);
+int isValidOperator(int symbol);
 
 #endif // OperatorChecker_H

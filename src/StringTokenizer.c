@@ -1,7 +1,6 @@
 //Own module files
 #include "Token.h"
 #include "CException.h"
-#include "subFunction.h"
 #include "ErrorObject.h"
 #include "ErrorObject.c"
 #include "StringTokenizer.h"
@@ -19,9 +18,14 @@
  * In this project, the Finite State Machine(FSM) that used to design the logic for getToken(...) function
  * the Switch case that is a important method to bulid this project.
  *
- * Using the getToken(...) function to identify type of token, and create a new token. 
- * Using the peepToken(...) function to store a token that create by getToken function
+ * Using the getToken(...) function to identify type of string, and create a new token. 
+ * Using the peepToken(...) function to store a token that create by getToken function.
+ * Using the createStringObject(...) functions to create a string object element. 
+ * Using the stateTransition(...) functions to identify the type of first character then change the current state to next state.
+ *
+ *
  * Eg.
+ *     getToken(...):
  *                   str = " Name     =    "Herry"    1993   "
  *                            |       |       |        |
  *                           |       |       |        |
@@ -32,13 +36,30 @@
  *    strTk = String Token
  *    inTk = Integer Token
  *
+ *    createStringObject(...):
+ *
+ *		 									 -----------------------
+ *   StringObject ------>|str = "1234"|Index = 0|
+ *											-----------------------
+ *
+ *
+ *    stateTransition(...):
+ *      
+ *    strO->str = "123 1234"                  strO->str = "ASDSAS"
+ *                 ^                                       ^
+ *      currentState ---> integerState;            currentState ---> IdentifierState;
+ *
  * Function:
  *
  *  Token *peepToken(StringObject *strO);
  *  Token *getToken(StringObject *strO);
+ *  StringObject *createStringObject(char *ch);
+ *  void stateTransition( StringObject* strO , TokenState *currentState, int* startColumn);
  *
- *  The all of TransitionForXXXXX function that used in the getToken(...) function
- *
+ *  The all of TransitionForXXXXX function that used in the getToken(...) function.
+ *  This function that will analyse the current character (strO->str[strO->index]) and then 
+ *  change the currentState or define strO->type.
+ *  
  *  void TransitionForInt(Token**newToken, TokenState* currentState , StringObject* strO );
  *  void TransitionForIni(Token** newToken, TokenState* currentState , StringObject* strO);
  *  void TransitionForOp(Token** newToken, TokenState* currentState , StringObject* strO);
@@ -51,7 +72,7 @@
  *  void TransitionForNegPosExpon(Token** newToken, TokenState* currentState , StringObject* strO);
  *  void TransitionForHex(Token** newToken, TokenState* currentState , StringObject* strO);
  *  void TransitionForOct(Token** newToken, TokenState* currentState , StringObject* strO);
-
+ *
  * Input:
  *
  *  TransitionForXXXXX(...):
@@ -68,15 +89,31 @@
  *    strO - store the string was typed by user in strO->str
  *         - record the transiton times in strO->index 
  *
+ *  createStringObject(...):
+ *      ch - store the string from user key in.
+ * 
+ *  stateTransition(...):
+ *    strO - store the string was typed by user in strO->str.
+ *         - record the position of character in strO->index.
+ *         - record the start point in strO->startIndex.
+ *         - store the type of newToken when a newToken was created.
+ *         - store a token when a newToken was created.
+ *
+ *  currentState - record the the current state in getToken(...) function. 
+ *   startColumn - record the start point for counter in getToken(...) function.
  *
  *
  * Return:
  *    peepToken(...):
  *    Return a token that is storage for getToken(...)
- *    
  *    getToken(...):
  *    Return a new token that has identify the type of token.
+ *    createStringObject(...):
+ *       return string object element that has contain the string that typed by user. 
+ *    stateTransition(...):
+ *        currentState that will be update and change to other state or remain.
  */
+ 
 #define startChar             (strO->str[*startColumn])
 #define curChar               (strO->str[strO->index])
 #define nextChar              (strO->str[strO->index+1])
@@ -102,6 +139,10 @@
                                }
 #define startIndexAnchor(x)    {                                    \
                                   strO->startIndex = strO->index;   \
+                               }
+                               
+#define insertedToken(x,y)     {                                    \
+                                 x->token = y;                      \
                                }
                                
 StringObject *createStringObject(char *str){
@@ -130,15 +171,15 @@ void stateTransition ( StringObject* strO , TokenState *currentState, int* start
 }
 
 Token *peepToken(StringObject *strO){
-  return strO->token;
+  return strO->token; //The token that was created by getToken(strO) and store into the strO->token.
 }
 
 Token *getToken(StringObject *strO){
   if( strO == NULL){
     throwError("The String Object can't be a NULL\n",ERR_STR_OBJECT_CANNOT_BE_NULL_1);
   }
-  startIndexAnchor(strO);
-  TokenState currentState = INITIAL_STATE;
+  startIndexAnchor(strO);                   //Record the start index store into the strO->startIndex.
+  TokenState currentState = INITIAL_STATE;  //The begin of FSM will stand in INITIAL_STATE. 
   Token *newToken;
   while (1)
   {
@@ -146,23 +187,23 @@ Token *getToken(StringObject *strO){
     {
       case INITIAL_STATE:
       //printf("INITIAL_STATE\n");
-      transitionForIni(&currentState,strO);
-      if (strO->type  == TOKEN_OPERATOR_TYPE){	
-        newToken = createEndStrToken("$");
-        strO->token = newToken;
-        resetTokenType(strO);
+      transitionForIni(&currentState,strO);    
+      if (strO->type  == TOKEN_OPERATOR_TYPE){	    //If strO->type is redefined to TOKEN_OPERATOR_TYPE by transitionForIni(...),
+        newToken = createEndStrToken("$");          //that will return a token to newToken.
+        strO->token = newToken;                     //The newToken that will store into the strO->Token.
+        resetTokenType(strO);                       //After create a token, strO->type that will redefine to TOKEN_UNKNOWN_TYPE. 
         return newToken;
       }
       break;
 
       case INTEGER_STATE:
       //printf("INTEGER_STATE\n");
-      transitionForInt(&currentState,strO);
-      if (strO->type  == TOKEN_INTEGER_TYPE){	
-        newToken = createIntegerToken(strO,DECIMAL);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+      transitionForInt(&currentState,strO);           
+      if(strO->type  == TOKEN_INTEGER_TYPE){	  	    //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForIni(...),
+        newToken = createIntegerToken(strO,DECIMAL);  //that will return token to newToken.
+        strO->token = newToken;                       //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);                //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                         //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -170,11 +211,11 @@ Token *getToken(StringObject *strO){
       case HEXDECIMAL_STATE:
       //printf("HEXDECIMAL_STATE\n");
       transitionForHex(&currentState,strO);
-      if (strO->type  == TOKEN_INTEGER_TYPE){	
-        newToken = createIntegerToken(strO,HEXDECIMAL);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+       if(strO->type  == TOKEN_INTEGER_TYPE){	         //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForHex(...),
+        newToken = createIntegerToken(strO,HEXDECIMAL);//that will return token to newToken.
+        strO->token = newToken;                        //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);                 //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                          //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -182,23 +223,23 @@ Token *getToken(StringObject *strO){
       case OCTAL_STATE:
       //printf("OCTAL_STATE\n");
       transitionForOct(&currentState,strO);
-      if (strO->type  == TOKEN_INTEGER_TYPE){	
-        newToken = createIntegerToken(strO,OCTAL);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+       if(strO->type  == TOKEN_INTEGER_TYPE){	       //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForOct(...),
+        newToken = createIntegerToken(strO,OCTAL);   //that will return token to newToken.
+        strO->token = newToken;                      //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);               //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                        //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
            
       case FLOATING_STATE:
       //printf("FLOATING_STATE\n");
-      transitionForFloat(&currentState,strO);
-      if (strO->type  == TOKEN_FLOAT_TYPE){
-        newToken = createFloatToken(strO);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+      transitionForFloat(&currentState,strO);       
+       if(strO->type  == TOKEN_FLOAT_TYPE){        //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForFloat(...),
+        newToken = createFloatToken(strO);         //that will return token to newToken.
+        strO->token = newToken;                    //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);             //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                      //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -206,11 +247,11 @@ Token *getToken(StringObject *strO){
       case EXPONENT_STATE:
       // printf("EXPONENT_STATE\n");
       transitionForExpon(&currentState,strO);
-      if (strO->type  == TOKEN_FLOAT_TYPE){	
-        newToken = createFloatToken(strO);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+       if(strO->type  == TOKEN_FLOAT_TYPE){	      //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForExpon(...),
+        newToken = createFloatToken(strO);        //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);            //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -218,11 +259,11 @@ Token *getToken(StringObject *strO){
       case NEGPOSEXPONENT_STATE:
       //printf("NEGPOSEXPONENT_STATE\n");
       transitionForNegPosExpon(&currentState,strO);
-      if (strO->type  == TOKEN_FLOAT_TYPE){	
-        newToken = createFloatToken(strO);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+      if(strO->type  == TOKEN_FLOAT_TYPE){	      //If strO->type is redefined to TOKEN_INTEGER_TYPE by transitionForNegPosExpon(...),
+        newToken = createFloatToken(strO);        //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);            //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return  newToken;
       }
       break;
@@ -230,34 +271,34 @@ Token *getToken(StringObject *strO){
       case DECIMALPOINT_STATE:
       //printf("DECIMALPOINT_STATE\n");
       transitionForDecPointState(&currentState,strO);
-      if(strO->type  == TOKEN_OPERATOR_TYPE){	
-        newToken = createOperatorToken(strO);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+      if(strO->type  == TOKEN_OPERATOR_TYPE){	    //If strO->type is redefined to TOKEN_OPERATOR_TYPE by transitionForDecPointState(...),
+        newToken = createOperatorToken(strO);     //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);            //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
           
       case STRING_STATE:
       //printf("STRING_STATE\n");
-      transitionForStr(&currentState,strO);
-      if (strO->type  == TOKEN_STRING_TYPE){	
-        newToken = createStringToken(strO);
-        strO->token = newToken;
-        resetTokenType(strO);
-        return  newToken;
+      transitionForStr(&currentState,strO);      
+      if (strO->type  == TOKEN_STRING_TYPE){	    //If strO->type is redefined to TOKEN_STRING_TYPE by transitionForStr(...),
+        newToken = createStringToken(strO);       //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
+        return  newToken;                       
       }
       break;
 					
       case IDENTIFIER_STATE:
       //printf("IDENTIFIER_STATE\n");
-      transitionForIden(&currentState,strO);
-      if(strO->type  == TOKEN_IDENTIFIER_TYPE){
-        newToken = createIdentifierToken(strO);
-        strO->token = newToken;
-        advanceForspace(curChar,strO);
-        resetTokenType(strO);
+      transitionForIden(&currentState,strO);      
+      if(strO->type  == TOKEN_IDENTIFIER_TYPE){   //If strO->type is redefined to TOKEN_IDENTIFIER_TYPE by transitionForIden(...),
+        newToken = createIdentifierToken(strO);   //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        advanceForspace(curChar,strO);            //If current character is space, strO->index will increase by 1.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -265,10 +306,10 @@ Token *getToken(StringObject *strO){
       case OPERATOR_STATE:
       //printf("OPERATOR_STATE\n");
       transitionForOp(&currentState,strO);
-      if (strO->type  == TOKEN_OPERATOR_TYPE){	
-        newToken = createOperatorToken(strO);
-        strO->token = newToken;
-        resetTokenType(strO);
+      if (strO->type  == TOKEN_OPERATOR_TYPE){	  //If strO->type is redefined to TOKEN_OPERATOR_TYPE by transitionForOp(...),
+        newToken = createOperatorToken(strO);     //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -276,10 +317,10 @@ Token *getToken(StringObject *strO){
       case TWINASSIGN_STATE:
       //printf("TWINASSIGN_STATE\n");
       transitionForTwinAssign(&currentState,strO);
-      if (strO->type  == TOKEN_OPERATOR_TYPE){
-        newToken = createOperatorToken(strO);
-        strO->token = newToken;
-        resetTokenType(strO);
+      if (strO->type  == TOKEN_OPERATOR_TYPE){    //If strO->type is redefined to TOKEN_OPERATOR_TYPE by transitionForOp(...),
+        newToken = createOperatorToken(strO);     //that will return token to newToken.
+        strO->token = newToken;                   //The newToken that will store into the strO->Token.
+        resetTokenType(strO);                     //After create a token, strO->type that will define to TOKEN_UNKNOWN_TYPE.
         return newToken;
       }
       break;
@@ -293,15 +334,16 @@ Token *getToken(StringObject *strO){
 void transitionForIni(TokenState* currentState , StringObject* strO){
   if(strO->str == NULL){
     throwError("Error:The String can't be a NULL\n",ERR_STR_CANNOT_BE_NULL_1);
-  }else if(curChar == ' '){
-    advanceIndex(strO);
-    startIndexAnchor(strO);
+  }else if(curChar == ' '){     
+    advanceIndex(strO);         //strO->index will increase by 1.
+    startIndexAnchor(strO);     //Record the start index store into the strO->startIndex.
   }else if(curChar == '\0'){
     strO->type = TOKEN_OPERATOR_TYPE;
   }else if (isUnknown(curChar) && isNotspace(curChar) &&  isNotNULL(curChar) && curChar != '"' && curChar != '_' ){
     throwTokenizerError(ERR_INVALID_UNKNOWN_SYMBOL,strO,"Expected Character is valid character, but that was unknown character'%c'",curChar);
   }else{
     stateTransition(strO,currentState,&(strO->startIndex));
+    //stateTransition(strO,currentState);
     if( isTokenstate(currentState) ){
       advanceIndex(strO);
     }
@@ -336,8 +378,7 @@ void transitionForInt(TokenState* currentState , StringObject* strO){
   }
 }
 
-//nextChar->curChar
-//curChar->prevChar
+
 void transitionForOp(TokenState* currentState , StringObject* strO){
   if ( isNULL(curChar) || isspace(curChar) || isalnum(curChar) || isSingleOperator(prevChar) ){
     // printf("Create Token\n");

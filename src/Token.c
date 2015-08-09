@@ -10,7 +10,8 @@
 #include <string.h>
 /**
  * Using the creatXXXXXToken function to create a token that was identified the type by getToken(...) function.  
- *
+ * Using the createSubString(...) functions to select the any part of string. 
+
  *
  * Eg.
  *  Integer Token : 123 ,Ox1234 ,01234...
@@ -19,6 +20,15 @@
  *  String Token : ""string"",""Hello world""
  *  Float Token : 12.23 ,1e20...
  *  
+ *   createSubString(...):
+ *      start = 3;
+ *      length = 4
+ *      str = "12312342123"
+ *                ^^^^
+ *      subStr = createSubString(char *str, int start , int length);
+ *      The subStr that contain "1234".
+ *
+ *
  * Function:
  *    Token *createIntegerToken(strO);
  *    Token *createOperatorToken(strO);
@@ -26,6 +36,7 @@
  *    Token *createIdentifierToken(strO);
  *    Token *createFloatToken(strO);
  *    Token *createEndStrToken(char *symbol);
+ *    char *createSubString(char *str, int start , int len);
  *
  * Input:
  *	The input for all of createXXXXXToken(...) function execept createEndStrToken().
@@ -34,27 +45,33 @@
  *       - record the start point in strO->startIndex.
  *       - store the type of newToken when a newToken was created.
  *       - store a token when a newToken was created.
- *
+ * 
+ *  createSubString(...):
+ *     str - store the string for user key in.
+ *   start - record the start point for counter of getToken(...) function.
+ *  length - store the length for string that need to form a token
+ *  
  *  createEndStrToken():
  *  symbol - The symbol that are collect when getToken that get last token at the end of string.
  *
  *
  * Return:
  *    createXXXXXToken(...)：
-        Return a token that was identified the type by getToken(...) function.
- *
+ *       Return a token that was identified the type by getToken(...) function.
+ *    createSubString(...):
+ *       return the string that was selected by getToken(...) function.
  */
  																										
 char *createSubString(char *str, int start , int len){
   char *newStr = malloc(sizeof(char)*(len+1));
-  int i = 0;
-  int j = start;
+  int i = 0;                 //the initial position of character is 0 in newStr.
+  int j = start;             //the initial position of character is declare by user.
   while ( j < (len+start) ){
-    newStr[i] = str[j];
+    newStr[i] = str[j];      //Copy a character to newStr.
     i++;
     j++;
   }
-  newStr[i] = 0;
+  newStr[i] = 0;             //The end of string must be declare to a NULL.
   return newStr;
 }
 

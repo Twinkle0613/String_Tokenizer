@@ -6,10 +6,10 @@
 #define isTwinOperator(x) (isTwin(operatorAtrributes[x]))
 #define isAssignOperator(x) (isAssign(operatorAtrributes[x]))
 #define isTwinassign(x) (isTwinAssign(operatorAtrributes[x]))
-#define SINGLE (1<<0)
-#define TWIN (1<<1)
-#define ASSIGNMENT (1<<2)
-#define TWIN_ASSIGNMENT (1<<3)
+#define SINGLE (1<<0)           //1
+#define TWIN (1<<1)             //01
+#define ASSIGNMENT (1<<2)       //001
+#define TWIN_ASSIGNMENT (1<<3)  //0001
 
 extern int operatorAtrributes[];
 int isSingle(int symbol);

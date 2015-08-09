@@ -11,9 +11,8 @@
  * Using the throwError(...) function to throw the error message and the error code. 
  * Using the freeError(...) function to free inside address of allocation.
  * Eg.
- *            str = " 123123A12324"
- *                          ^
- *           Error: Can't contain any alphabet!
+ *            str = NULL;
+ *           Error: The String Object can't be a NULL!
  *                         
  * Function:
  *    void freeError(ErrorObject* errObj);
@@ -27,13 +26,12 @@
  *  throwError(...):
  *    message - store the message that set by user.
  *    errCode - The code that help user to identify the error.
- *
- *
+ *    
  * Return:
  *    throwError(...):
  *       that will throw the error message to warn the user. 
  *    
-
+ *
  */
 void throwError(char *message, ErrorCode errCode){
   ErrorObject *errObj = malloc(sizeof(ErrorObject));
@@ -47,13 +45,5 @@ void freeError(ErrorObject* errObj){
   free(errObj); //inside the free(address)
 }
   
-
-// void pinpointTokenLocation(Token *token){
-   // int i;
-   // printf("%*s",token->startColumn+1,"^");
-   // for(i = 0; i < token->length - 1; i++)
-     // printf("~");
-   // puts("");
-// }
 
 

@@ -1,3 +1,5 @@
 ---
 - unity.h
 - CustomAssertion.h
+- Token.h
+- OperatorChecker.h

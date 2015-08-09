@@ -66,7 +66,7 @@
  *       - record the start point in strO->startIndex.
  *       - store the type of newToken when a newToken was created.
  *       - store a token when a newToken was created.
- 
+ *
  *    currentState - record the the current state in getToken(...) function. 
  *    startColumn - record the start point for counter in getToken(...) function.
  *
@@ -78,7 +78,7 @@
  *       return the string that was selected by getToken(...) function.
  *    stateTransition(...):
  *        currentState that will be update and change to other state or remain.
-
+*
  */
 
  /***************************createStringObject_Function***************************/

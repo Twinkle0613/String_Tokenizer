@@ -2,7 +2,7 @@
 #include "unity.h"
 #include "Token.h"
 #include "CException.h"
-#include "subFunction.h"
+//#include "subFunction.h"
 #include "OperatorChecker.h"
 #include "StringTokenizer.h"
 #include "TextCode.h"

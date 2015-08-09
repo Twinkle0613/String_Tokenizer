@@ -56,7 +56,7 @@ int operatorAtrributes[256] = {
 	 ['*'] = SINGLE | ASSIGNMENT,        // * *= 
    ['^'] = SINGLE | ASSIGNMENT,        // ^ ^= 
 	 ['%'] = SINGLE | ASSIGNMENT,        // % %=  
-	 ['='] = SINGLE | TWIN,								// == 
+	 ['='] = SINGLE | TWIN,							 // == 
 	 ['('] = SINGLE,
 	 [')'] = SINGLE,
 	 ['['] = SINGLE,

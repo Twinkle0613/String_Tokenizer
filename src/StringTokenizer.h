@@ -5,7 +5,6 @@
 #include "OperatorChecker.h"
 #include "Token.h"
 #include "CException.h"
-#include "subFunction.h"
 #include "ErrorObject.h"
 #include "TextCode.h"
 //Library

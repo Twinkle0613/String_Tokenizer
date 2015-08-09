@@ -34,6 +34,27 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
+extern void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_321(void);
+extern void test_testAsserEqualIntegerToken_given_the_value_is_0XA21_and_expect_value_0XA21(void);
+extern void test_testAsserEqualIntegerToken_given_the_value_is_0721_and_expect_value_0721(void);
+extern void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_123(void);
+extern void test_testAsserEqualIntegerToken_given_token_is_NULL(void);
+extern void test_testAsserEqualIntegerToken_given_TOKEN_FLOAT_TYPE(void);
+extern void test_testAsserEqualFloatToken_given_TOKEN_INTEGER_TOKEN(void);
+extern void test_testAsserEqualFloatToken_given_token_is_NULL(void);
+extern void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_123(void);
+extern void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_1point23(void);
+extern void test_testAsserEqualIdentifierToken_given_the_token_is_NULL(void);
+extern void test_testAsserEqualIdentifierToken_given_the_token_is_tOKEN_FLOAT_TYPE(void);
+extern void test_testAsserEqualIdentifierToken_given_The_length_of_token_is_3_expected_length_of_token_is_4(void);
+extern void test_testAsserEqualIdentifierToken_given_the_string_is_A12_and_expect_A13(void);
+extern void test_testAsserEqualIdentifierToken_given_the_string_is_LAI_HWA_NENG_and_expect_NENG(void);
+extern void test_testAsserEqualStringToken_the_token_is_tOKEN_IDENTIFIER_TYPE(void);
+extern void test_testAsserEqualStringToken_the_token_is_NULL(void);
+extern void test_testAsserEqualStringToken_the_length_of_token_is_4_expecte_length_of_token_is_6(void);
+extern void test_testAsserEqualStringToken_given_the_string_is_A232_and_expect_1234(void);
+extern void test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_LAI_H3A_N3NG(void);
+extern void test_double(void);
 
 
 //=======Test Reset Option=====
@@ -49,6 +70,27 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_CustomAssertion.c");
+  RUN_TEST(test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_321, 18);
+  RUN_TEST(test_testAsserEqualIntegerToken_given_the_value_is_0XA21_and_expect_value_0XA21, 26);
+  RUN_TEST(test_testAsserEqualIntegerToken_given_the_value_is_0721_and_expect_value_0721, 34);
+  RUN_TEST(test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_123, 42);
+  RUN_TEST(test_testAsserEqualIntegerToken_given_token_is_NULL, 50);
+  RUN_TEST(test_testAsserEqualIntegerToken_given_TOKEN_FLOAT_TYPE, 56);
+  RUN_TEST(test_testAsserEqualFloatToken_given_TOKEN_INTEGER_TOKEN, 64);
+  RUN_TEST(test_testAsserEqualFloatToken_given_token_is_NULL, 71);
+  RUN_TEST(test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_123, 77);
+  RUN_TEST(test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_1point23, 85);
+  RUN_TEST(test_testAsserEqualIdentifierToken_given_the_token_is_NULL, 96);
+  RUN_TEST(test_testAsserEqualIdentifierToken_given_the_token_is_tOKEN_FLOAT_TYPE, 102);
+  RUN_TEST(test_testAsserEqualIdentifierToken_given_The_length_of_token_is_3_expected_length_of_token_is_4, 108);
+  RUN_TEST(test_testAsserEqualIdentifierToken_given_the_string_is_A12_and_expect_A13, 116);
+  RUN_TEST(test_testAsserEqualIdentifierToken_given_the_string_is_LAI_HWA_NENG_and_expect_NENG, 127);
+  RUN_TEST(test_testAsserEqualStringToken_the_token_is_tOKEN_IDENTIFIER_TYPE, 140);
+  RUN_TEST(test_testAsserEqualStringToken_the_token_is_NULL, 147);
+  RUN_TEST(test_testAsserEqualStringToken_the_length_of_token_is_4_expecte_length_of_token_is_6, 154);
+  RUN_TEST(test_testAsserEqualStringToken_given_the_string_is_A232_and_expect_1234, 163);
+  RUN_TEST(test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_LAI_H3A_N3NG, 175);
+  RUN_TEST(test_double, 228);
 
   return (UnityEnd());
 }

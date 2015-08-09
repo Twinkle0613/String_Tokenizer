@@ -1,6 +1,6 @@
 //Own module files
 #include "StringTokenizer.h"
-#include "subFunction.h"
+//#include "subFunction.h"
 #include "OperatorChecker.h"
 #include "Token.h"
 #include "unity.h"

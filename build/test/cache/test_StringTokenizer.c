@@ -1,11 +1,10 @@
+#include "CustomAssertion.h"
 #include "TokenError.h"
 #include "TextCode.h"
 #include "unity.h"
 #include "Token.h"
 #include "OperatorChecker.h"
 #include "StringTokenizer.h"
-
-
 
 
 
@@ -26,13 +25,13 @@ void test_StringTokenizer_given_string_1_should_return_IntegerToken(void){
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)35, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)35, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)35, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)35, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)35); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)34, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)34, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)34, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)34, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)34); };
 
   dumpToken(newToken);
 
   printf("No.1\n");
 
- }
+}
 
 void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 
@@ -42,11 +41,11 @@ void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)43, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)43, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)43, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)43, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)43); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)42, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)42, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)42, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)42, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)42); };
 
   printf("No.1\n");
 
- }
+}
 
 
 
@@ -58,11 +57,11 @@ void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)51, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)51, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)51, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)51, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)51); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)50, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)50, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)50, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)50, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)50); };
 
   printf("No.2\n");
 
- }
+}
 
 
 
@@ -74,7 +73,7 @@ void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(vo
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)59, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)59, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)59, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)59, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)59); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)58, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)58, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)58, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)58, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)58); };
 
   printf("No.3\n");
 
@@ -86,7 +85,7 @@ void test_StringTokenizer_given_string_1234_0__should_return_IntegerToken(void){
 
   IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\0"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)65, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)65, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)65, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)65, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)65); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)64, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)64, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)64, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)64, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)64); };
 
   printf("No.4\n");
 
@@ -102,7 +101,7 @@ void test_StringTokenizer_given_string_space_should_return_OperatorToken_that_sy
 
   printf("newToken->symbol = %s\n",newToken->symbol);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)73, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)73); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)72, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)72); };
 
   printf("No.5\n");
 
@@ -114,37 +113,37 @@ void test_StringTokenizer_given_string_space_should_return_OperatorToken_that_sy
 
 void test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_return_OperatorToken(void){
 
+
+
+
+
+  StringObject *str = createStringObject("1234");
+
+
+
+  IntegerToken *newToken1 = (IntegerToken*) getToken(str);
+
+  printf("newToken->value = %d\n",newToken1->value);
+
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)84, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)84, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)84, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)84, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)84); };
+
+
+
+  OperatorToken *newToken2 = (OperatorToken*) getToken(str);
+
+  printf("newToken->symbol = %s\n",newToken2->symbol);
+
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)88, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken2->symbol), (((void *)0)), (_U_UINT)88); };
+
+
+
+  OperatorToken *newToken3 =(OperatorToken*) getToken(str);
+
+  printf("newToken->symbol = %s\n",newToken3->symbol);
+
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)92, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken3->symbol), (((void *)0)), (_U_UINT)92); };
+
   printf("No.6\n");
-
-
-
- StringObject *str = createStringObject("1234");
-
-
-
- IntegerToken *newToken1 = (IntegerToken*) getToken(str);
-
- printf("newToken->value = %d\n",newToken1->value);
-
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)85, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)85, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)85, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)85, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)85); };
-
-
-
- OperatorToken *newToken2 = (OperatorToken*) getToken(str);
-
- printf("newToken->symbol = %s\n",newToken2->symbol);
-
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)89, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken2->symbol), (((void *)0)), (_U_UINT)89); };
-
-
-
- OperatorToken *newToken3 =(OperatorToken*) getToken(str);
-
- printf("newToken->symbol = %s\n",newToken3->symbol);
-
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)93, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken3->symbol), (((void *)0)), (_U_UINT)93); };
-
-
 
 }
 
@@ -156,27 +155,25 @@ void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(
 
   ErrorObject* err;
 
- { jmp_buf *PrevFrame, NewFrame; unsigned int MY_ID = (0); PrevFrame = CExceptionFrames[(0)].pFrame; CExceptionFrames[MY_ID].pFrame = (jmp_buf*)(&NewFrame); CExceptionFrames[MY_ID].Exception = ((void *)0); if (_setjmp(NewFrame) == 0) { if (1){
+  { jmp_buf *PrevFrame, NewFrame; unsigned int MY_ID = (0); PrevFrame = CExceptionFrames[(0)].pFrame; CExceptionFrames[MY_ID].pFrame = (jmp_buf*)(&NewFrame); CExceptionFrames[MY_ID].Exception = ((void *)0); if (_setjmp(NewFrame) == 0) { if (1){
 
-  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject(((void *)0)));
+    IntegerToken *newToken =(IntegerToken*) getToken(createStringObject(((void *)0)));
 
-  printf("newToken->value = %d\n",newToken->value);
+    printf("newToken->value = %d\n",newToken->value);
 
+    if ((((newToken)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)102);;};
 
+  UnityFail( ("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown."), (_U_UINT)103);;
 
-    if ((((newToken)) == ((void *)0))) {} else {UnityFail( (" Expected NULL"), (_U_UINT)(_U_UINT)(_U_UINT)104);;};
+  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
-    UnityFail( ("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown."), (_U_UINT)105);;
+  printf("%s",err->errorMsg);
 
- }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
+  UnityAssertEqualString((const char*)("Error:The String can't be a NULL\n"), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)106);
 
-     printf("%s",err->errorMsg);
+  UnityAssertEqualNumber((_U_SINT)((ERR_STR_CANNOT_BE_NULL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)107, UNITY_DISPLAY_STYLE_INT);
 
-     UnityAssertEqualString((const char*)("Error:The String can't be a NULL\n"), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)108);
-
-     UnityAssertEqualNumber((_U_SINT)((ERR_STR_CANNOT_BE_NULL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)109, UNITY_DISPLAY_STYLE_INT);
-
-     freeError(err);
+  freeError(err);
 
  }
 
@@ -202,7 +199,7 @@ void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 
   printf("newToken->value = %d\n",newToken->value);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)123);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)121);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -210,7 +207,7 @@ void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)127, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)125, UNITY_DISPLAY_STYLE_INT);
 
 
 
@@ -218,7 +215,7 @@ void test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA(void){
 
     sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)131);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)129);
 
      freeError(err);
 
@@ -236,7 +233,7 @@ void test_StringTokenizer_given_string_123star4_should_return_INTEGER_TOKEN(void
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)140, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((123)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)140, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)140, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)140, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123*4"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)140); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)138, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((123)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)138, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)138, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)138, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123*4"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)138); };
 
   printf("No.9\n");
 
@@ -252,7 +249,7 @@ void test_StringTokenizer_given_string_return_money(void){
 
   printf("newToken->symbol = %s\n",newToken->symbol);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)148, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)148); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)146, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)146); };
 
   printf("No.10\n");
 
@@ -272,7 +269,7 @@ void test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken(vo
 
     printf("newToken->value = %d\n",newToken1->value);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)158, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)158, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)158, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)158, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 4321"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)158); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)156, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1234)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)156, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)156, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)156, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 4321"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)156); };
 
 
 
@@ -280,7 +277,7 @@ void test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken(vo
 
     printf("newToken->value = %d\n",newToken2->value);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)162, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4321)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)162, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)162, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)162, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 4321"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)162); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)160, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4321)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)160, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)160, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)160, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1234 4321"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)160); };
 
 
 
@@ -288,7 +285,7 @@ void test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken(vo
 
     printf("newToken->symbol = %s\n",newToken3->symbol);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)166, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken3->symbol), (((void *)0)), (_U_UINT)166); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)164, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken3->symbol), (((void *)0)), (_U_UINT)164); };
 
   printf("No.11\n");
 
@@ -310,7 +307,7 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 
     printf("newToken->value = %d\n",newToken1->value);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)177, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((123)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)177, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)177, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)177, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)177); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)175, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((123)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)175, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)175, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)175, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)175); };
 
 
 
@@ -318,7 +315,7 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 
     printf("newToken->value = %d\n",newToken2->value);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)181, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)181, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)181, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)181, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)181); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)179, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)179, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)179, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)179, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)179); };
 
 
 
@@ -326,7 +323,7 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 
     printf("newToken->value = %d\n",newToken3->value);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)185, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((214)), (_U_SINT)((newToken3->value)), (((void *)0)), (_U_UINT)185, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken3->startColumn)), (((void *)0)), (_U_UINT)185, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken3->length)), (((void *)0)), (_U_UINT)185, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken3->str), (((void *)0)), (_U_UINT)185); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)183, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((214)), (_U_SINT)((newToken3->value)), (((void *)0)), (_U_UINT)183, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken3->startColumn)), (((void *)0)), (_U_UINT)183, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken3->length)), (((void *)0)), (_U_UINT)183, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("123 4 214"), (const char*)(newToken3->str), (((void *)0)), (_U_UINT)183); };
 
 
 
@@ -334,7 +331,7 @@ void test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken(vo
 
     printf("newToken->symbol = %s\n",newToken4->symbol);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)189, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)189); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)187, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)187); };
 
   printf("No.12\n");
 
@@ -374,7 +371,7 @@ void test_StringTokenizer_given_string_symbol_should_return_OperatorToken(void){
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("^"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)254, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)254); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)254, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)254, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)254); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)252, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)252); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)252, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)252, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)252); };
 
   dumpToken(newToken);
 
@@ -388,7 +385,7 @@ void test_StringTokenizer_given_string_plus_0_should_return_OperatorToken(void){
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("+\0"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)261, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)261); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)261, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)261, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+\0"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)261); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)259, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)259); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)259, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)259, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+\0"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)259); };
 
   dumpToken(newToken);
 
@@ -406,7 +403,7 @@ void test_StringTokenizer_given_string_symbol1_should_return_OperatorToken(void)
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("+^"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)270, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)270); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)270, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)270, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)270); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)268, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)268); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)268, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)268, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)268); };
 
   dumpToken(newToken);
 
@@ -422,7 +419,7 @@ void test_StringTokenizer_given_string_TwinOperator_should_return_OperatorToken(
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("++"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)278, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)278); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)278, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)278, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)278); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)276, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)276); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)276, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)276, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)276); };
 
   dumpToken(newToken);
 
@@ -438,7 +435,7 @@ void test_StringTokenizer_given_string_AssignmentOperator_should_return_Operator
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("+="));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)286, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)286); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)286, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)286, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)286); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)284, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)284); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)284, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)284, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)284); };
 
   dumpToken(newToken);
 
@@ -456,7 +453,7 @@ void test_StringTokenizer_given_string_TwinAssignmentOperator_should_return_Oper
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(">>="));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)295, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(">>="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)295); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)295, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)295, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(">>="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)295); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)293, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(">>="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)293); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)293, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)293, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(">>="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)293); };
 
   dumpToken(newToken);
 
@@ -472,7 +469,7 @@ void test_StringTokenizer_given_string_TwinAssignmentOperator_shift_assignemt_sh
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("<<="));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)303, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)303); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)303, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)303, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)303); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)301, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)301); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)301, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)301, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)301); };
 
   dumpToken(newToken);
 
@@ -490,7 +487,7 @@ void test_StringTokenizer_given_string_space_AssignmentOperator_should_return_Op
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(" +-"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)312, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)312); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)312, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)312, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" +-"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)312); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)310, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)310); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)310, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)310, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" +-"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)310); };
 
   dumpToken(newToken);
 
@@ -504,7 +501,7 @@ void test_StringTokenizer_given_string_space_space_TwinOperator_should_return_Op
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("   ++"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)319, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)319); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)319, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)319, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("   ++"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)319); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)317, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("++"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)317); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)317, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)317, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("   ++"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)317); };
 
   dumpToken(newToken);
 
@@ -520,7 +517,7 @@ void test_StringTokenizer_given_string_singleOperator_should_return_OperatorToke
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("...."));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)327, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)327); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)327, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)327, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)327); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)325, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)325); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)325, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)325, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)325); };
 
   dumpToken(newToken);
 
@@ -536,7 +533,7 @@ void test_StringTokenizer_given_string_singleOperator_paket_should_return_Operat
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("(12214)"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)335, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("("), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)335); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)335, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)335, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("(12214)"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)335); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)333, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("("), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)333); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)333, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)333, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("(12214)"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)333); };
 
   dumpToken(newToken);
 
@@ -552,7 +549,7 @@ void test_StringTokenizer_given_string_TwinOperator_assignment_should_return_Ope
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("=========="));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)343, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)343); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)343, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)343, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=========="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)343); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)341, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)341); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)341, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)341, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=========="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)341); };
 
   dumpToken(newToken);
 
@@ -570,7 +567,7 @@ void test_StringTokenizer_given_string_plus_n_should_return_OperatorToken(void){
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("+\n"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)352, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)352); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)352, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)352, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)352); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)350, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)350); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)350, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)350, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)350); };
 
   dumpToken(newToken);
 
@@ -586,7 +583,7 @@ void test_StringTokenizer_given_string_symbol2_should_return_OperatorToken(void)
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("^^^^^^^^"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)360, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)360); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)360, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)360, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^^^^^^^^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)360); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)358, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^"), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)358); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)358, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)358, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("^^^^^^^^"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)358); };
 
   dumpToken(newToken);
 
@@ -610,7 +607,7 @@ void test_StringTokenizer_given_string_symbol3_should_return_OperatorToken(void)
 
   OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)372);;
+   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)370);;
 
 
 
@@ -620,13 +617,13 @@ void test_StringTokenizer_given_string_symbol3_should_return_OperatorToken(void)
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)377, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)375, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)380);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)378);
 
      freeError(err);
 
@@ -644,7 +641,7 @@ void test_StringTokenizer_given_string_TwinAssignmentOperator3_should_return_Ope
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("<<=3"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)389, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)389); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)389, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)389, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<=3"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)389); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)387, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)387); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)387, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)387, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<<=3"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)387); };
 
   dumpToken(newToken);
 
@@ -660,7 +657,7 @@ void test_StringTokenizer_given_string_AssignmentOperator3_should_return_Operato
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("      <=3"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)397, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)397); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)397, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)397, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("      <=3"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)397); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)395, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("<="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)395); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)395, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)395, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("      <=3"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)395); };
 
   dumpToken(newToken);
 
@@ -674,7 +671,7 @@ void test_StringTokenizer_given_string_Assignment_A_Assignment_should_return_Ope
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("=A="));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)404, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)404); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)404, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)404, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=A="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)404); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)402, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("="), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)402); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)402, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)402, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("=A="), (const char*)(newToken->str), (((void *)0)), (_U_UINT)402); };
 
   dumpToken(newToken);
 
@@ -702,19 +699,19 @@ void test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CAN
 
   OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)418);;
+   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)416);;
 
   }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
       printf("%s",err->errorMsg);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)421, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)419, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is valid character, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)424);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)422);
 
      freeError(err);
 
@@ -740,19 +737,19 @@ void test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTA
 
   OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)437);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)435);;
 
   }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
       printf("%s",err->errorMsg);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)440, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)438, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is valid character, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)443);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)441);
 
      freeError(err);
 
@@ -778,19 +775,19 @@ void test_StringTokenizer_given_string_Assign_Assign_doller_should_return_Operat
 
       OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-     UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)456);;
+     UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)454);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
       printf("%s",err->errorMsg);
 
-      UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)459, UNITY_DISPLAY_STYLE_INT);
+      UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)457, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)462);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)460);
 
       freeError(err);
 
@@ -816,7 +813,7 @@ void test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
 
   OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)475);;
+   UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)473);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -832,9 +829,9 @@ void test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)483);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)481);
 
-      UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)484, UNITY_DISPLAY_STYLE_INT);
+      UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)482, UNITY_DISPLAY_STYLE_INT);
 
       freeError(err);
 
@@ -856,7 +853,7 @@ void test_StringTokenizer_given_string_given_double_quote_123s_should_return_str
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("\"123\""));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)495, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"123\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)495); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)495, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)495, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"123\""), (const char*)(newToken->str), (((void *)0)), (_U_UINT)495); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)493, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"123\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)493); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)493, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)493, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"123\""), (const char*)(newToken->str), (((void *)0)), (_U_UINT)493); };
 
   dumpToken(newToken);
 
@@ -876,7 +873,7 @@ void test_StringTokenizer_given_string_given_double_quote_symbol_should_return_s
 
 StringToken *newToken =(StringToken*) getToken(createStringObject(" \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" "));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)505, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)505); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)505, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((63)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)505, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)505); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)503, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)503); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)503, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((63)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)503, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" \"1234567890abcdefghijklmnopqrstuvwsyz!@#$%^&*()_+|}{:?><},./';\" "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)503); };
 
   dumpToken(newToken);
 
@@ -896,7 +893,7 @@ void test_StringTokenizer_given_string_given_space_double_quote_symbol_should_re
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("  \"Hello    Hello\""));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)515, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"Hello    Hello\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)515); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)515, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((16)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)515, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("  \"Hello    Hello\""), (const char*)(newToken->str), (((void *)0)), (_U_UINT)515); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)513, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"Hello    Hello\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)513); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)513, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((16)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)513, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("  \"Hello    Hello\""), (const char*)(newToken->str), (((void *)0)), (_U_UINT)513); };
 
   dumpToken(newToken);
 
@@ -912,7 +909,7 @@ void test_StringTokenizer_given_string_given__double_quote_symbol_space_should_r
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("\"%%%%%%%%%\"        "));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)523, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"%%%%%%%%%\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)523); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)523, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((11)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)523, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"%%%%%%%%%\"        "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)523); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)521, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"%%%%%%%%%\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)521); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)521, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((11)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)521, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"%%%%%%%%%\"        "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)521); };
 
   dumpToken(newToken);
 
@@ -930,7 +927,7 @@ void test_StringTokenizer_given_string_given_double_quote_string_1234_123_should
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("\"1234\"123"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)532, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)532); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)532, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)532, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\"123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)532); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)530, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)530); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)530, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)530, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\"123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)530); };
 
   dumpToken(newToken);
 
@@ -948,7 +945,7 @@ void test_StringTokenizer_given_string_given_double_quote_string_space_should_re
 
   StringToken *newToken =(StringToken*) getToken(createStringObject(" \"\" "));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)541, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)541); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)541, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)541, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" \"\" "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)541); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)539, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"\""), (const char*)(newToken->name), (((void *)0)), (_U_UINT)539); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)539, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)539, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(" \"\" "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)539); };
 
   dumpToken(newToken);
 
@@ -974,7 +971,7 @@ void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_
 
   StringToken *newToken =(StringToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1 to be thrown. But none thrown."), (_U_UINT)554);;
+    UnityFail( ("Expect ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1 to be thrown. But none thrown."), (_U_UINT)552);;
 
       }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -982,13 +979,13 @@ void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)558, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)556, UNITY_DISPLAY_STYLE_INT);
 
-     sprintf(ErrMsg,"End of string without double quote\n");
+     sprintf(ErrMsg,"End of string without double quote");
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"         ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)561);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)559);
 
      freeError(err);
 
@@ -1006,7 +1003,7 @@ void test_StringTokenizer_given_string_given_ABD1234_should_return_IdentifierTok
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("ABD1234"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)570, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABD1234"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)570); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)570, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)570, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABD1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)570); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)568, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABD1234"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)568); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)568, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)568, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABD1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)568); };
 
   dumpToken(newToken);
 
@@ -1024,7 +1021,7 @@ void test_StringTokenizer_given_string_given__1234_should_return_IdentifierToken
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("_1234"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_1234"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)579); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)579); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_1234"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)577); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)577); };
 
   dumpToken(newToken);
 
@@ -1042,7 +1039,7 @@ void test_StringTokenizer_given_string_given_should_return_IdentifierToken(void)
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("  A "));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)588); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("  A "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)588); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)586); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("  A "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)586); };
 
   dumpToken(newToken);
 
@@ -1058,7 +1055,7 @@ void test_StringTokenizer_given_string_______given_should_return_IdentifierToken
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("_____"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_____"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)596); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_____"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)596); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_____"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)594); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("_____"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)594); };
 
   dumpToken(newToken);
 
@@ -1074,7 +1071,7 @@ void test_StringTokenizer_given_string_A_B_C_1_2_given_should_return_IdentifierT
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("A_B_C_1_2"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)604, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_B_C_1_2"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)604); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)604, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)604, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_B_C_1_2"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)604); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)602, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_B_C_1_2"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)602); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)602, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((9)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)602, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_B_C_1_2"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)602); };
 
   dumpToken(newToken);
 
@@ -1090,7 +1087,7 @@ void test_StringTokenizer_given_string_A_ABC_symbol_given_should_return_Identifi
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("A_ABC&+_"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)612, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_ABC"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)612); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)612, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)612, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_ABC&+_"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)612); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)610, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_ABC"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)610); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)610, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)610, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_ABC&+_"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)610); };
 
   dumpToken(newToken);
 
@@ -1108,7 +1105,7 @@ void test_StringTokenizer_given_string_ABC_ACB_symbol_given_should_return_Identi
 
   StringToken *newToken =(StringToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)621, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)621); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)621, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)621, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC\nACB"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)621); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)619, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)619); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)619, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)619, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC\nACB"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)619); };
 
   dumpToken(newToken);
 
@@ -1116,7 +1113,7 @@ void test_StringTokenizer_given_string_ABC_ACB_symbol_given_should_return_Identi
 
      newToken = (StringToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)625, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ACB"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)625); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)625, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)625, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC\nACB"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)625); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)623, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ACB"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)623); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)623, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)623, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ABC\nACB"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)623); };
 
     dumpToken(newToken);
 
@@ -1136,7 +1133,7 @@ void test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_Identi
 
   StringToken *newToken =(StringToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)635, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)635); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)635, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)635, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12 B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)635); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)633, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)633); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)633, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)633, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12 B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)633); };
 
   dumpToken(newToken);
 
@@ -1144,7 +1141,7 @@ void test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_Identi
 
      newToken = (StringToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)639, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("B22"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)639); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)639, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)639, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12 B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)639); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)637, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("B22"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)637); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)637, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)637, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12 B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)637); };
 
     dumpToken(newToken);
 
@@ -1152,13 +1149,13 @@ void test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_Identi
 
     OperatorToken *newToken1 = (OperatorToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)643, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)643); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)641, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)641); };
 
     dumpToken(newToken1);
 
     newToken1 = (OperatorToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)646, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)646); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)644, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)644); };
 
     dumpToken(newToken1);
 
@@ -1176,19 +1173,19 @@ void test_StringTokenizer_given_string_A12_and_B22_given_should_return_Identifie
 
   StringToken *newToken =(StringToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)655, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)655); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)655, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)655, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)655); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)653, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)653); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)653, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)653, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)653); };
 
   dumpToken(newToken);
 
     OperatorToken *newToken1 = (OperatorToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)658, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("&"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)658); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)658, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)658, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)658); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)656, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("&"), (const char*)(newToken1->symbol), (((void *)0)), (_U_UINT)656); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)656, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)656, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)656); };
 
     dumpToken(newToken1);
 
      newToken = (StringToken*) getToken(str);
 
-    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)661, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("B22"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)661); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)661, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)661, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)661); };
+    { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)659, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("B22"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)659); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)659, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)659, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A12&B22"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)659); };
 
     dumpToken(newToken);
 
@@ -1204,7 +1201,7 @@ void test_StringTokenizer_given_string_A_A__symbol_given_should_return_Identifie
 
   StringToken *newToken =(StringToken*) getToken(createStringObject("A_A_"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)669, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_A_"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)669); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)669, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)669, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_A_"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)669); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)667, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_A_"), (const char*)(newToken->name), (((void *)0)), (_U_UINT)667); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)667, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)667, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("A_A_"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)667); };
 
   dumpToken(newToken);
 
@@ -1228,7 +1225,7 @@ void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_thro
 
   StringToken *newToken =(StringToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)681);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)679);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1236,13 +1233,13 @@ void test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_thro
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)685, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)683, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is identifier, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"        ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)688);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)686);
 
      freeError(err);
 
@@ -1260,7 +1257,7 @@ void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorT
 
   OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("."));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)697, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)697); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)697, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)697, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)697); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)695, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)695); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)695, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)695, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)695); };
 
   dumpToken(newToken);
 
@@ -1284,7 +1281,7 @@ void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorT
 
   OperatorToken *newToken =(OperatorToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)709);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)707);;
 
     }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1292,13 +1289,13 @@ void test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorT
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)713, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)711, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is operator, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)716);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)714);
 
 
 
@@ -1326,7 +1323,7 @@ void test_StringTokenizer_given_string_dot_A_symbol_given_should_throw_err_STR_C
 
  OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(".A"));
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)740, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)740); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)740, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)740, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".A"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)740); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)738, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)738); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)738, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)738, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".A"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)738); };
 
  dumpToken(newToken);
 
@@ -1348,7 +1345,7 @@ void test_StringTokenizer_given_string_dot_times_8_symbol_given_should_throw_err
 
  OperatorToken *newToken =(OperatorToken*) getToken(createStringObject("........"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)751, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)751); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)751, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)751, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("........"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)751); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)749, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)749); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)749, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)749, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("........"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)749); };
 
   dumpToken(newToken);
 
@@ -1364,7 +1361,7 @@ void test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_ret
 
  FloatToken *newToken =(FloatToken*) getToken(createStringObject(".001"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)759, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.001) * (_UF)(0.00001f)), (_UF)((_UF).001), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)759); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)759, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)759, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".001"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)759); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)757, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.001) * (_UF)(0.00001f)), (_UF)((_UF).001), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)757); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)757, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)757, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".001"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)757); };
 
   dumpToken(newToken);
 
@@ -1380,7 +1377,7 @@ void test_StringTokenizer_given_string_decimal_point_01_plus_symbol_given_should
 
  FloatToken *newToken =(FloatToken*) getToken(createStringObject(".01+"));
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)767, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.01) * (_UF)(0.00001f)), (_UF)((_UF).01), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)767); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)767, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)767, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".01+"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)767); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)765, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.01) * (_UF)(0.00001f)), (_UF)((_UF).01), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)765); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)765, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)765, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".01+"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)765); };
 
   dumpToken(newToken);
 
@@ -1406,7 +1403,7 @@ void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err
 
     FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)780);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)778);;
 
 
 
@@ -1416,13 +1413,13 @@ void test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)785, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)783, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)788);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)786);
 
      freeError(err);
 
@@ -1448,7 +1445,7 @@ void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_shou
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-  UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)801);;
+  UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)799);;
 
     }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1456,13 +1453,13 @@ void test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_shou
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)805, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)803, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)808);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)806);
 
      freeError(err);
 
@@ -1490,7 +1487,7 @@ void test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_giv
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-     UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)822);;
+     UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)820);;
 
     }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1498,13 +1495,13 @@ void test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_giv
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)826, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)824, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)829);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)827);
 
      freeError(err);
 
@@ -1526,13 +1523,13 @@ void test_StringTokenizer_given_string_double_decimal_point_123_given_should_ret
 
  OperatorToken *newToken =(OperatorToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)840, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)840); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)840, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)840, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("..123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)840); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)838, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)838); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)838, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)838, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("..123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)838); };
 
  dumpToken(newToken);
 
   FloatToken *newToken1 =(FloatToken*)getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)843, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.123) * (_UF)(0.00001f)), (_UF)((_UF).123), (_UF)((_UF)newToken1->value), (((void *)0)), (_U_UINT)(_U_UINT)843); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)843, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)843, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("..123"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)843); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)841, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.123) * (_UF)(0.00001f)), (_UF)((_UF).123), (_UF)((_UF)newToken1->value), (((void *)0)), (_U_UINT)(_U_UINT)841); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)841, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)841, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("..123"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)841); };
 
  dumpToken(newToken1);
 
@@ -1550,19 +1547,19 @@ void test_StringTokenizer_given_string_trible_decimal_point_123_given_should_ret
 
  OperatorToken *newToken =(OperatorToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)852, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)852); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)852, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)852, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)852); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)850, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)850); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)850, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)850, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)850); };
 
  dumpToken(newToken);
 
   newToken =(OperatorToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)855, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)855); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)855, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)855, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)855); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)853, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)853); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)853, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)853, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)853); };
 
  dumpToken(newToken);
 
   FloatToken *newToken1 =(FloatToken*)getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)858, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.123) * (_UF)(0.00001f)), (_UF)((_UF).123), (_UF)((_UF)newToken1->value), (((void *)0)), (_U_UINT)(_U_UINT)858); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)858, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)858, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)858); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)856, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.123) * (_UF)(0.00001f)), (_UF)((_UF).123), (_UF)((_UF)newToken1->value), (((void *)0)), (_U_UINT)(_U_UINT)856); UnityAssertEqualNumber((_U_SINT)((2)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)856, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)856, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("...123  "), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)856); };
 
  dumpToken(newToken1);
 
@@ -1582,7 +1579,7 @@ void test_StringTokenizer_given_string_dot_e123_symbol_given_should_return_Opera
 
   OperatorToken *newToken =(OperatorToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)868, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)868); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)868, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)868, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".e123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)868); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)866, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("."), (const char*)(newToken->symbol), (((void *)0)), (_U_UINT)866); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)866, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)866, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".e123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)866); };
 
  dumpToken(newToken);
 
@@ -1590,7 +1587,7 @@ void test_StringTokenizer_given_string_dot_e123_symbol_given_should_return_Opera
 
  IdentifierToken *newToken1 =(IdentifierToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)872, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("e123"), (const char*)(newToken1->name), (((void *)0)), (_U_UINT)872); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)872, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)872, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".e123"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)872); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)870, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("e123"), (const char*)(newToken1->name), (((void *)0)), (_U_UINT)870); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)870, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)870, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".e123"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)870); };
 
  dumpToken(newToken1);
 
@@ -1610,7 +1607,7 @@ void test_StringTokenizer_given_decimal_point_e1_symbol_given_should_return_Floa
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)882, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e1) * (_UF)(0.00001f)), (_UF)((_UF).1e1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)882); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)882, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)882, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)882); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)880, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e1) * (_UF)(0.00001f)), (_UF)((_UF).1e1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)880); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)880, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)880, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)880); };
 
  dumpToken(newToken);
 
@@ -1630,7 +1627,7 @@ void test_StringTokenizer_given_decimal_point_e10_and_given_should_return_FloatT
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)892, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e10) * (_UF)(0.00001f)), (_UF)((_UF).1e10), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)892); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)892, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)892, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e10&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)892); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)890, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e10) * (_UF)(0.00001f)), (_UF)((_UF).1e10), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)890); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)890, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)890, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e10&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)890); };
 
  dumpToken(newToken);
 
@@ -1652,7 +1649,7 @@ void test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)903, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e10) * (_UF)(0.00001f)), (_UF)((_UF).1e10), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)903); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)903, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)903, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e10 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)903); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)901, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e10) * (_UF)(0.00001f)), (_UF)((_UF).1e10), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)901); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)901, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)901, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e10 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)901); };
 
  dumpToken(newToken);
 
@@ -1680,7 +1677,7 @@ void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err
 
     FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1 to be thrown. But none thrown."), (_U_UINT)917);;
+    UnityFail( ("Expect ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1 to be thrown. But none thrown."), (_U_UINT)915);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1688,13 +1685,13 @@ void test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)921, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)919, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was '%c'",strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)924);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)922);
 
      freeError(err);
 
@@ -1722,7 +1719,7 @@ void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGE
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)938);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)936);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1730,13 +1727,13 @@ void test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGE
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)942, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)940, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)945);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)943);
 
      freeError(err);
 
@@ -1762,7 +1759,7 @@ void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)958);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)956);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1770,7 +1767,7 @@ void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)962, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)960, UNITY_DISPLAY_STYLE_INT);
 
 
 
@@ -1778,7 +1775,7 @@ void test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)966);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)964);
 
      freeError(err);
 
@@ -1804,7 +1801,7 @@ void test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_give
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)979);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)977);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1812,13 +1809,13 @@ void test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_give
 
 
 
-    UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)983, UNITY_DISPLAY_STYLE_INT);
+    UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)981, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)986);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)984);
 
   freeError(err);
 
@@ -1838,7 +1835,7 @@ void test_StringTokenizer_given_decimal_point_1eminus10_and_space_given_should_r
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)996, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e-1) * (_UF)(0.00001f)), (_UF)((_UF).1e-1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)996); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)996, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)996, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e-1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)996); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)994, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e-1) * (_UF)(0.00001f)), (_UF)((_UF).1e-1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)994); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)994, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)994, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e-1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)994); };
 
  dumpToken(newToken);
 
@@ -1858,7 +1855,7 @@ void test_StringTokenizer_given_decimal_point_1eplus10_and_space_given_should_re
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1006, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e+1) * (_UF)(0.00001f)), (_UF)((_UF).1e+1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1006); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1006, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1006, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e+1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1006); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1004, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e+1) * (_UF)(0.00001f)), (_UF)((_UF).1e+1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1004); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1004, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1004, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e+1"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1004); };
 
  dumpToken(newToken);
 
@@ -1878,7 +1875,7 @@ void test_StringTokenizer_given_decimal_point_1eplus1minus1234_given_should_retu
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1016, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e+1) * (_UF)(0.00001f)), (_UF)((_UF).1e+1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1016); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1016, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1016, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e+1-1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1016); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1014, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e+1) * (_UF)(0.00001f)), (_UF)((_UF).1e+1), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1014); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1014, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1014, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)(".1e+1-1234"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1014); };
 
  dumpToken(newToken);
 
@@ -1906,7 +1903,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)1030);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)1028);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1914,13 +1911,13 @@ void test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1034, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1032, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1037);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1035);
 
     freeError(err);
 
@@ -1946,7 +1943,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_I
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1050);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1048);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1954,13 +1951,13 @@ void test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_I
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1054, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1052, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1057);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1055);
 
      freeError(err);
 
@@ -1986,7 +1983,7 @@ void test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1070);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1068);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -1994,13 +1991,13 @@ void test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1074, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1072, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1077);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1075);
 
      freeError(err);
 
@@ -2020,7 +2017,7 @@ void test_StringTokenizer_given_1dot1124_should_return_FloatToken(void){
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1087, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(1123123.1124) * (_UF)(0.00001f)), (_UF)((_UF)1123123.1124), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1087); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1087, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1087, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1123123.1124"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1087); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1085, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(1123123.1124) * (_UF)(0.00001f)), (_UF)((_UF)1123123.1124), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1085); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1085, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1085, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("1123123.1124"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1085); };
 
  dumpToken(newToken);
 
@@ -2048,7 +2045,7 @@ void test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTE
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1101);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1099);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2056,13 +2053,13 @@ void test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTE
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1105, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1103, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1108);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1106);
 
      freeError(err);
 
@@ -2084,7 +2081,7 @@ void test_StringTokenizer_given_1e12_given_should_return_IntegerToken(void){
 
  FloatToken *newToken =(FloatToken*) getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1119, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(21e9) * (_UF)(0.00001f)), (_UF)((_UF)21e9), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1119); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1119, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1119, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("21e9"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1119); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1117, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(21e9) * (_UF)(0.00001f)), (_UF)((_UF)21e9), (_UF)((_UF)newToken->value), (((void *)0)), (_U_UINT)(_U_UINT)1117); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1117, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1117, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("21e9"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1117); };
 
   dumpToken(newToken);
 
@@ -2112,7 +2109,7 @@ void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1133);;
+    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1131);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2120,13 +2117,13 @@ void test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1137, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1135, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1140);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1138);
 
      freeError(err);
 
@@ -2152,21 +2149,21 @@ void test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1153);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1151);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
      printf("%s",err->errorMsg);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1156, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1154, UNITY_DISPLAY_STYLE_INT);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1157, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1155, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1160);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1158);
 
      freeError(err);
 
@@ -2188,7 +2185,7 @@ void test_StringTokenizer_given_0x12A_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1171, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0x12A)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1171, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1171, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1171, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0x12A"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1171); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1169, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0x12A)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1169, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1169, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1169, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0x12A"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1169); };
 
  dumpToken(newToken);
 
@@ -2210,7 +2207,7 @@ void test_StringTokenizer_given_0X12B_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1182, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0X12B)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1182, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1182, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1182, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0X12B"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1182); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1180, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0X12B)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1180, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1180, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1180, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0X12B"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1180); };
 
  dumpToken(newToken);
 
@@ -2230,7 +2227,7 @@ void test_StringTokenizer_given_0XA_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1192, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1192, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1192, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1192, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1192); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1190, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1190, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1190, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((3)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1190, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1190); };
 
  dumpToken(newToken);
 
@@ -2250,7 +2247,7 @@ void test_StringTokenizer_given_0XA1234space_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1202, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1202, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1202, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1202, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1234 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1202); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1200, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1200, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1200, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1200, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1234 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1200); };
 
  dumpToken(newToken);
 
@@ -2270,7 +2267,7 @@ void test_StringTokenizer_given_0XA1234n_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1212, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1212, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1212, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1212, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1234\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1212); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1210, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1234)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1210, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1210, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1210, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1234\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1210); };
 
  dumpToken(newToken);
 
@@ -2290,7 +2287,7 @@ void test_StringTokenizer_given_0XA1and_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1222, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1222, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1222, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1222, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1222); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1220, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1220, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1220, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1220, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1220); };
 
  dumpToken(newToken);
 
@@ -2310,7 +2307,7 @@ void test_StringTokenizer_given_0XA1point_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1232, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1232, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1232, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1232, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1232); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1230, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0XA1)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1230, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1230, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1230, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0XA1."), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1230); };
 
  dumpToken(newToken);
 
@@ -2336,7 +2333,7 @@ void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1245);;
+    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1243);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2344,13 +2341,13 @@ void test_StringTokenizer_given_0XS_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1249, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1247, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1252);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1250);
 
      freeError(err);
 
@@ -2376,7 +2373,7 @@ void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1265);;
+    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1263);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2384,13 +2381,13 @@ void test_StringTokenizer_given_0Xand_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1269, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1267, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1272);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1270);
 
 
 
@@ -2418,7 +2415,7 @@ void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1286);;
+    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1284);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2426,13 +2423,13 @@ void test_StringTokenizer_given_0X_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1290, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1288, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1293);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1291);
 
      freeError(err);
 
@@ -2458,7 +2455,7 @@ void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1306);;
+    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1304);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2466,13 +2463,13 @@ void test_StringTokenizer_given_0Xspace_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1310, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1308, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1313);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1311);
 
      freeError(err);
 
@@ -2498,7 +2495,7 @@ void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1326);;
+    UnityFail( ("Expect ERR_INVALID_HEX_1 to be thrown. But none thrown."), (_U_UINT)1324);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2506,13 +2503,13 @@ void test_StringTokenizer_given_0Xnewline_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1330, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_HEX_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1328, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1333);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1331);
 
      freeError(err);
 
@@ -2542,7 +2539,7 @@ void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1348);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1346);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2550,13 +2547,13 @@ void test_StringTokenizer_given_0XADU_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1352, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1350, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1355);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1353);
 
      freeError(err);
 
@@ -2582,7 +2579,7 @@ void test_StringTokenizer_given_0XADdoller_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1368);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1366);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2590,13 +2587,13 @@ void test_StringTokenizer_given_0XADdoller_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1372, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1370, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1375);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1373);
 
      freeError(err);
 
@@ -2616,7 +2613,7 @@ void test_StringTokenizer_given_0124_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1385, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0123)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1385, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1385, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1385, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1385); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1383, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0123)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1383, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1383, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1383, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0123"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1383); };
 
  dumpToken(newToken);
 
@@ -2642,7 +2639,7 @@ void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1398);;
+    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1396);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2650,13 +2647,13 @@ void test_StringTokenizer_given_0823_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1402, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1400, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1405);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1403);
 
      freeError(err);
 
@@ -2684,7 +2681,7 @@ void test_StringTokenizer_given_0923_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1419);;
+    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1417);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2692,13 +2689,13 @@ void test_StringTokenizer_given_0923_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1423, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1421, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str," ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1426);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1424);
 
      freeError(err);
 
@@ -2720,7 +2717,7 @@ void test_StringTokenizer_given_0723_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1437, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0723)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1437, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1437, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1437, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0723"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1437); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1435, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0723)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1435, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1435, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1435, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0723"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1435); };
 
    dumpToken(newToken);
 
@@ -2730,9 +2727,9 @@ void test_StringTokenizer_given_0723_should_return_IntegerToken(void){
 
      printf("%s",err->errorMsg);
 
-     UnityAssertEqualString((const char*)("This is invalid octal integer\n"), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1442);
+     UnityAssertEqualString((const char*)("This is invalid octal integer\n"), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1440);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1443, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1441, UNITY_DISPLAY_STYLE_INT);
 
      freeError(err);
 
@@ -2754,7 +2751,7 @@ void test_StringTokenizer_given_0212and_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1454, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1454, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1454, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1454, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1454); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1452, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1452, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1452, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1452, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212&"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1452); };
 
  dumpToken(newToken);
 
@@ -2774,7 +2771,7 @@ void test_StringTokenizer_given_0312space_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1464, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0312)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1464, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1464, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1464, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0312 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1464); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1462, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0312)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1462, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1462, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1462, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0312 "), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1462); };
 
  dumpToken(newToken);
 
@@ -2794,7 +2791,7 @@ void test_StringTokenizer_given_0412newline_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1474, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0412)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1474, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1474, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1474, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0412\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1474); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1472, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0412)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1472, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1472, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1472, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0412\n"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1472); };
 
  dumpToken(newToken);
 
@@ -2822,7 +2819,7 @@ void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1488);;
+    UnityFail( ("Expect ERR_INVALID_OCTAL_1 to be thrown. But none thrown."), (_U_UINT)1486);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2830,13 +2827,13 @@ void test_StringTokenizer_given_072823_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1492, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_OCTAL_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1490, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit less than 8, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1495);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1493);
 
      freeError(err);
 
@@ -2864,7 +2861,7 @@ void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1509);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1507);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -2872,13 +2869,13 @@ void test_StringTokenizer_given_072doller23_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1513, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1511, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1516);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1514);
 
      freeError(err);
 
@@ -2908,7 +2905,7 @@ void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 
     newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1531);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1529);;
 
 
 
@@ -2920,13 +2917,13 @@ void test_StringTokenizer_given_072A23_should_return_IntegerToken(void){
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1537, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1535, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1540);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1538);
 
      freeError(err);
 
@@ -2952,7 +2949,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IdentifierToken* newToken0 =(IdentifierToken*)getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken0->type)), (((void *)0)), (_U_UINT)1553, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string"), (const char*)(newToken0->name), (((void *)0)), (_U_UINT)1553); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken0->startColumn)), (((void *)0)), (_U_UINT)1553, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken0->length)), (((void *)0)), (_U_UINT)1553, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken0->str), (((void *)0)), (_U_UINT)1553); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken0->type)), (((void *)0)), (_U_UINT)1551, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string"), (const char*)(newToken0->name), (((void *)0)), (_U_UINT)1551); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken0->startColumn)), (((void *)0)), (_U_UINT)1551, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken0->length)), (((void *)0)), (_U_UINT)1551, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken0->str), (((void *)0)), (_U_UINT)1551); };
 
   dumpToken(newToken0);
 
@@ -2960,7 +2957,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IdentifierToken* peepToken1 =(IdentifierToken*)peepToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((peepToken1->type)), (((void *)0)), (_U_UINT)1557, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string"), (const char*)(peepToken1->name), (((void *)0)), (_U_UINT)1557); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((peepToken1->startColumn)), (((void *)0)), (_U_UINT)1557, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken1->length)), (((void *)0)), (_U_UINT)1557, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken1->str), (((void *)0)), (_U_UINT)1557); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((peepToken1->type)), (((void *)0)), (_U_UINT)1555, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string"), (const char*)(peepToken1->name), (((void *)0)), (_U_UINT)1555); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((peepToken1->startColumn)), (((void *)0)), (_U_UINT)1555, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken1->length)), (((void *)0)), (_U_UINT)1555, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken1->str), (((void *)0)), (_U_UINT)1555); };
 
   dumpToken(peepToken1);
 
@@ -2968,7 +2965,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IntegerToken *newToken1 =(IntegerToken*) getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1561, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1561, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1561, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1561, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1561); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1559, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1559, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1559, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1559, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1559); };
 
   dumpToken(newToken1);
 
@@ -2976,7 +2973,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IntegerToken *peepToken2 =(IntegerToken*) peepToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((peepToken2->type)), (((void *)0)), (_U_UINT)1565, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((peepToken2->value)), (((void *)0)), (_U_UINT)1565, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((peepToken2->startColumn)), (((void *)0)), (_U_UINT)1565, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((peepToken2->length)), (((void *)0)), (_U_UINT)1565, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken2->str), (((void *)0)), (_U_UINT)1565); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((peepToken2->type)), (((void *)0)), (_U_UINT)1563, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((peepToken2->value)), (((void *)0)), (_U_UINT)1563, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((peepToken2->startColumn)), (((void *)0)), (_U_UINT)1563, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((peepToken2->length)), (((void *)0)), (_U_UINT)1563, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken2->str), (((void *)0)), (_U_UINT)1563); };
 
   dumpToken(peepToken2);
 
@@ -2984,7 +2981,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IdentifierToken* newToken2 =(IdentifierToken*)getToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1569, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ser1234"), (const char*)(newToken2->name), (((void *)0)), (_U_UINT)1569); UnityAssertEqualNumber((_U_SINT)((13)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1569, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1569, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1569); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1567, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ser1234"), (const char*)(newToken2->name), (((void *)0)), (_U_UINT)1567); UnityAssertEqualNumber((_U_SINT)((13)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1567, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1567, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1567); };
 
   dumpToken(newToken2);
 
@@ -2992,7 +2989,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   peepToken1 =(IdentifierToken*)peepToken(str);
 
- { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((peepToken1->type)), (((void *)0)), (_U_UINT)1573, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ser1234"), (const char*)(peepToken1->name), (((void *)0)), (_U_UINT)1573); UnityAssertEqualNumber((_U_SINT)((13)), (_U_SINT)((peepToken1->startColumn)), (((void *)0)), (_U_UINT)1573, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((peepToken1->length)), (((void *)0)), (_U_UINT)1573, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken1->str), (((void *)0)), (_U_UINT)1573); };
+ { UnityAssertEqualNumber((_U_SINT)((TOKEN_IDENTIFIER_TYPE)), (_U_SINT)((peepToken1->type)), (((void *)0)), (_U_UINT)1571, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("ser1234"), (const char*)(peepToken1->name), (((void *)0)), (_U_UINT)1571); UnityAssertEqualNumber((_U_SINT)((13)), (_U_SINT)((peepToken1->startColumn)), (((void *)0)), (_U_UINT)1571, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((7)), (_U_SINT)((peepToken1->length)), (((void *)0)), (_U_UINT)1571, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken1->str), (((void *)0)), (_U_UINT)1571); };
 
   dumpToken(peepToken1);
 
@@ -3000,7 +2997,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   IntegerToken *newToken3 =(IntegerToken*) getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)1577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken3->value)), (((void *)0)), (_U_UINT)1577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((21)), (_U_SINT)((newToken3->startColumn)), (((void *)0)), (_U_UINT)1577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken3->length)), (((void *)0)), (_U_UINT)1577, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken3->str), (((void *)0)), (_U_UINT)1577); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken3->type)), (((void *)0)), (_U_UINT)1575, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken3->value)), (((void *)0)), (_U_UINT)1575, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((21)), (_U_SINT)((newToken3->startColumn)), (((void *)0)), (_U_UINT)1575, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken3->length)), (((void *)0)), (_U_UINT)1575, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken3->str), (((void *)0)), (_U_UINT)1575); };
 
   dumpToken(newToken3);
 
@@ -3008,7 +3005,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   peepToken2 =(IntegerToken*) peepToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((peepToken2->type)), (((void *)0)), (_U_UINT)1581, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken2->value)), (((void *)0)), (_U_UINT)1581, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((21)), (_U_SINT)((peepToken2->startColumn)), (((void *)0)), (_U_UINT)1581, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken2->length)), (((void *)0)), (_U_UINT)1581, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken2->str), (((void *)0)), (_U_UINT)1581); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((peepToken2->type)), (((void *)0)), (_U_UINT)1579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken2->value)), (((void *)0)), (_U_UINT)1579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((21)), (_U_SINT)((peepToken2->startColumn)), (((void *)0)), (_U_UINT)1579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken2->length)), (((void *)0)), (_U_UINT)1579, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken2->str), (((void *)0)), (_U_UINT)1579); };
 
   dumpToken(peepToken2);
 
@@ -3018,7 +3015,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
   OperatorToken *newToken4 = (OperatorToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1586); UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((newToken4->startColumn)), (((void *)0)), (_U_UINT)1586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken4->length)), (((void *)0)), (_U_UINT)1586, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken4->str), (((void *)0)), (_U_UINT)1586); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1584, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1584); UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((newToken4->startColumn)), (((void *)0)), (_U_UINT)1584, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((newToken4->length)), (((void *)0)), (_U_UINT)1584, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken4->str), (((void *)0)), (_U_UINT)1584); };
 
   dumpToken(newToken4);
 
@@ -3026,7 +3023,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    OperatorToken *peepToken3 = (OperatorToken*) peepToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((peepToken3->type)), (((void *)0)), (_U_UINT)1590, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(peepToken3->symbol), (((void *)0)), (_U_UINT)1590); UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((peepToken3->startColumn)), (((void *)0)), (_U_UINT)1590, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken3->length)), (((void *)0)), (_U_UINT)1590, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken3->str), (((void *)0)), (_U_UINT)1590); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((peepToken3->type)), (((void *)0)), (_U_UINT)1588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("+"), (const char*)(peepToken3->symbol), (((void *)0)), (_U_UINT)1588); UnityAssertEqualNumber((_U_SINT)((22)), (_U_SINT)((peepToken3->startColumn)), (((void *)0)), (_U_UINT)1588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((peepToken3->length)), (((void *)0)), (_U_UINT)1588, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken3->str), (((void *)0)), (_U_UINT)1588); };
 
   dumpToken(peepToken3);
 
@@ -3034,7 +3031,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    StringToken* newToken5 =(StringToken*)getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken5->type)), (((void *)0)), (_U_UINT)1594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(newToken5->name), (((void *)0)), (_U_UINT)1594); UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((newToken5->startColumn)), (((void *)0)), (_U_UINT)1594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken5->length)), (((void *)0)), (_U_UINT)1594, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken5->str), (((void *)0)), (_U_UINT)1594); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((newToken5->type)), (((void *)0)), (_U_UINT)1592, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(newToken5->name), (((void *)0)), (_U_UINT)1592); UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((newToken5->startColumn)), (((void *)0)), (_U_UINT)1592, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken5->length)), (((void *)0)), (_U_UINT)1592, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken5->str), (((void *)0)), (_U_UINT)1592); };
 
    dumpToken(newToken5);
 
@@ -3042,7 +3039,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
     StringToken* peepToken4 =(StringToken*)peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((peepToken4->type)), (((void *)0)), (_U_UINT)1598, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(peepToken4->name), (((void *)0)), (_U_UINT)1598); UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((peepToken4->startColumn)), (((void *)0)), (_U_UINT)1598, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken4->length)), (((void *)0)), (_U_UINT)1598, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken4->str), (((void *)0)), (_U_UINT)1598); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_STRING_TYPE)), (_U_SINT)((peepToken4->type)), (((void *)0)), (_U_UINT)1596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("\"1234\""), (const char*)(peepToken4->name), (((void *)0)), (_U_UINT)1596); UnityAssertEqualNumber((_U_SINT)((24)), (_U_SINT)((peepToken4->startColumn)), (((void *)0)), (_U_UINT)1596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken4->length)), (((void *)0)), (_U_UINT)1596, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken4->str), (((void *)0)), (_U_UINT)1596); };
 
    dumpToken(peepToken4);
 
@@ -3050,7 +3047,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    FloatToken* newToken6 =(FloatToken*)getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken6->type)), (((void *)0)), (_U_UINT)1602, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(123.32) * (_UF)(0.00001f)), (_UF)((_UF)123.32), (_UF)((_UF)newToken6->value), (((void *)0)), (_U_UINT)(_U_UINT)1602); UnityAssertEqualNumber((_U_SINT)((31)), (_U_SINT)((newToken6->startColumn)), (((void *)0)), (_U_UINT)1602, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken6->length)), (((void *)0)), (_U_UINT)1602, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken6->str), (((void *)0)), (_U_UINT)1602); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken6->type)), (((void *)0)), (_U_UINT)1600, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(123.32) * (_UF)(0.00001f)), (_UF)((_UF)123.32), (_UF)((_UF)newToken6->value), (((void *)0)), (_U_UINT)(_U_UINT)1600); UnityAssertEqualNumber((_U_SINT)((31)), (_U_SINT)((newToken6->startColumn)), (((void *)0)), (_U_UINT)1600, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((newToken6->length)), (((void *)0)), (_U_UINT)1600, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken6->str), (((void *)0)), (_U_UINT)1600); };
 
    dumpToken(newToken6);
 
@@ -3058,7 +3055,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    FloatToken* peepToken5 =(FloatToken*)peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((peepToken5->type)), (((void *)0)), (_U_UINT)1606, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(123.32) * (_UF)(0.00001f)), (_UF)((_UF)123.32), (_UF)((_UF)peepToken5->value), (((void *)0)), (_U_UINT)(_U_UINT)1606); UnityAssertEqualNumber((_U_SINT)((31)), (_U_SINT)((peepToken5->startColumn)), (((void *)0)), (_U_UINT)1606, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken5->length)), (((void *)0)), (_U_UINT)1606, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken5->str), (((void *)0)), (_U_UINT)1606); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((peepToken5->type)), (((void *)0)), (_U_UINT)1604, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(123.32) * (_UF)(0.00001f)), (_UF)((_UF)123.32), (_UF)((_UF)peepToken5->value), (((void *)0)), (_U_UINT)(_U_UINT)1604); UnityAssertEqualNumber((_U_SINT)((31)), (_U_SINT)((peepToken5->startColumn)), (((void *)0)), (_U_UINT)1604, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((6)), (_U_SINT)((peepToken5->length)), (((void *)0)), (_U_UINT)1604, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken5->str), (((void *)0)), (_U_UINT)1604); };
 
    dumpToken(peepToken5);
 
@@ -3066,7 +3063,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    FloatToken* newToken7 =(FloatToken*)getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken7->type)), (((void *)0)), (_U_UINT)1610, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e2) * (_UF)(0.00001f)), (_UF)((_UF).1e2), (_UF)((_UF)newToken7->value), (((void *)0)), (_U_UINT)(_U_UINT)1610); UnityAssertEqualNumber((_U_SINT)((38)), (_U_SINT)((newToken7->startColumn)), (((void *)0)), (_U_UINT)1610, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken7->length)), (((void *)0)), (_U_UINT)1610, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken7->str), (((void *)0)), (_U_UINT)1610); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((newToken7->type)), (((void *)0)), (_U_UINT)1608, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e2) * (_UF)(0.00001f)), (_UF)((_UF).1e2), (_UF)((_UF)newToken7->value), (((void *)0)), (_U_UINT)(_U_UINT)1608); UnityAssertEqualNumber((_U_SINT)((38)), (_U_SINT)((newToken7->startColumn)), (((void *)0)), (_U_UINT)1608, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken7->length)), (((void *)0)), (_U_UINT)1608, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(newToken7->str), (((void *)0)), (_U_UINT)1608); };
 
    dumpToken(newToken7);
 
@@ -3074,7 +3071,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    peepToken5 =(FloatToken*)peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((peepToken5->type)), (((void *)0)), (_U_UINT)1614, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e2) * (_UF)(0.00001f)), (_UF)((_UF).1e2), (_UF)((_UF)peepToken5->value), (((void *)0)), (_U_UINT)(_U_UINT)1614); UnityAssertEqualNumber((_U_SINT)((38)), (_U_SINT)((peepToken5->startColumn)), (((void *)0)), (_U_UINT)1614, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((peepToken5->length)), (((void *)0)), (_U_UINT)1614, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken5->str), (((void *)0)), (_U_UINT)1614); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_FLOAT_TYPE)), (_U_SINT)((peepToken5->type)), (((void *)0)), (_U_UINT)1612, UNITY_DISPLAY_STYLE_INT); UnityAssertFloatsWithin((_UF)((_UF)(.1e2) * (_UF)(0.00001f)), (_UF)((_UF).1e2), (_UF)((_UF)peepToken5->value), (((void *)0)), (_U_UINT)(_U_UINT)1612); UnityAssertEqualNumber((_U_SINT)((38)), (_U_SINT)((peepToken5->startColumn)), (((void *)0)), (_U_UINT)1612, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((peepToken5->length)), (((void *)0)), (_U_UINT)1612, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("string 12342 ser1234 1+ \"1234\" 123.32 .1e2  "), (const char*)(peepToken5->str), (((void *)0)), (_U_UINT)1612); };
 
    dumpToken(peepToken5);
 
@@ -3082,7 +3079,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    newToken4 = (OperatorToken*) getToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1618, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1618); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1616, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1616); };
 
    dumpToken(newToken4);
 
@@ -3090,7 +3087,7 @@ void test_StringTokenizer_given_Long_STR_should_return_IntegerToken(void){
 
    newToken4 = (OperatorToken*) peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1622, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1622); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_OPERATOR_TYPE)), (_U_SINT)((newToken4->type)), (((void *)0)), (_U_UINT)1620, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("$"), (const char*)(newToken4->symbol), (((void *)0)), (_U_UINT)1620); };
 
    dumpToken(newToken4);
 
@@ -3110,7 +3107,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
  IntegerToken *newToken =(IntegerToken*) getToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1632, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1632, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1632, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1632, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1632); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1630, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1630, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1630, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1630, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1630); };
 
  dumpToken(newToken);
 
@@ -3118,7 +3115,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
   IntegerToken *newToken1 =(IntegerToken*) peepToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1636, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1636, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1636, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1636, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1636); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1634, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1634, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1634, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1634, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1634); };
 
  dumpToken(newToken1);
 
@@ -3126,7 +3123,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
   IntegerToken *newToken2 =(IntegerToken*) peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1640, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)1640, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1640, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1640, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1640); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1638, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0212)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)1638, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1638, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((4)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1638, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1638); };
 
  dumpToken(newToken2);
 
@@ -3138,7 +3135,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
   printf("newToken->value = %d\n",newToken->value);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1646, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1646, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1646, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1646, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1646); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken->type)), (((void *)0)), (_U_UINT)1644, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken->value)), (((void *)0)), (_U_UINT)1644, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->startColumn)), (((void *)0)), (_U_UINT)1644, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken->length)), (((void *)0)), (_U_UINT)1644, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken->str), (((void *)0)), (_U_UINT)1644); };
 
  dumpToken(newToken);
 
@@ -3146,7 +3143,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
   newToken1 =(IntegerToken*) peepToken(str);
 
-  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1650, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1650, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1650, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1650, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1650); };
+  { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken1->type)), (((void *)0)), (_U_UINT)1648, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken1->value)), (((void *)0)), (_U_UINT)1648, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->startColumn)), (((void *)0)), (_U_UINT)1648, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken1->length)), (((void *)0)), (_U_UINT)1648, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken1->str), (((void *)0)), (_U_UINT)1648); };
 
  dumpToken(newToken1);
 
@@ -3154,7 +3151,7 @@ void test_peepToken_given_0212_12342_should_return_IntegerToken(void){
 
   newToken2 =(IntegerToken*) peepToken(str);
 
-   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1654, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)1654, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1654, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1654, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1654); };
+   { UnityAssertEqualNumber((_U_SINT)((TOKEN_INTEGER_TYPE)), (_U_SINT)((newToken2->type)), (((void *)0)), (_U_UINT)1652, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((12342)), (_U_SINT)((newToken2->value)), (((void *)0)), (_U_UINT)1652, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->startColumn)), (((void *)0)), (_U_UINT)1652, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualNumber((_U_SINT)((5)), (_U_SINT)((newToken2->length)), (((void *)0)), (_U_UINT)1652, UNITY_DISPLAY_STYLE_INT); UnityAssertEqualString((const char*)("0212 12342"), (const char*)(newToken2->str), (((void *)0)), (_U_UINT)1652); };
 
  dumpToken(newToken2);
 
@@ -3200,19 +3197,19 @@ void test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA(void){
 
   IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1677);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1675);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
      printf("%s",err->errorMsg);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1680, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1678, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"  ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1683);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1681);
 
      freeError(err);
 
@@ -3240,19 +3237,19 @@ void test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA(void
 
   IntegerToken *newToken =(IntegerToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1697);;
+    UnityFail( ("Expect ERR_CANNOT_CONTAIN_ALPHA to be thrown. But none thrown."), (_U_UINT)1695);;
 
  }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
      printf("%s",err->errorMsg);
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1700, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1698, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1703);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1701);
 
      freeError(err);
 
@@ -3280,7 +3277,7 @@ void test_StringTokenizer_given_string_point1emunispoint_symbol_given_should_ret
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-     UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)1717);;
+     UnityFail( ("Expect ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING to be thrown. But none thrown."), (_U_UINT)1715);;
 
     }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -3288,13 +3285,13 @@ void test_StringTokenizer_given_string_point1emunispoint_symbol_given_should_ret
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1721, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_TWO_DECIMAL_POINT_IN_A_FLOATING)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1719, UNITY_DISPLAY_STYLE_INT);
 
      sprintf(ErrMsg,"Expected Character is digit, but that was floating point'%c'", strO->str[strO->index]);
 
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"    ^");
 
-     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1724);
+     UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1722);
 
      freeError(err);
 
@@ -3322,7 +3319,7 @@ void test_StringTokenizer_given_decimal_point_1eplus2__given_should_throw_err_IN
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1738);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1736);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -3330,13 +3327,13 @@ void test_StringTokenizer_given_decimal_point_1eplus2__given_should_throw_err_IN
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1742, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT_1)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1740, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"   ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1745);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1743);
 
      freeError(err);
 
@@ -3362,7 +3359,7 @@ void test_StringTokenizer_given_decimal_point_1eplusA23__given_should_throw_err_
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1758);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1756);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -3370,13 +3367,13 @@ void test_StringTokenizer_given_decimal_point_1eplusA23__given_should_throw_err_
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1762, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_CANNOT_CONTAIN_ALPHA)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1760, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was '%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"     ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1765);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1763);
 
      freeError(err);
 
@@ -3402,7 +3399,7 @@ void test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_thro
 
  FloatToken *newToken =(FloatToken*) getToken(strO);
 
-    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1778);;
+    UnityFail( ("Expect ERR_INVALID_UNKNOWN_SYMBOL to be thrown. But none thrown."), (_U_UINT)1776);;
 
    }else { } CExceptionFrames[MY_ID].Exception = ((void *)0); } else { err = CExceptionFrames[MY_ID].Exception; err=err; } CExceptionFrames[MY_ID].pFrame = PrevFrame; } if (CExceptionFrames[(0)].Exception != ((void *)0)){
 
@@ -3410,18 +3407,156 @@ void test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_thro
 
 
 
-     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1782, UNITY_DISPLAY_STYLE_INT);
+     UnityAssertEqualNumber((_U_SINT)((ERR_INVALID_UNKNOWN_SYMBOL)), (_U_SINT)((err->errorCode)), (((void *)0)), (_U_UINT)1780, UNITY_DISPLAY_STYLE_INT);
 
       sprintf(ErrMsg,"Expected Character is digit, but that was unknown character'%c'", strO->str[strO->index]);
 
       sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"       ^");
 
-      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1785);
+      UnityAssertEqualString((const char*)(buffer), (const char*)(err->errorMsg), (((void *)0)), (_U_UINT)1783);
 
      freeError(err);
 
  }
 
  printf("No.119\n");
+
+}
+
+
+
+
+
+void test_StringTokenizer_given_234_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("234");
+
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+  testAsserEqualIntegerToken(234,newToken,1793);
+
+  dumpToken(newToken);
+
+  printf("No.120\n");
+
+}
+
+
+
+
+
+void test_StringTokenizer_given_0XA34_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0XA34");
+
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+  testAsserEqualIntegerToken(0XA34,newToken,1802);
+
+  dumpToken(newToken);
+
+  printf("No.121\n");
+
+}
+
+
+
+void test_StringTokenizer_given_0777_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("0777");
+
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+
+  testAsserEqualIntegerToken(0777,newToken,1810);
+
+  dumpToken(newToken);
+
+  printf("No.122\n");
+
+}
+
+
+
+
+
+void test_StringTokenizer_given_1e7_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("1e7");
+
+  FloatToken *newToken =(FloatToken*) getToken(str);
+
+  testAsserEqualFloatToken(1e7,newToken,1819);
+
+  dumpToken(newToken);
+
+  printf("No.123\n");
+
+}
+
+
+
+void test_StringTokenizer_given_1dot78_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("1.78");
+
+  FloatToken *newToken =(FloatToken*) getToken(str);
+
+  testAsserEqualFloatToken(1.78,newToken,1827);
+
+  dumpToken(newToken);
+
+  printf("No.124\n");
+
+}
+
+
+
+void test_StringTokenizer_given_1dot7e3_should_return_IntegerToken(void){
+
+  StringObject* str = createStringObject("1.7e3");
+
+  FloatToken *newToken =(FloatToken*) getToken(str);
+
+  testAsserEqualFloatToken(1.7e3,newToken,1835);
+
+  dumpToken(newToken);
+
+  printf("No.125\n");
+
+}
+
+
+
+void test_StringTokenizer_given_string_A12_B22_given_should_return_IdentifierToken(void){
+
+  StringObject *str = createStringObject("A12 B22");
+
+  StringToken *newToken =(StringToken*) getToken(str);
+
+  testAsserEqualIdentifierToken("A12",newToken,1843);
+
+  dumpToken(newToken);
+
+  newToken = (StringToken*) getToken(str);
+
+  testAsserEqualIdentifierToken("B22",newToken,1846);
+
+  dumpToken(newToken);
+
+  printf("No.126\n");
+
+}
+
+
+
+void test_StringTokenizer_given_string_given_double_quote_123sAV_should_return_stringToken(void){
+
+  StringToken *newToken =(StringToken*) getToken(createStringObject("\"123sAV+\"+  ABCS"));
+
+  testAsserEqualStringToken("\"123sAV+\"",newToken,1853);
+
+  dumpToken(newToken);
+
+ printf("No.127\n");
 
 }

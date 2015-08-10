@@ -4,367 +4,391 @@
   :file: test_StringTokenizer.c
 :successes:
 - :test: test_StringTokenizer_given_string_1_should_return_IntegerToken
-  :line: 31
+  :line: 30
   :message: ''
 - :test: test_StringTokenizer_given_string_1234_should_return_IntegerToken
-  :line: 39
+  :line: 38
   :message: ''
 - :test: test_StringTokenizer_given_string_1234space_should_return_IntegerToken
-  :line: 47
+  :line: 46
   :message: ''
 - :test: test_StringTokenizer_given_string_1234endline_should_return_IntegerToken
-  :line: 55
+  :line: 54
   :message: ''
 - :test: test_StringTokenizer_given_string_1234_0__should_return_IntegerToken
-  :line: 63
+  :line: 62
   :message: ''
 - :test: test_StringTokenizer_given_string_space_should_return_OperatorToken_that_symbol_is_money
-  :line: 69
+  :line: 68
   :message: ''
 - :test: test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_return_OperatorToken
-  :line: 78
+  :line: 77
   :message: ''
 - :test: test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL
-  :line: 97
+  :line: 96
   :message: ''
 - :test: test_StringTokenizer_given_string_12A34_throw_err_STR_INCLURE_ALPHA
-  :line: 115
+  :line: 113
   :message: ''
 - :test: test_StringTokenizer_given_string_123star4_should_return_INTEGER_TOKEN
-  :line: 137
+  :line: 135
   :message: ''
 - :test: test_StringTokenizer_given_string_return_money
-  :line: 144
+  :line: 142
   :message: ''
 - :test: test_StringTokenizer_given_string_1234_4321_should_return_2_IntegerToken
-  :line: 152
+  :line: 150
   :message: ''
 - :test: test_StringTokenizer_given_string_123_4_214_should_return_3_IntegerToken
-  :line: 170
+  :line: 168
   :message: ''
 - :test: test_TransitionForOp_given_string_symbol1_should_return_OperatorToken
-  :line: 206
+  :line: 204
   :message: ''
 - :test: test_TransitionForOp_given_string_symbol2_should_return_OperatorToken
-  :line: 220
+  :line: 218
   :message: ''
 - :test: test_TransitionForOp_given_string_given_invalid_symbol2_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 234
+  :line: 232
   :message: ''
 - :test: test_StringTokenizer_given_string_symbol_should_return_OperatorToken
-  :line: 251
+  :line: 249
   :message: ''
 - :test: test_StringTokenizer_given_string_plus_0_should_return_OperatorToken
-  :line: 258
+  :line: 256
   :message: ''
 - :test: test_StringTokenizer_given_string_symbol1_should_return_OperatorToken
-  :line: 267
+  :line: 265
   :message: ''
 - :test: test_StringTokenizer_given_string_TwinOperator_should_return_OperatorToken
-  :line: 275
+  :line: 273
   :message: ''
 - :test: test_StringTokenizer_given_string_AssignmentOperator_should_return_OperatorToken
-  :line: 283
+  :line: 281
   :message: ''
 - :test: test_StringTokenizer_given_string_TwinAssignmentOperator_should_return_OperatorToken
-  :line: 292
+  :line: 290
   :message: ''
 - :test: test_StringTokenizer_given_string_TwinAssignmentOperator_shift_assignemt_should_return_OperatorToken
-  :line: 300
+  :line: 298
   :message: ''
 - :test: test_StringTokenizer_given_string_space_AssignmentOperator_should_return_OperatorToken
-  :line: 309
+  :line: 307
   :message: ''
 - :test: test_StringTokenizer_given_string_space_space_TwinOperator_should_return_OperatorToken
-  :line: 317
+  :line: 315
   :message: ''
 - :test: test_StringTokenizer_given_string_singleOperator_should_return_OperatorToken
-  :line: 325
+  :line: 323
   :message: ''
 - :test: test_StringTokenizer_given_string_singleOperator_paket_should_return_OperatorToken
-  :line: 333
+  :line: 331
   :message: ''
 - :test: test_StringTokenizer_given_string_TwinOperator_assignment_should_return_OperatorToken
-  :line: 341
+  :line: 339
   :message: ''
 - :test: test_StringTokenizer_given_string_plus_n_should_return_OperatorToken
-  :line: 349
+  :line: 347
   :message: ''
 - :test: test_StringTokenizer_given_string_symbol2_should_return_OperatorToken
-  :line: 357
+  :line: 355
   :message: ''
 - :test: test_StringTokenizer_given_string_symbol3_should_return_OperatorToken
-  :line: 365
+  :line: 363
   :message: ''
 - :test: test_StringTokenizer_given_string_TwinAssignmentOperator3_should_return_OperatorToken
-  :line: 386
+  :line: 384
   :message: ''
 - :test: test_StringTokenizer_given_string_AssignmentOperator3_should_return_OperatorToken
-  :line: 394
+  :line: 392
   :message: ''
 - :test: test_StringTokenizer_given_string_Assignment_A_Assignment_should_return_OperatorToken
-  :line: 401
+  :line: 399
   :message: ''
 - :test: test_StringTokenizer_given_string_doller_plus_plus_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 411
+  :line: 409
   :message: ''
 - :test: test_StringTokenizer_given_string_unknown_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 430
+  :line: 428
   :message: ''
 - :test: test_StringTokenizer_given_string_Assign_Assign_doller_should_return_OperatorToken
-  :line: 449
+  :line: 447
   :message: ''
 - :test: test_StringTokenizer_given_string_Assign_doller_should_return_OperatorToken
-  :line: 470
+  :line: 468
   :message: ''
 - :test: test_StringTokenizer_given_string_given_double_quote_123s_should_return_stringToken
-  :line: 492
+  :line: 490
   :message: ''
 - :test: test_StringTokenizer_given_string_given_double_quote_symbol_should_return_stringToken
-  :line: 502
+  :line: 500
   :message: ''
 - :test: test_StringTokenizer_given_string_given_space_double_quote_symbol_should_return_stringToken
-  :line: 512
+  :line: 510
   :message: ''
 - :test: test_StringTokenizer_given_string_given__double_quote_symbol_space_should_return_stringToken
-  :line: 520
+  :line: 518
   :message: ''
 - :test: test_StringTokenizer_given_string_given_double_quote_string_1234_123_should_return_stringToken
-  :line: 529
+  :line: 527
   :message: ''
 - :test: test_StringTokenizer_given_string_given_double_quote_string_space_should_return_stringToken
-  :line: 538
+  :line: 536
   :message: ''
 - :test: test_StringTokenizer_given_string_given_double_quote_string_1234234_should_throw_err_END_OF_STR_WITHOUT_DOUBLE_QUOTE
-  :line: 547
+  :line: 545
   :message: ''
 - :test: test_StringTokenizer_given_string_given_ABD1234_should_return_IdentifierToken
-  :line: 567
+  :line: 565
   :message: ''
 - :test: test_StringTokenizer_given_string_given__1234_should_return_IdentifierToken
-  :line: 576
+  :line: 574
   :message: ''
 - :test: test_StringTokenizer_given_string_given_should_return_IdentifierToken
-  :line: 585
+  :line: 583
   :message: ''
 - :test: test_StringTokenizer_given_string_______given_should_return_IdentifierToken
-  :line: 593
+  :line: 591
   :message: ''
 - :test: test_StringTokenizer_given_string_A_B_C_1_2_given_should_return_IdentifierToken
-  :line: 601
+  :line: 599
   :message: ''
 - :test: test_StringTokenizer_given_string_A_ABC_symbol_given_should_return_IdentifierToken
-  :line: 609
+  :line: 607
   :message: ''
 - :test: test_StringTokenizer_given_string_ABC_ACB_symbol_given_should_return_IdentifierToken
-  :line: 617
+  :line: 615
   :message: ''
 - :test: test_StringTokenizer_given_string_A12_B22_symbol_given_should_return_IdentifierToken
-  :line: 631
+  :line: 629
   :message: ''
 - :test: test_StringTokenizer_given_string_A12_and_B22_given_should_return_IdentifierToken
-  :line: 651
+  :line: 649
   :message: ''
 - :test: test_StringTokenizer_given_string_A_A__symbol_given_should_return_IdentifierToken
-  :line: 666
+  :line: 664
   :message: ''
 - :test: test_StringTokenizer_given_string__AWDC_123_doller_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 674
+  :line: 672
   :message: ''
 - :test: test_StringTokenizer_given_string_dot__symbol_given_should_return_OperatorToken
-  :line: 694
+  :line: 692
   :message: ''
 - :test: test_StringTokenizer_given_string_dot_dollar_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 702
+  :line: 700
   :message: ''
 - :test: test_TransitionForDot_given_string_given_digit_should_return_FloatingState
-  :line: 723
+  :line: 721
   :message: ''
 - :test: test_StringTokenizer_given_string_dot_A_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 737
+  :line: 735
   :message: ''
 - :test: test_StringTokenizer_given_string_dot_times_8_symbol_given_should_throw_err_STR_CANNOT_CONTAIN_INVALID_SYMBOL
-  :line: 748
+  :line: 746
   :message: ''
 - :test: test_StringTokenizer_given_string_decimal_point_001_symbol_given_should_return_FloatToken
-  :line: 756
+  :line: 754
   :message: ''
 - :test: test_StringTokenizer_given_string_decimal_point_01_plus_symbol_given_should_return_FloatToken
-  :line: 764
+  :line: 762
   :message: ''
 - :test: test_StringTokenizer_given_string_decimal_point_01_A_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 773
+  :line: 771
   :message: ''
 - :test: test_StringTokenizer_given_string_decimal_point_01_dollar_symbol_given_should_return_FloatToken
-  :line: 794
+  :line: 792
   :message: ''
 - :test: test_StringTokenizer_given_string_double_decimal_point_01_dollar_symbol_given_should_return_FloatToken
-  :line: 815
+  :line: 813
   :message: ''
 - :test: test_StringTokenizer_given_string_double_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return
-  :line: 836
+  :line: 834
   :message: ''
 - :test: test_StringTokenizer_given_string_trible_decimal_point_123_given_should_return_OperatorToken_and_FloatToken_symbol_given_should_return
-  :line: 848
+  :line: 846
   :message: ''
 - :test: test_StringTokenizer_given_string_dot_e123_symbol_given_should_return_OperatorToken_and_IdentifierToken
-  :line: 863
+  :line: 861
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_e1_symbol_given_should_return_FloatToken
-  :line: 878
+  :line: 876
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_e10_and_given_should_return_FloatToken
-  :line: 888
+  :line: 886
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_e10_and_space_given_should_return_FloatToken
-  :line: 899
+  :line: 897
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_e_and_space_given_should_throw_err_BEHIND_EXPONENTIAL_MUST_BE_A_DIGIT
-  :line: 910
+  :line: 908
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point__1e2_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 930
+  :line: 928
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point__1e2_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 951
+  :line: 949
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1e2_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 972
+  :line: 970
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eminus10_and_space_given_should_return_FloatToken
-  :line: 992
+  :line: 990
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eplus10_and_space_given_should_return_FloatToken
-  :line: 1002
+  :line: 1000
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eplus1minus1234_given_should_return_FloatToken
-  :line: 1012
+  :line: 1010
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eminus2_point_123_decimal_point_1234_doller_given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
-  :line: 1022
+  :line: 1020
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eminus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
-  :line: 1043
+  :line: 1041
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eminus2ASDSA__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 1063
+  :line: 1061
   :message: ''
 - :test: test_StringTokenizer_given_1dot1124_should_return_FloatToken
-  :line: 1083
+  :line: 1081
   :message: ''
 - :test: test_StringTokenizer_given_1_decimal_point_12A__given_should_throw_err_INTEGER_CANNOT_CONTAIN_ALPHA
-  :line: 1093
+  :line: 1091
   :message: ''
 - :test: test_StringTokenizer_given_1e12_given_should_return_IntegerToken
-  :line: 1115
+  :line: 1113
   :message: ''
 - :test: test_StringTokenizer_given_09_should_throw_err_INVALID_OCTAL
-  :line: 1125
+  :line: 1123
   :message: ''
 - :test: test_StringTokenizer_given_0A_should_throw_err_STR_INCLURE_ALPHA
-  :line: 1146
+  :line: 1144
   :message: ''
 - :test: test_StringTokenizer_given_0x12A_should_return_IntegerToken
-  :line: 1167
+  :line: 1165
   :message: ''
 - :test: test_StringTokenizer_given_0X12B_should_return_IntegerToken
-  :line: 1178
+  :line: 1176
   :message: ''
 - :test: test_StringTokenizer_given_0XA_should_return_IntegerToken
-  :line: 1188
+  :line: 1186
   :message: ''
 - :test: test_StringTokenizer_given_0XA1234space_should_return_IntegerToken
-  :line: 1198
+  :line: 1196
   :message: ''
 - :test: test_StringTokenizer_given_0XA1234n_should_return_IntegerToken
-  :line: 1208
+  :line: 1206
   :message: ''
 - :test: test_StringTokenizer_given_0XA1and_should_return_IntegerToken
-  :line: 1218
+  :line: 1216
   :message: ''
 - :test: test_StringTokenizer_given_0XA1point_should_return_IntegerToken
-  :line: 1228
+  :line: 1226
   :message: ''
 - :test: test_StringTokenizer_given_0XS_should_return_IntegerToken
-  :line: 1238
+  :line: 1236
   :message: ''
 - :test: test_StringTokenizer_given_0Xand_should_return_IntegerToken
-  :line: 1258
+  :line: 1256
   :message: ''
 - :test: test_StringTokenizer_given_0X_should_return_IntegerToken
-  :line: 1279
+  :line: 1277
   :message: ''
 - :test: test_StringTokenizer_given_0Xspace_should_return_IntegerToken
-  :line: 1299
+  :line: 1297
   :message: ''
 - :test: test_StringTokenizer_given_0Xnewline_should_return_IntegerToken
-  :line: 1319
+  :line: 1317
   :message: ''
 - :test: test_StringTokenizer_given_0XADU_should_return_IntegerToken
-  :line: 1341
+  :line: 1339
   :message: ''
 - :test: test_StringTokenizer_given_0XADdoller_should_return_IntegerToken
-  :line: 1361
+  :line: 1359
   :message: ''
 - :test: test_StringTokenizer_given_0124_should_return_IntegerToken
-  :line: 1381
+  :line: 1379
   :message: ''
 - :test: test_StringTokenizer_given_0823_should_return_IntegerToken
-  :line: 1391
+  :line: 1389
   :message: ''
 - :test: test_StringTokenizer_given_0923_should_return_IntegerToken
-  :line: 1412
+  :line: 1410
   :message: ''
 - :test: test_StringTokenizer_given_0723_should_return_IntegerToken
-  :line: 1432
+  :line: 1430
   :message: ''
 - :test: test_StringTokenizer_given_0212and_should_return_IntegerToken
-  :line: 1450
+  :line: 1448
   :message: ''
 - :test: test_StringTokenizer_given_0312space_should_return_IntegerToken
-  :line: 1460
+  :line: 1458
   :message: ''
 - :test: test_StringTokenizer_given_0412newline_should_return_IntegerToken
-  :line: 1470
+  :line: 1468
   :message: ''
 - :test: test_StringTokenizer_given_072823_should_return_IntegerToken
-  :line: 1481
+  :line: 1479
   :message: ''
 - :test: test_StringTokenizer_given_072doller23_should_return_IntegerToken
-  :line: 1502
+  :line: 1500
   :message: ''
 - :test: test_StringTokenizer_given_072A23_should_return_IntegerToken
-  :line: 1523
+  :line: 1521
   :message: ''
 - :test: test_StringTokenizer_given_Long_STR_should_return_IntegerToken
-  :line: 1547
+  :line: 1545
   :message: ''
 - :test: test_peepToken_given_0212_12342_should_return_IntegerToken
-  :line: 1629
+  :line: 1627
   :message: ''
 - :test: test_StringTokenizer_given_string_12A_throw_err_STR_INCLURE_ALPHA
-  :line: 1669
+  :line: 1667
   :message: ''
 - :test: test_StringTokenizer_given_string_12doller_throw_err_STR_INCLURE_ALPHA
-  :line: 1690
+  :line: 1688
   :message: ''
 - :test: test_StringTokenizer_given_string_point1emunispoint_symbol_given_should_return_FloatToken
-  :line: 1710
+  :line: 1708
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eplus2__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
-  :line: 1731
+  :line: 1729
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eplusA23__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
-  :line: 1751
+  :line: 1749
   :message: ''
 - :test: test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_throw_err_INTEGER_CANNOT_CONTAIN_SECOND_DECIMAL_POINT
-  :line: 1771
+  :line: 1769
+  :message: ''
+- :test: test_StringTokenizer_given_234_should_return_IntegerToken
+  :line: 1790
+  :message: ''
+- :test: test_StringTokenizer_given_0XA34_should_return_IntegerToken
+  :line: 1799
+  :message: ''
+- :test: test_StringTokenizer_given_0777_should_return_IntegerToken
+  :line: 1807
+  :message: ''
+- :test: test_StringTokenizer_given_1e7_should_return_IntegerToken
+  :line: 1816
+  :message: ''
+- :test: test_StringTokenizer_given_1dot78_should_return_IntegerToken
+  :line: 1824
+  :message: ''
+- :test: test_StringTokenizer_given_1dot7e3_should_return_IntegerToken
+  :line: 1832
+  :message: ''
+- :test: test_StringTokenizer_given_string_A12_B22_given_should_return_IdentifierToken
+  :line: 1840
+  :message: ''
+- :test: test_StringTokenizer_given_string_given_double_quote_123sAV_should_return_stringToken
+  :line: 1851
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 119
-  :passed: 119
+  :total: 127
+  :passed: 127
   :failed: 0
   :ignored: 0
 :stdout:
@@ -382,10 +406,10 @@
 - No.4
 - newToken->symbol = $
 - No.5
-- No.6
 - newToken->value = 1234
 - newToken->symbol = $
 - newToken->symbol = $
+- No.6
 - Error:The String can't be a NULL
 - No.7
 - Error[2]:Expected Character is digit, but that was 'A'
@@ -475,7 +499,6 @@
 - name = "",[TOKEN_STRING_TYPE]
 - No.44
 - Error[9]:End of string without double quote
-- ''
 - "\"1234234 "
 - "         ^"
 - No.45
@@ -772,4 +795,42 @@
 - ".1e+123$"
 - "       ^"
 - No.119
+- value = 234
+- value(HEX) = 0xEA
+- value(OCT) = 0352,[TOKEN_INTEGER_TYPE]
+- No.120
+- value = 2612
+- value(HEX) = 0xA34
+- value(OCT) = 05064,[TOKEN_INTEGER_TYPE]
+- No.121
+- value = 511
+- value(HEX) = 0x1FF
+- value(OCT) = 0777,[TOKEN_INTEGER_TYPE]
+- No.122
+- value = 10000000.000000,[TOKEN_FLOAT_TYPE]
+- No.123
+- value = 1.780000,[TOKEN_FLOAT_TYPE]
+- No.124
+- value = 1700.000000,[TOKEN_FLOAT_TYPE]
+- No.125
+- actualStr[0] = A,ExpectedStr[0] = A
+- actualStr[1] = 1,ExpectedStr[1] = 1
+- actualStr[2] = 2,ExpectedStr[2] = 2
+- name = A12,[TOKEN_IDENTIFIER_TYPE]
+- actualStr[0] = B,ExpectedStr[0] = B
+- actualStr[1] = 2,ExpectedStr[1] = 2
+- actualStr[2] = 2,ExpectedStr[2] = 2
+- name = B22,[TOKEN_IDENTIFIER_TYPE]
+- No.126
+- actualStr[0] = ",ExpectedStr[0] = "
+- actualStr[1] = 1,ExpectedStr[1] = 1
+- actualStr[2] = 2,ExpectedStr[2] = 2
+- actualStr[3] = 3,ExpectedStr[3] = 3
+- actualStr[4] = s,ExpectedStr[4] = s
+- actualStr[5] = A,ExpectedStr[5] = A
+- actualStr[6] = V,ExpectedStr[6] = V
+- actualStr[7] = +,ExpectedStr[7] = +
+- actualStr[8] = ",ExpectedStr[8] = "
+- name = "123sAV+",[TOKEN_STRING_TYPE]
+- No.127
 - ''

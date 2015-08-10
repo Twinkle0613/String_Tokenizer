@@ -1,7 +1,0 @@
----
-- unity.h
-- TokenError.h
-- ErrorObject.h
-- subFunction.h
-- CException.h
-- OperatorChecker.h

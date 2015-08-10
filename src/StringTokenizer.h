@@ -14,7 +14,7 @@
 #include <malloc.h>
 
 StringObject *createStringObject(char *ch);
-void stateTransition( StringObject* strO , TokenState *currentState, int* startColumn);
+void stateTransition ( TokenState *currentState, StringObject* strO );
 Token *peepToken(StringObject *strO);
 Token *getToken(StringObject *strO);
 void transitionForInt(TokenState* currentState , StringObject* strO );

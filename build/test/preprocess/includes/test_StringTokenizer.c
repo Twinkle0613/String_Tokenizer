@@ -5,3 +5,4 @@
 - unity.h
 - TextCode.h
 - TokenError.h
+- CustomAssertion.h

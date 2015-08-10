@@ -1,12 +1,11 @@
 //Own module files
 #include "StringTokenizer.h"
-//#include "subFunction.h"
 #include "OperatorChecker.h"
 #include "Token.h"
 #include "unity.h"
 #include "TextCode.h"
 #include "TokenError.h"
-
+#include "CustomAssertion.h"
 
 void setUp(void){}
 
@@ -30,84 +29,83 @@ void tearDown(void){}
 
 void test_StringTokenizer_given_string_1_should_return_IntegerToken(void){
 
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1"));
-		printf("newToken->value = %d\n",newToken->value);
-		TEST_ASSERT_INTEGER_TOKEN(1,0,1,"1",newToken);
-		dumpToken(newToken);
-		printf("No.1\n");
- }
+  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1"));
+  printf("newToken->value = %d\n",newToken->value);
+  TEST_ASSERT_INTEGER_TOKEN(1,0,1,"1",newToken);
+  dumpToken(newToken);
+  printf("No.1\n");
+}
 void test_StringTokenizer_given_string_1234_should_return_IntegerToken(void){
 
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234"));
-		printf("newToken->value = %d\n",newToken->value);
-		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
-		printf("No.1\n");
- }
+  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234"));
+  printf("newToken->value = %d\n",newToken->value);
+  TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
+  printf("No.1\n");
+}
  
 void test_StringTokenizer_given_string_1234space_should_return_IntegerToken(void){
 
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234 "));
-		printf("newToken->value = %d\n",newToken->value);
-		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234 ",newToken);
-		printf("No.2\n");
- }
+  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234 "));
+  printf("newToken->value = %d\n",newToken->value);
+  TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234 ",newToken);
+  printf("No.2\n");
+}
  
 void test_StringTokenizer_given_string_1234endline_should_return_IntegerToken(void){
 
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\n"));
-		printf("newToken->value = %d\n",newToken->value);
-		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234\n",newToken);
-		printf("No.3\n");
+  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\n"));
+  printf("newToken->value = %d\n",newToken->value);
+  TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234\n",newToken);
+  printf("No.3\n");
  }
 
 void test_StringTokenizer_given_string_1234_0__should_return_IntegerToken(void){
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\0"));
-		TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
-		printf("No.4\n");
+  IntegerToken *newToken =(IntegerToken*) getToken(createStringObject("1234\0"));
+  TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken);
+  printf("No.4\n");
  }
 
 void test_StringTokenizer_given_string_space_should_return_OperatorToken_that_symbol_is_money(void){
 
-		OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(" "));
-		printf("newToken->symbol = %s\n",newToken->symbol);
-		TEST_LAST_TOKEN(newToken);		
-		printf("No.5\n");
+  OperatorToken *newToken =(OperatorToken*) getToken(createStringObject(" "));
+  printf("newToken->symbol = %s\n",newToken->symbol);
+  TEST_LAST_TOKEN(newToken);		
+  printf("No.5\n");
 	}
 	
 
 void test_StringTokenizer_given_string_1234_should_return_IntegerToken_and_return_OperatorToken(void){
-		printf("No.6\n");
 
-	StringObject *str = createStringObject("1234");
 
-	IntegerToken *newToken1 = (IntegerToken*) getToken(str);
-	printf("newToken->value = %d\n",newToken1->value);
-	TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken1);
+  StringObject *str = createStringObject("1234");
 
-	OperatorToken *newToken2 = (OperatorToken*) getToken(str);
-	printf("newToken->symbol = %s\n",newToken2->symbol);
-	TEST_LAST_TOKEN(newToken2);
+  IntegerToken *newToken1 = (IntegerToken*) getToken(str);
+  printf("newToken->value = %d\n",newToken1->value);
+  TEST_ASSERT_INTEGER_TOKEN(1234,0,4,"1234",newToken1);
 
-	OperatorToken *newToken3 =(OperatorToken*) getToken(str);
-	printf("newToken->symbol = %s\n",newToken3->symbol);
-	TEST_LAST_TOKEN(newToken3);
+  OperatorToken *newToken2 = (OperatorToken*) getToken(str);
+  printf("newToken->symbol = %s\n",newToken2->symbol);
+  TEST_LAST_TOKEN(newToken2);
 
+  OperatorToken *newToken3 =(OperatorToken*) getToken(str);
+  printf("newToken->symbol = %s\n",newToken3->symbol);
+  TEST_LAST_TOKEN(newToken3);
+  printf("No.6\n");
 }
 
 void test_StringTokenizer_given_string_NULL_should_throw_err_STR_CANNOT_BE_NULL(void){
 
-		CEXCEPTION_T err;
-	Try{
-		IntegerToken *newToken =(IntegerToken*) getToken(createStringObject(NULL));
-		printf("newToken->value = %d\n",newToken->value);
-		
+  CEXCEPTION_T err;
+  Try{
+    IntegerToken *newToken =(IntegerToken*) getToken(createStringObject(NULL));
+    printf("newToken->value = %d\n",newToken->value);
     TEST_ASSERT_NULL(newToken);
-    TEST_FAIL_MESSAGE("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
-	}Catch(err){
-     printf("%s",err->errorMsg);
-     TEST_ASSERT_EQUAL_STRING("Error:The String can't be a NULL\n",err->errorMsg);
-     TEST_ASSERT_EQUAL(ERR_STR_CANNOT_BE_NULL_1,err->errorCode);
-     freeError(err);
+  TEST_FAIL_MESSAGE("Expect ERR_STR_CANNOT_BE_NULL_1 to be thrown. But none thrown.");
+  }Catch(err){
+  printf("%s",err->errorMsg);
+  TEST_ASSERT_EQUAL_STRING("Error:The String can't be a NULL\n",err->errorMsg);
+  TEST_ASSERT_EQUAL(ERR_STR_CANNOT_BE_NULL_1,err->errorCode);
+  freeError(err);
 	}
 		printf("No.7\n");
 }
@@ -556,7 +554,7 @@ void test_StringTokenizer_given_string_given_double_quote_string_1234234_should_
      printf("%s",err->errorMsg);
      //TEST_ASSERT_EQUAL_STRING("Error:End of string without double quote\n",err->errorMsg);
      TEST_ASSERT_EQUAL(ERR_END_OF_STR_WITHOUT_DOUBLE_QUOTE_1,err->errorCode);
-     sprintf(ErrMsg,"End of string without double quote\n");
+     sprintf(ErrMsg,"End of string without double quote");
      sprintf(buffer,"Error[%d]:%s\n%s\n%s\n",strO->index,ErrMsg,strO->str,"         ^");
      TEST_ASSERT_EQUAL_STRING(buffer,err->errorMsg);
      freeError(err);
@@ -1786,4 +1784,73 @@ void test_StringTokenizer_given_decimal_point_1eplus123doller__given_should_thro
      freeError(err);
 	}
 	printf("No.119\n");
+}
+
+
+void test_StringTokenizer_given_234_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("234");
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+  testAsserEqualIntegerToken(234,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.120\n");
+}
+
+
+void test_StringTokenizer_given_0XA34_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("0XA34");
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+  testAsserEqualIntegerToken(0XA34,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.121\n");
+}
+
+void test_StringTokenizer_given_0777_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("0777");
+  IntegerToken *newToken =(IntegerToken*) getToken(str);
+  testAsserEqualIntegerToken(0777,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.122\n");
+}
+
+
+void test_StringTokenizer_given_1e7_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("1e7");
+  FloatToken *newToken =(FloatToken*) getToken(str);
+  testAsserEqualFloatToken(1e7,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.123\n");
+}
+
+void test_StringTokenizer_given_1dot78_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("1.78");
+  FloatToken *newToken =(FloatToken*) getToken(str);
+  testAsserEqualFloatToken(1.78,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.124\n");
+}
+
+void test_StringTokenizer_given_1dot7e3_should_return_IntegerToken(void){
+  StringObject* str = createStringObject("1.7e3");
+  FloatToken *newToken =(FloatToken*) getToken(str);
+  testAsserEqualFloatToken(1.7e3,newToken,__LINE__);
+  dumpToken(newToken);  
+  printf("No.125\n");
+}
+
+void test_StringTokenizer_given_string_A12_B22_given_should_return_IdentifierToken(void){
+  StringObject *str = createStringObject("A12 B22");
+  StringToken *newToken =(StringToken*) getToken(str);
+  testAsserEqualIdentifierToken("A12",newToken,__LINE__);
+  dumpToken(newToken);
+  newToken = (StringToken*) getToken(str);
+  testAsserEqualIdentifierToken("B22",newToken,__LINE__);
+  dumpToken(newToken);
+  printf("No.126\n");
+}
+
+void test_StringTokenizer_given_string_given_double_quote_123sAV_should_return_stringToken(void){
+  StringToken *newToken =(StringToken*) getToken(createStringObject("\"123sAV+\"+  ABCS"));
+  testAsserEqualStringToken("\"123sAV+\"",newToken,__LINE__);
+  dumpToken(newToken);
+	printf("No.127\n");
 }

@@ -44,79 +44,78 @@
  */
  
 int operatorAtrributes[256] = {
-	
-	 ['<'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT, //< << <= <<= 
-	 ['>'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT,//> >> >=	>>=  
-	 ['+'] = SINGLE | TWIN | ASSIGNMENT, // + ++ += 
-	 ['-'] = SINGLE | TWIN | ASSIGNMENT, // - -- -= 
-	 ['/'] = SINGLE | TWIN | ASSIGNMENT, // / // /= 
-	 ['&'] = SINGLE | TWIN | ASSIGNMENT, // & && &= 
-	 ['|'] = SINGLE | TWIN | ASSIGNMENT, // | || |= 
-	 ['!'] = SINGLE | ASSIGNMENT,				 // ! !=
-	 ['*'] = SINGLE | ASSIGNMENT,        // * *= 
-   ['^'] = SINGLE | ASSIGNMENT,        // ^ ^= 
-	 ['%'] = SINGLE | ASSIGNMENT,        // % %=  
-	 ['='] = SINGLE | TWIN,							 // == 
-	 ['('] = SINGLE,
-	 [')'] = SINGLE,
-	 ['['] = SINGLE,
-	 [']'] = SINGLE,
-	 ['{'] = SINGLE,
-	 ['}'] = SINGLE,
-	 ['@'] = SINGLE,
-	 [';'] = SINGLE,
-	 [':'] = SINGLE,
-	 ['.'] = SINGLE,
-	 [','] = SINGLE,
-	 ['~'] = SINGLE,
-	 ['?'] = SINGLE
+  ['<'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT, //< << <= <<= 
+  ['>'] = SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT,//> >> >=	>>=  
+  ['+'] = SINGLE | TWIN | ASSIGNMENT, // + ++ += 
+  ['-'] = SINGLE | TWIN | ASSIGNMENT, // - -- -= 
+  ['/'] = SINGLE | TWIN | ASSIGNMENT, // / // /= 
+  ['&'] = SINGLE | TWIN | ASSIGNMENT, // & && &= 
+  ['|'] = SINGLE | TWIN | ASSIGNMENT, // | || |= 
+  ['!'] = SINGLE | ASSIGNMENT,				 // ! !=
+  ['*'] = SINGLE | ASSIGNMENT,        // * *= 
+  ['^'] = SINGLE | ASSIGNMENT,        // ^ ^= 
+  ['%'] = SINGLE | ASSIGNMENT,        // % %=  
+  ['='] = SINGLE | TWIN,							 // == 
+  ['('] = SINGLE,
+  [')'] = SINGLE,
+  ['['] = SINGLE,
+  [']'] = SINGLE,
+  ['{'] = SINGLE,
+  ['}'] = SINGLE,
+  ['@'] = SINGLE,
+  [';'] = SINGLE,
+  [':'] = SINGLE,
+  ['.'] = SINGLE,
+  [','] = SINGLE,
+  ['~'] = SINGLE,
+  ['?'] = SINGLE
 };
 
 int isValidOperator(int symbol){
-			if(SINGLE == symbol)
-				return 1;
-			else if ((SINGLE | TWIN) == symbol)
-				return 1;
-			else if ((SINGLE | ASSIGNMENT) == symbol)
-				return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
-			  return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
-				return 1;
-			else 
-				return 0;
+  if(SINGLE == symbol)
+		return 1;
+  else if ((SINGLE | TWIN) == symbol)
+    return 1;
+  else if ((SINGLE | ASSIGNMENT) == symbol)
+    return 1;
+  else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
+    return 1;
+  else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
+    return 1;
+  else 
+    return 0;
 }
 
 int isSingle(int symbol){
-			if (SINGLE == symbol)
-				 return 1;
-			   return 0;
+  if (SINGLE == symbol)
+    return 1;
+  return 0;
  }
 
 int isTwin(int symbol){
-			if ((SINGLE | TWIN) == symbol)
-				return 1;
-			else if ( (SINGLE | TWIN | ASSIGNMENT) == symbol )
-			  return 1;
-			else if ( (SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
-				return 1;
-			else 
-				return 0;
+  if ((SINGLE | TWIN) == symbol)
+    return 1;
+  else if ( (SINGLE | TWIN | ASSIGNMENT) == symbol )
+    return 1;
+  else if ( (SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
+    return 1;
+  else 
+    return 0;
 }
 
 int isAssign(int symbol){
-			if ((SINGLE | ASSIGNMENT) == symbol)
-				 return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
-				 return 1;
-			else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
-				 return 1;
-			else
-			   return 0;
+  if ((SINGLE | ASSIGNMENT) == symbol)
+    return 1;
+  else if ((SINGLE | TWIN | ASSIGNMENT) == symbol)
+    return 1;
+  else if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
+    return 1;
+  else
+    return 0;
  }
 
 int isTwinAssign(int symbol){
-			if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
-				return 1;
-			  return 0;
+  if ((SINGLE | TWIN | ASSIGNMENT |TWIN_ASSIGNMENT) == symbol)
+    return 1;
+  return 0;
 }

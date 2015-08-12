@@ -184,16 +184,6 @@ void test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_
 }
 
 
-void test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_LAI_H3A_N3NG(void){
-  StringToken* strTk = malloc(sizeof(StringToken));
-  strTk->type = TOKEN_STRING_TYPE;
-  strTk->length = 14;
-  strTk->startColumn =13;
-  strTk->str ="12342 \"A232\" \"LAI HWA NENG\" ";
-  strTk->name = "\"LAI HWA NENG\"";
-  testAsserEqualStringToken("\"LAI H3A N3NG\"",strTk,__LINE__);
-  printf("No.20\n");
-}
 
 
 //-----------------------testAsserEqualOperatorToken--------------------------------------------------

@@ -89,8 +89,9 @@ void testAsserEqualOperatorToken(const char* str,OperatorToken* actual,int lineN
       CUSTOM_TEST_FAIL(lineNo,"Expected %s was %s. The token type is not the same.",        \
                         getTokenTypeName(TOKEN_OPERATOR_TYPE),getTokenTypeName(actual->type)); 
     }
+    UNITY_TEST_ASSERT_EQUAL_STRING(str,)
     UNITY_TEST_ASSERT_EQUAL_INT(strlen(str),actual->length,lineNo,"The length is not the same.");
-    customTestAssertEqualString(str,&(actual->str[actual->startColumn]),lineNo,             \
+    //customTestAssertEqualString(str,&(actual->str[actual->startColumn]),lineNo,             \
     "Expected %s was %s. The Operator is not the same.",str,actual->symbol);   
  }
 
@@ -113,12 +114,7 @@ void customTestAssertEqualString(const char* ExpectedStr,char* actualStr,int lin
     va_end(args);
 }
     
-void customTestAssertEqualOperator(const char* ExpectedStr,char* actualStr,int lineNo ,char* msg,...){
-  
-  
-  
-  
-}
+
     
     
     

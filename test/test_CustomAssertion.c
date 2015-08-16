@@ -15,7 +15,7 @@ void tearDown(void)
 {
 }
 //---------------------testAsserEqualIntegerToken----------------------
-void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_321(void){
+void xtest_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_321(void){
   IntegerToken* inTk = malloc(sizeof(IntegerToken));
   inTk->type = TOKEN_INTEGER_TYPE;
   inTk->value = 321;
@@ -23,7 +23,7 @@ void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_321
   printf("No.1\n");
 }
 
-void test_testAsserEqualIntegerToken_given_the_value_is_0XA21_and_expect_value_0XA21(void){
+void xtest_testAsserEqualIntegerToken_given_the_value_is_0XA21_and_expect_value_0XA21(void){
   IntegerToken* inTk = malloc(sizeof(IntegerToken));
   inTk->type = TOKEN_INTEGER_TYPE;
   inTk->value = 0XA21;
@@ -31,7 +31,7 @@ void test_testAsserEqualIntegerToken_given_the_value_is_0XA21_and_expect_value_0
   printf("No.2\n");
 }
 
-void test_testAsserEqualIntegerToken_given_the_value_is_0721_and_expect_value_0721(void){
+void xtest_testAsserEqualIntegerToken_given_the_value_is_0721_and_expect_value_0721(void){
   IntegerToken* inTk = malloc(sizeof(IntegerToken));
   inTk->type = TOKEN_INTEGER_TYPE;
   inTk->value = 0721;
@@ -39,7 +39,7 @@ void test_testAsserEqualIntegerToken_given_the_value_is_0721_and_expect_value_07
   printf("No.3\n");
 }
 
-void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_123 (void){
+void xtest_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_123 (void){
   IntegerToken* inTk = malloc(sizeof(IntegerToken));
   inTk->type = TOKEN_INTEGER_TYPE;
   inTk->value = 321;
@@ -47,13 +47,13 @@ void test_testAsserEqualIntegerToken_given_the_value_is_321_and_expect_value_123
   printf("No.4\n");
 }
 
-void test_testAsserEqualIntegerToken_given_token_is_NULL(void){
+void xtest_testAsserEqualIntegerToken_given_token_is_NULL(void){
   IntegerToken* inTk = NULL;
   testAsserEqualIntegerToken(123,inTk,__LINE__);
   printf("No.5\n");
 }
 
-void test_testAsserEqualIntegerToken_given_TOKEN_FLOAT_TYPE(void){
+void xtest_testAsserEqualIntegerToken_given_TOKEN_FLOAT_TYPE(void){
   IntegerToken* inTk = malloc(sizeof(IntegerToken));
   inTk->type = TOKEN_FLOAT_TYPE;
   testAsserEqualIntegerToken(123,inTk,__LINE__);
@@ -61,20 +61,20 @@ void test_testAsserEqualIntegerToken_given_TOKEN_FLOAT_TYPE(void){
 }
 
 //--------------------testAsserEqualFloatToken----------------------------------
-void test_testAsserEqualFloatToken_given_TOKEN_INTEGER_TOKEN(void){
+void xtest_testAsserEqualFloatToken_given_TOKEN_INTEGER_TOKEN(void){
   FloatToken* flTk = malloc(sizeof(FloatToken));
   flTk->type = TOKEN_INTEGER_TYPE;
   testAsserEqualFloatToken(123.3,flTk,__LINE__);
   printf("No.7\n");
 }
 
-void test_testAsserEqualFloatToken_given_token_is_NULL(void){
+void xtest_testAsserEqualFloatToken_given_token_is_NULL(void){
   FloatToken* flTk = NULL;
   testAsserEqualFloatToken(123.3,flTk,__LINE__);
   printf("No.8\n");
 }
 
-void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_123(void){
+void xtest_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_123(void){
   FloatToken* flTk = malloc(sizeof(FloatToken));
   flTk->type = TOKEN_FLOAT_TYPE;
   flTk->value = 1.23;
@@ -82,7 +82,7 @@ void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_
   printf("No.9\n");
 }
 
-void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_1point23(void){
+void xtest_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_1point23(void){
   FloatToken* flTk = malloc(sizeof(FloatToken));
   flTk->type = TOKEN_FLOAT_TYPE;
   flTk->value = 1.23;
@@ -93,19 +93,19 @@ void test_testAsserEqualFloatToken_given_the_value_is_1point23_and_expect_value_
 
 //----------------------------testAsserEqualIdentifierToken---------------------
 
-void test_testAsserEqualIdentifierToken_given_the_token_is_NULL(void){
+void xtest_testAsserEqualIdentifierToken_given_the_token_is_NULL(void){
   IdentifierToken* idenTk = NULL;
   testAsserEqualIdentifierToken("A123",idenTk,__LINE__);
   printf("No.11\n");
 }
 
-void test_testAsserEqualIdentifierToken_given_the_token_is_tOKEN_FLOAT_TYPE(void){
+void xtest_testAsserEqualIdentifierToken_given_the_token_is_tOKEN_FLOAT_TYPE(void){
   IdentifierToken* idenTk = malloc(sizeof(IdentifierToken));
   idenTk->type = TOKEN_FLOAT_TYPE;
   testAsserEqualIdentifierToken("A123",idenTk,__LINE__);
   printf("No.12\n");
 }
-void test_testAsserEqualIdentifierToken_given_The_length_of_token_is_3_expected_length_of_token_is_4(void){
+void xtest_testAsserEqualIdentifierToken_given_The_length_of_token_is_3_expected_length_of_token_is_4(void){
   IdentifierToken* idenTk = malloc(sizeof(IdentifierToken));
   idenTk->type = TOKEN_IDENTIFIER_TYPE;
   idenTk->length = 3;
@@ -113,7 +113,7 @@ void test_testAsserEqualIdentifierToken_given_The_length_of_token_is_3_expected_
   printf("No.13\n");
 }
 
-void test_testAsserEqualIdentifierToken_given_the_string_is_A12_and_expect_A13(void){
+void xtest_testAsserEqualIdentifierToken_given_the_string_is_A12_and_expect_A13(void){
   IdentifierToken* idenTk = malloc(sizeof(IdentifierToken));
   idenTk->type = TOKEN_IDENTIFIER_TYPE;
   idenTk->length = 3;
@@ -124,7 +124,7 @@ void test_testAsserEqualIdentifierToken_given_the_string_is_A12_and_expect_A13(v
   printf("No.14\n");
 }
 
-void test_testAsserEqualIdentifierToken_given_the_string_is_LAI_HWA_NENG_and_expect_NENG(void){
+void xtest_testAsserEqualIdentifierToken_given_the_string_is_LAI_HWA_NENG_and_expect_NENG(void){
   IdentifierToken* idenTk = malloc(sizeof(IdentifierToken));
   idenTk->type = TOKEN_IDENTIFIER_TYPE;
   idenTk->length = 4;
@@ -137,21 +137,21 @@ void test_testAsserEqualIdentifierToken_given_the_string_is_LAI_HWA_NENG_and_exp
 
 //-------------------------testAsserEqualStringToken------------------------------------------
 
-void test_testAsserEqualStringToken_the_token_is_tOKEN_IDENTIFIER_TYPE(void){
+void xtest_testAsserEqualStringToken_the_token_is_tOKEN_IDENTIFIER_TYPE(void){
   StringToken* strTk = malloc(sizeof(StringToken));
   strTk->type = TOKEN_IDENTIFIER_TYPE;
   testAsserEqualStringToken("\"1234\"",strTk,__LINE__);
   printf("No.16\n");
 }
 
-void test_testAsserEqualStringToken_the_token_is_NULL(void){
+void xtest_testAsserEqualStringToken_the_token_is_NULL(void){
   StringToken* strTk = NULL;
   testAsserEqualStringToken("\"1234\"",strTk,__LINE__);
   printf("No.17\n");
 }
 
 
-void test_testAsserEqualStringToken_the_length_of_token_is_4_expecte_length_of_token_is_6(void){
+void xtest_testAsserEqualStringToken_the_length_of_token_is_4_expecte_length_of_token_is_6(void){
   StringToken* strTk = malloc(sizeof(StringToken));
   strTk->type = TOKEN_STRING_TYPE;
   strTk->length = 4;
@@ -160,7 +160,7 @@ void test_testAsserEqualStringToken_the_length_of_token_is_4_expecte_length_of_t
 }
 
 
-void test_testAsserEqualStringToken_given_the_string_is_A232_and_expect_1234(void){
+void xtest_testAsserEqualStringToken_given_the_string_is_A232_and_expect_1234(void){
   StringToken* strTk = malloc(sizeof(StringToken));
   strTk->type = TOKEN_STRING_TYPE;
   strTk->length = 6;
@@ -172,7 +172,7 @@ void test_testAsserEqualStringToken_given_the_string_is_A232_and_expect_1234(voi
 }
 
 
-void test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_LAI_H3A_N3NG(void){
+void xtest_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_LAI_H3A_N3NG(void){
   StringToken* strTk = malloc(sizeof(StringToken));
   strTk->type = TOKEN_STRING_TYPE;
   strTk->length = 14;
@@ -228,7 +228,7 @@ void test_testAsserEqualStringToken_given_the_string_is_LAI_H3A_N3NG_and_expect_
 // }
 
 
-void test_double(void){
+void xtest_double(void){
   char* str = "1234 ABC-A232";
   char* str1 = "ABC";
   char* actualStr = &str[5];

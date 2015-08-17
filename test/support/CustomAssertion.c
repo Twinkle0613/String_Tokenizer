@@ -66,8 +66,9 @@ void testAsserEqualIdentifierToken(const char* str,IdentifierToken* actual,int l
                         getTokenTypeName(TOKEN_IDENTIFIER_TYPE),getTokenTypeName(actual->type)); 
     }
     UNITY_TEST_ASSERT_EQUAL_INT(strlen(str),actual->length,lineNo,"The length is not the same.");
+    UNITY_TEST_ASSERT_EQUAL_STRING(str,actual->name,lineNo,"The identifier is not the same");
     customTestAssertEqualString(str,&(actual->str[actual->startColumn]),lineNo,             \
-    "Expected %s was %s. The identifier is not the same.",str,actual->name);   
+    "The start column is not the same.");   
  }
 
  
@@ -78,8 +79,9 @@ void testAsserEqualStringToken(const char* str,StringToken* actual,int lineNo){
                         getTokenTypeName(TOKEN_STRING_TYPE),getTokenTypeName(actual->type)); 
     }
     UNITY_TEST_ASSERT_EQUAL_INT(strlen(str),actual->length,lineNo,"The length is not the same.");
+    UNITY_TEST_ASSERT_EQUAL_STRING(str,actual->name,lineNo,"The string is not the same");
     customTestAssertEqualString(str,&(actual->str[actual->startColumn]),lineNo,             \
-    "Expected %s was %s. The string is not the same.",str,actual->name);   
+    "The start column is not the same.",str,actual->name);   
  }
 
  
@@ -89,10 +91,8 @@ void testAsserEqualOperatorToken(const char* str,OperatorToken* actual,int lineN
       CUSTOM_TEST_FAIL(lineNo,"Expected %s was %s. The token type is not the same.",        \
                         getTokenTypeName(TOKEN_OPERATOR_TYPE),getTokenTypeName(actual->type)); 
     }
-  // UNITY_TEST_ASSERT_EQUAL_STRING(str,)
     UNITY_TEST_ASSERT_EQUAL_INT(strlen(str),actual->length,lineNo,"The length is not the same.");
-    //customTestAssertEqualString(str,&(actual->str[actual->startColumn]),lineNo,             \
-    "Expected %s was %s. The Operator is not the same.",str,actual->symbol);   
+    UNITY_TEST_ASSERT_EQUAL_STRING(str,actual->symbol,lineNo,"The operator is not the same");
  }
 
  
